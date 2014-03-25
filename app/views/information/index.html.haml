@@ -1,0 +1,18 @@
+.container
+  .mb20.pull-left
+    当前位置：
+    %a{href: ""} 美房网
+    \>
+    %a{href: ""} 漳州房产
+    \>
+    %a 漳州新闻
+  .clearfix
+  .pull-left{ style: "width: 900px;" }
+    - @information.each do |information|
+      = render information
+    .fenye
+      .pagination.pull-right{style: "margin-top:0px;"}
+        = will_paginate
+  .pull-left.ml20
+    %div{ style: "width:240px; height:500px; background:#CCC" }
+/ con end

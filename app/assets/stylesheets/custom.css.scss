@@ -1,0 +1,104 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+$lightGray: #999;
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* 导航 */
+.newnav {
+  background: #2db8ad;
+  width: 100%;
+  height: 36px;
+  margin-bottom: 20px;
+  color: #60eadf;
+  a {
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 36px;
+    padding-right: 32px;
+    padding-left: 32px;
+    color: #fff;
+  }
+}
+
+/* 头部 */
+#miniTop {
+  background: none repeat scroll 0 0 #f8f8f8;
+  border: 1px solid #e6e6e6;
+  color: #646464;
+  height: 25px;
+  margin: 0 auto;
+  padding:0px 0px 0px 20px;
+  width: 1170px;
+  line-height: 25px;
+
+  .miniLogin {
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 5px;
+    width: auto;
+    label {
+      display: inline-block;
+      line-height: 25px;
+      margin-left: 5px;
+    }
+  }
+
+  .minimg {
+    float: left;
+  }
+
+  .miniright {
+    float: right;
+    a {
+      color: #777;
+      padding: 10px 20px;
+      text-decoration: none;
+      text-shadow: 0 1px 0 $white;
+    }
+  }
+
+  input.loginTxtInt {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: $lightGray -moz-use-text-color -moz-use-text-color $lightGray;
+    border-image: none;
+    border-style: solid none none solid;
+    border-width: 1px medium medium 1px;
+    color: $lightGray;
+    display: inline-block;
+    height: 17px;
+    line-height: 17px;
+    margin-top: 3px;
+    padding: 1px 3px;
+    vertical-align: top;
+    width: 74px;
+  }
+
+  .regBut {
+    color: #777777;
+    padding: 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 $white;
+  }
+}

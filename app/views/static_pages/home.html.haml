@@ -1,0 +1,612 @@
+.container
+  / 左边
+  .pull-left
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 漳州新房
+      .panel-body
+        - @areas[0..3].each do |area|
+          %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
+            %h4.f16.mt5.mb5{style: "color:#f65c52"} #{area.name}
+            %p
+              - NewHome.where(area_id: area.id).limit(4).each do |new_home|
+                = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333"
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 帮你找房
+      .panel-body
+        %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
+          %h4.f16.mt5.mb5{style: "color:#f65c52"} 价格
+          %p
+            %a.areab{href: "#", target: "_blank", title: "3000-4000"} 3000-4000
+            %a.areab{href: "#", style: "color: #333;", target: "_blank", title: "4000-5000"} 4000-5000
+            %a{href: "#", target: "_blank", title: "5000-6000"} 5000-6000
+            %a.areab{href: "#", style: "color:#333;", target: "_blank", title: "6000-7000"} 6000-7000
+            %a.areab{href: "#", style: "color:#333;", target: "_blank", title: "7000-8000"} 7000-8000
+            %a{href: "#", target: "_blank", title: "5000-6000"} 8000以上
+        %div{style: " height:75px;"}
+          %h4.f16.mt5.mb5{style: "color:#f65c52"} 面积
+          %p
+            %a.areaa{href: "#", target: "_blank", title: "50m² 以下"} 50m&sup2 以下
+            %a.areaa{href: "#", style: "color: #333;", target: "_blank", title: "50-90m²"} 50-90m²
+            %a.areaa{href: "#", target: "_blank", title: "90-120m²"} 90-120m²
+            %a.areaa{href: "#", style: "color:#333;", target: "_blank", title: "120-150m²"} 120-200m²
+            %a.areaa{href: "#", style: "color:#333;", target: "_blank", title: "150-200m²"} 200m&sup2 以上
+        %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 区域
+        %select#area.selectS{name: "area", style: "margin:3px 0px 0px 0px"}
+          %option{value: ""} 芗城区
+          %option{value: "1"} 5漳州港
+          %option{value: "2"} 龙海
+        %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
+        %select#area.selectS{name: "area", style: "margin:3px 0px 0px 0px"}
+          %option{value: ""} 芗城区
+          %option{value: "1"} 5漳州港
+          %option{value: "2"} 龙海
+        %input#keyword.form-control.mt10{name: "keyword", placeholder: "请输入关键字", style: "width:110px;", type: "text"}/
+        %button.btn.btn-danger.btn-mini{style: "height:28px; width:58px", type: "submit"} 搜索
+  / 左边end
+  / 右边
+  .pull-right
+    = image_tag("tmp/ad.gif", alt: "", :style => "height:58px; width:900px")
+    %h3{style: "color:#2db8ad"}
+      - Information.where(information_type_id: 1).limit(1).each do |information|
+        = link_to information.title, information
+    %table
+      %tbody
+        %tr
+          %td.pb20{style: "width:50%"} 【调查】 1月厦门房价环涨居全国第1，您咋看？
+          %td.pb20 【每日分析】 26日厦一手住宅成交103套 同安成交11套涨近6成
+    / 右边中
+    .l_new2.pull-left{style: "border-right: 1px solid #EEEEEE; width:420px;"}
+      %table{width: "400px;"}
+        %tr
+          %td{style: "background:#ececec;"}
+            %p{style: "margin:0px"} 新房速递
+          %td{align: "right", style: " background:#ececec"}
+            %a.pr20{href: ""} 更多
+        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
+          %td{colspan: "2"}
+            %h4.f16{style: "color:#f65c52"}
+              - Information.where(information_type_id: 2).limit(1).each do |information|
+                = link_to information.title, information
+            - Information.where(information_type_id: 2).limit(3).offset(1).each do |information|
+              = link_to information.title, information
+              %br/
+        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
+          %td{colspan: "2"}
+            %h4.f16{style: "color:#f65c52"}
+              - Information.where(information_type_id: 2).limit(1).offset(4).each do |information|
+                = link_to information.title, information
+            - Information.where(information_type_id: 2).limit(3).offset(5).each do |information|
+              = link_to information.title, information
+              %br/
+      %table{width: "400px;"}
+        %tr
+          %td{style: "background:#ececec;"}
+            %p{style: "margin:0px"} 楼盘优惠
+          %td{align: "right", style: " background:#ececec"}
+            %a.pr20{href: ""} 更多
+        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
+          %td{colspan: "2"}
+            %h4.f16{style: "color:#f65c52"}
+              - Information.where(information_type_id: 3).limit(1).each do |information|
+                = link_to information.title, information
+            - Information.where(information_type_id: 3).limit(4).offset(1).each do |information|
+              = link_to information.title, information
+              %br/
+        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
+          %td{colspan: "2"}
+            %h4.f16{style: "color:#f65c52"}
+              - Information.where(information_type_id: 3).limit(1).offset(5).each do |information|
+                = link_to information.title, information
+            - Information.where(information_type_id: 3).limit(4).offset(6).each do |information|
+              = link_to information.title, information
+              %br/
+      %table{width: "400px;"}
+        %tr
+          %td{style: "background:#ececec;"}
+            %p{style: "margin:0px"} 市场报告
+          %td{align: "right", style: " background:#ececec"}
+            %a.pr20{href: ""} 更多
+        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
+          %td{colspan: "2"}
+            %h4.f16{style: "color:#f65c52"}
+              - Information.where(information_type_id: 4).limit(1).each do |information|
+                = link_to information.title, information
+            - Information.where(information_type_id: 4).limit(4).offset(1).each do |information|
+              = link_to information.title, information
+              %br/
+    / 右边右
+    .pull-left.ml20{style: "480px;"}
+      %div{style: "border: 1px solid #EEEEEE;"}
+        %a{href: "#"}
+          = image_tag "tmp/ad1.gif", alt: "", :style => "width: 445px; height: 222px"
+        .mt10.ml10
+          %table{width: "460px;"}
+            %tbody
+              %tr
+                %td{style: "width:80%"}
+                  %a.f16{href: "#"} 水岸新城国际大晒优惠大酬宾 还等什么呢
+                %td
+                  %a.f16{href: "#", style: "color:#f65c52"} >>更多团购
+      .mt10{style: "border: 1px solid #EEEEEE;"}
+        %a{href: "#"}
+          = image_tag "tmp/ad2.gif", alt: "", :style => "width: 445px; height: 222px"
+        .mt10.ml10
+          %a.f16{href: "#"}
+            %strong 罗兰春天帝 3房 热门大促销优惠
+          %br/
+          %a.f16{href: "#"} 漳州角美二期开盘大热！优惠继续！97折限时一个月
+      .mt10{style: "border: 1px solid #EEEEEE; height:240px; "}
+        %table{width: "471px"}
+          %tr
+            %td{height: "32px", style: "background:#2db8ad;", width: "100px;"}
+              %p.f16.cw.ml20.pt5 专题
+              %p
+            %td{align: "right", style: " background:#ececec"}
+          %tr
+            %td{colspan: "2"}
+              .pull-left{style: "width:465px; word-wrap: break-word; word-break: normal; margin-top:4px; "}
+                %p.f14.lh200
+                  = image_tag "tmp/ad3.gif", alt: "", align: "left", :style => "width: 265px; height: 150px"
+                  %strong
+                    %span.f16{style: "color:#2db8ad"} 港城御龙湾
+                  = succeed "\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{6e2f}\u{57ce}\u{5fa1}\u{9f99}\u{6e7e}\u{ff1a}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{5236}\u{578b},\u{4f18}\u{60e0}..." do
+                    %br/
+                  %a{href: "#", style: "color:#f65c52"} [详情]
+    / end 右边右
+  / 右边end
+  / 二楼新房板块
+  .clearfix
+  .pull-left{style: "background:url(#{asset_path 'ban.gif'}); height:53px; width:103px;"}
+  .pull-left{style: "background:url(#{asset_path 'ban2.gif'});height:53px; width: 1067px; background-repeat:repeat-x"}
+    %h4{style: "color:#FFF; margin-top:24px;"} 新房
+  .clearfix.mb15
+  / 左边
+  .pull-left{style: "width:248px;"}
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          楼盘推荐
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 区属
+              %th 价格
+          %tr
+            %td 华府国际
+            %td 芗城
+            %td 8000元/&sup2
+          %tr
+            %td 湘江北岸新城
+            %td 龙文
+            %td 8500元/&sup2
+          %tr
+            %td 张龙御景豪宅
+            %td 芗城
+            %td 7000元/&sup2
+          %tr
+            %td 华府国际
+            %td 芗城
+            %td 8000元/&sup2
+          %tr
+            %td 华府国际
+            %td 芗城
+            %td 8000元/&sup2
+          %tr
+            %td 华府国际
+            %td 芗城
+            %td 8000元/&sup2
+          %tr
+            %td 华府国际新城
+            %td 龙海
+            %td 待定
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          意向登记
+          %span.f12{style: "font-weight:normal"} |为您提供优质的房源
+      .panel-body
+        %table.table-condensed
+          %tr
+            %td 姓名:
+            %td
+              %input#name.form-control{name: "name", placeholder: "请输入联系姓名", style: "width:130px;", type: "text"}/
+          %tr
+            %td QQ :
+            %td
+              %input#qq.form-control{name: "qq", placeholder: "请输入联系QQ", style: "width:130px;", type: "text"}/
+          %tr
+            %td 电话:
+            %td
+              %input#phone.form-control{name: "phone", placeholder: "请输入联系电话", style: "width:130px;", type: "text"}/
+          %tr
+            %td 楼盘:
+            %td
+              %input#keyword.form-control{name: "keyword", placeholder: "请输入中意楼盘", style: "width:130px;", type: "text"}/
+          %tr
+            %td
+            %td
+              %button.btn.btn-danger.btn-mini{style: "height:28px;", type: "submit"} 立刻报名
+  / end 左边
+  / 右边
+  .pull-left
+    / 右边中
+    .l_new3.pull-left.ml10{style: "border-right: 1px solid #EEEEEE; width:420px;"}
+      %div{style: "width:400px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab"} 今日话题
+        #myTabContent.tab-content
+          .tab-pane.fade.active.in
+            - Information.where(information_type_id: 5).limit(1).each do |information|
+              %h3.cl{style: "margin:0"}
+                = link_to information.title, information
+              %p{style: "color:#999"} #{information.source} #{information.created_at.strftime("%Y-%m-%d")}
+              %div{style: "margin:20px 0px 20px 0px; border-bottom:1px dotted #CCC; height:90px"}
+                %p
+                  = information.description
+                  = link_to "[详情]", information
+                %p
+                  %a.cr.pull-right{href: ""} 往期>
+            - Information.where(information_type_id: 5).limit(3).offset(1).each do |information|
+              = link_to information.title, information
+      %div{style: "width:400px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#l_hot"} 楼市资讯
+        #myTabContent.tab-content
+          #l_hot.tab-pane.fade.active.in
+            - Information.where(information_type_id: 6).limit(8).each do |information|
+              = link_to information.title, information
+      %div{style: "width:400px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#act"} 楼市观点
+        #myTabContent.tab-content
+          #act.tab-pane.fade.active.in
+            - Information.where(information_type_id: 9).limit(8).each do |information|
+              = link_to information.title, information
+    / end右边中
+    / 右边右
+    .pull-left.ml20{style: "width:465px;"}
+      %table{width: "465px;"}
+        %tr
+          %td{style: "border-bottom:2px solid #2db8ad ", width: "17%"}
+            %h4.f16.cr{style: "margin:0px"} 楼盘活动
+          %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
+            %a.pr20{href: ""} 更多
+      %a{href: "#"}
+        = image_tag "tmp/ad4.gif", alt: "", align: "left", :style => "width: 445px; height: 200px"
+      .mt10.ml10.mr10{style: "border-bottom:1px solid #EEEEEE;"}
+        %a.f16.lh200{href: "#", style: "color:#2db8ad"}
+          %strong 3月9日厦门湾南岸看房团 享多重独家特惠
+        %br/
+        %a.f14.lh200{href: "#"} 3月9日，漳州福房网新春首场看房直通车即将起航，带您抢购永鸿厦门湾南岸、永鸿御景湾山海美宅，享多重独家专属购房特惠，助您筑梦南岸！
+      .mt10.ml10.mr10{style: "list-style-type:none"}
+        %a.f16{href: "#"}
+          %strong
+            %li.lh200 漳州角美万达中央华城二期奢居样板房华
+        %a.f14{href: "#"}
+          %li.lh200 角美万达广场样板房升级
+        %a.f16{href: "#"}
+          %strong
+            %li.lh200 永鸿厦门湾南岸：3月女人季 美丽"甲天下"
+        %a.f14{href: "#"}
+          %li.lh200 角美万达广场样板房升级
+        %a.f16.cl{href: "#"}
+          %strong
+            %li.lh200 永年公园美学大型交友会圆满落幕
+        %a.f14{href: "#"}
+          %li.lh200 大型交友会
+      .mt20.lou_test
+        %table{width: "465px;"}
+          %tr
+            %td{style: "border-bottom:2px solid #2db8ad ", width: "17%"}
+              %h4{style: "margin:0px"} 楼盘评测
+            %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
+              %a.pr20{href: ""} 更多
+          %tr{style: "border-bottom: 1px solid #EEEEEE;"}
+            %td{colspan: "2"}
+              .mt10{style: "border: 1px solid #EEEEEE;"}
+                %a{href: "#"}
+                  = image_tag("tmp/ad5.gif", alt: "", :style => "height:200px; width:445px")
+                .mt10.ml10.mr10{style: "border-bottom:1px solid #EEEEEE;"}
+                  %a.f16{href: "#", style: "color:#2db8ad"}
+                    %strong 3月9日厦门湾南岸看房团 享多重独家特惠
+                  %br/
+                  %a.f14{href: "#"} 3月9日，漳州福房网新春首场看房直通车即将起航，带您抢购永鸿厦门湾南岸、永鸿御景湾山海美宅，享多重独家专属购房特惠....
+                  %a{style: "color:#f65c52"} 阅读全文>>
+                %a{href: "#"}
+                  %li 平和文化旅游项目新年开局良好 年度总投资7.5亿
+                %a{href: "#"}
+                  %li 漳州全力推进富美城市建设 持续加大项目建设力度
+                %a{href: "#"}
+                  %li 角美楼市逆势突围，新房成交尽显生气，已提早进入
+                %a{href: "#"}
+                  %li 楼市是否真的会如预期所言崩盘？漳州楼市是否会深陷其中？
+    / end 右边右
+  / end 右边
+  / -二楼end
+  / 三楼地产圈
+  .dcq
+    .clearfix
+    .pull-left{style: "background:url(#{asset_path("ban.gif")}); height:53px; width:103px;"}
+    .pull-left{style: "background:url(#{asset_path("ban2.gif")});height:53px; width: 1067px; background-repeat:repeat-x"}
+      %h4{style: "color:#FFF; margin-top:24px;"} 地产圈
+    .clearfix
+    .pull-left
+      %table.mt20{width: "1170px;"}
+        %tr
+          %td{height: "32px", style: "background: url(#{asset_path("t_1.gif")}) no-repeat; margin:0px;", width: "107px"}
+            %a1 名人堂
+          %td{align: "right", style: "border-bottom:1px solid #EEEEEE;"}
+            %a.pr20{href: ""} 更多>
+    / picrotate_left start
+    .blk_18
+      %a.LeftBotton{href: "javascript:void(0);", onmousedown: "ISL_GoUp_1()", onmouseout: "ISL_StopUp_1()", onmouseup: "ISL_StopUp_1()", target: "_self"}
+      #ISL_Cont_1.pcont
+        .ScrCont
+          #List1_1
+            / piclist begin
+            %a.pl{href: "#"}
+              = image_tag("pic.jpg", alt: "", :style => "height:130px; width:160px")
+              图片1
+
+            / piclist end
+          #List2_1
+      %a.RightBotton{href: "javascript:void(0);", onmousedown: "ISL_GoDown_1()", onmouseout: "ISL_StopDown_1()", onmouseup: "ISL_StopDown_1()", target: "_self"}
+    .c
+    :javascript
+      <!--
+      picrun_ini()
+      //-->
+    / picrotate_left end
+    .pull-left.mt10
+      = image_tag("tmp/ad6.gif", alt: "", :style => "height:313px; width:290px")
+    .pull-left.mt10.ml30
+      %table{border: "0", width: "485px"}
+        %tr
+          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
+            %a1 活动
+          %td{align: "right", style: "background:#ececec"}
+            %a.pr20{href: ""} 更多>
+        %tr
+          %td{colspan: "2"}
+            = image_tag("tmp/ad7.gif", alt: "", :class => "img-polaroid ml5 mt5", :style => "height:130px; width:160px")
+            = image_tag("tmp/ad8.gif", alt: "", :class => "img-polaroid ml5 mt5", :style => "height:130px; width:160px")
+        %tr
+          %td{colspan: "2"}
+            - Information.where(information_type_id: 8).limit(1).each do |information|
+              %strong
+                = link_to information.title, information, :class => 'f16 lh200', :style => 'color:#2db8ad'
+              %br/
+            - Information.where(information_type_id: 8).limit(4).offset(1).each do |information|
+              %li
+                = link_to information.title, information
+    .pull-left.ml30.mt15
+      %table{width: "320px;"}
+        %tr
+          %td{style: "border-bottom:2px solid #2db8ad ", width: "30%"}
+            %h4{style: "margin:0px"} 资料分享
+          %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
+            %a.pr20{href: ""} 更多
+        %tr
+          %td{colspan: "2"}
+            %table.table.table-condensed
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 1  [房产热词]首套房贷
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 2  [房产热词]房价
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 3  [房产热词]漳州碧湖商业圈
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 4  [房产热词]房产证相关问题
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 5  [房产热词]国五条那些事
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 6  [房产热词]房产税如何征收
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 7  [房产热词]公积金贷款问题
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 8  [房产热词]保障性住房事宜
+    .pull-left
+      %table{border: "0", width: "1170px"}
+        %tr
+          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
+            %a1 代理公司
+          %td{align: "right", style: "background:#ececec"}
+            %a.pr20{href: ""} 更多>
+        %tr
+          %td{colspan: "2"}
+            #demo.mt20.mb20
+              #indemo
+                #demo1
+                  %a{href: "#"}
+                    = image_tag "tmp/1.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/2.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/3.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/4.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/5.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/6.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/7.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/8.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/9.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/10.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/11.jpg", border: "0"
+                  %a{href: "#"}
+                    = image_tag "tmp/12.jpg", border: "0"
+                #demo2
+            :javascript
+              <!--
+              var speed=20;
+              var tab=document.getElementById("demo");
+              var tab1=document.getElementById("demo1");
+              var tab2=document.getElementById("demo2");
+              tab2.innerHTML=tab1.innerHTML;
+              function Marquee(){
+              if(tab2.offsetWidth-tab.scrollLeft<=0)
+              tab.scrollLeft-=tab1.offsetWidth
+              else{
+              tab.scrollLeft++;
+              }
+              }
+              var MyMar=setInterval(Marquee,speed);
+              tab.onmouseover=function() {clearInterval(MyMar)};
+              tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+              -->
+  / 三楼end
+  / 4楼购房百科
+  .baike
+    .clearfix
+    .pull-left{style: "background:url(#{asset_path("ban.gif")}); height:53px; width:103px;"}
+    .pull-left{style: "background:url(#{asset_path("ban2.gif")});height:53px; width: 1067px; background-repeat:repeat-x"}
+      %h4{style: "color:#FFF; margin-top:24px;"} 购房百科
+    .pull-left.mt10.ml30
+      %table{border: "0", width: "410px"}
+        %tr
+          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
+            %a1 购房须知
+          %td{align: "right", style: "background:#ececec"}
+            %a.pr20{href: ""} 更多>
+        %tr
+          %td.pl15{colspan: "2"}
+            - Information.where(information_type_id: 9).limit(1).each do |information|
+              %strong
+                = link_to information.title, information, :class => 'f16 lh200', :style => 'color: #f65c52'
+                %br/
+            - Information.where(information_type_id: 9).limit(3).offset(1).each do |information|
+              %li
+                = link_to information.title, information
+      %table{border: "0", width: "410px"}
+        %tr
+          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
+            %a1 购房警示
+          %td{align: "right", style: "background:#ececec"}
+            %a.pr20{href: ""} 更多>
+        %tr
+          %td.pl15{colspan: "2"}
+            - Information.where(information_type_id: 10).limit(1).each do |information|
+              %strong
+                = link_to information.title, information, :class => 'f16 lh200', :style => 'color: #f65c52'
+              %br/
+            - Information.where(information_type_id: 10).limit(3).offset(1).each do |information|
+              %li
+                = link_to information.title, information
+    .pull-left.mt10.ml30
+      %table{border: "0", width: "410px"}
+        %tr
+          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
+            %a1 购房指南
+          %td{align: "right", style: "background:#ececec"}
+            %a.pr20{href: ""} 更多>
+        %tr
+          %td.pl15{colspan: "2"}
+            - Information.where(information_type_id: 11).limit(1).each do |information|
+              %strong
+                = link_to information.title, information, :class => 'f16 lh200', :style => 'color:#f65c52'
+                %br/
+            - Information.where(information_type_id: 11).limit(3).offset(1).each do |information|
+              %strong
+                = link_to information.title, information
+                %br/
+        %tr
+          %td{colspan: "2"}
+            = image_tag "tmp/ad5.gif", :style => "width: 360px"
+    .pull-left.ml30.mt15
+      %table{width: "250px;"}
+        %tr
+          %td{style: "border-bottom:2px solid #2db8ad ", width: "40%"}
+            %h4{style: "margin:0px"} 资料分享
+          %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
+            %a.pr20{href: ""} 更多
+        %tr
+          %td{colspan: "2"}
+            %table.table.table-condensed
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 1  [房产热词]首套房贷
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 2  [房产热词]房价
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 3  [房产热词]漳州碧湖商业圈
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 4  [房产热词]房产证相关问题
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 5  [房产热词]国五条那些事
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 6  [房产热词]房产税如何征收
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 7  [房产热词]公积金贷款问题
+              %tr
+                %td
+                  %a{href: "#"}
+                    %li 8  [房产热词]保障性住房事宜
+    .clearfix
+      / 友情链接
+    %table.table.table-bordered
+      %tr
+        %td{bgcolor: "#ececec", width: "192px;"}
+          %p{align: "center"}
+            %strong 友情链接
+          %a.ml30{href: ""}
+            %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
+        %td.yqlj
+          %a 池州房产网
+          %a 苏州租房
+          %a 包头房产网
+          %a 威海房地产
+          %a 襄阳房产
+          %a 超市网盐
+          %a 城房产网
+          %a 大连房产网
+          %a 石家庄看房团
+          %a 重庆房地产
+          %a 东莞房产
+          %a 桐乡房产
+          %a 上海租房网
+      / end友情链接
+  / end楼购房百科
+/ con end

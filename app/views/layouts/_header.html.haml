@@ -1,0 +1,59 @@
+#miniTop
+  .miniLogin
+    %label 用户名：
+    %input#username.loginTxtInt{ name: "username", type: "text" }
+    %label 密码：
+    %input#password.loginTxtInt{ name: "password", type: "password" }
+    %input{ name: "action", type: "hidden", value: "login" }
+    %input{ name: "r", type: "hidden", value: "3" }
+    %input.loginBut{ type: "submit", value: "登录" }
+    %a.regBut 注册
+  .minimg
+    = image_tag("bootstrap/wb.png", alt: "")
+  .minimg.ml5
+    = image_tag("bootstrap/style.png", alt: "")
+  .miniright
+    %a 首页
+    %a 新房
+    %a 二手房
+    %a 团购
+.clearfix
+.container
+  .pull-left.mt20
+    = link_to image_tag("logo.png"), "/"
+  .pull-left.mt30.ml30
+    .tabbable
+      %ul.nav.nav-tabs{ style: "margin:0;" }
+        %li.active
+          %a{ "data-toggle" => "tab", href: "#tab1", style: " background:#2db8ad; color:#FFF" } 综合
+        %li
+          %a{ "data-toggle" => "tab", href: "#tab2" } 新房
+        %li
+          %a{ "data-toggle" => "tab", href: "#tab" } 租房
+        %li
+          %a{ "data-toggle" => "tab", href: "#tab2" } 团购
+        %li
+          %a{ "data-toggle" => "tab", href: "#tab2" } 专题
+    .tab-content
+      #tab1.tab-pane.active
+        %form.form-inline{ action: "{APP_PATH}index.php", method: "get", name: "myform", role: "form" }
+          %input#keyword.form-control{ name: "keyword", placeholder: "请输入关键字", style: "width:625px;", type: "text" }/
+          %button.btn.btn-danger{ type: "submit" } 搜索
+      #tab2.tab-pane
+        %p Howdy, I'm in Section 2.
+/ 导航
+.newnav{align: "center"}
+  %a{href: "/information"}> 资讯
+  |
+  %a{href: "/new_homes"}> 新房
+  |
+  %a{href: "#"}> 专题
+  |
+  %a{href: "#"}> 团购
+  |
+  %a{href: "#"}> 地图找房
+  |
+  %a{href: "#"}> 资讯
+  |
+  %a{href: "#"} 二手房
+/ header end
