@@ -71,18 +71,44 @@ ActiveAdmin.register NewHome do
                                 </div>
                                 <div id=\"selectItemCount\" class=\"selectItemcont\">
                                   <div id=\"selectSub\">
-                                    <div id=\"l-map\" style=\"height:500px; width: 800px;\"></div>
+                                    <div id=\"r-result\" style=\"width:250px; float:right \">
+                                      <div id=\"search\" style=\"margin-top:10px; margin-left:10px;\">
+                                        搜索：
+                                        <input type=\"text\" size=\"20\" name=\"keyword\" id=\"keyword\" style=\"width:100px\" />
+                                        <input type=\"submit\" value=\"提交\" onclick=\"MblogDotccMap(document.getElementById('keyword').value)\" />
+                                      </div>
+                                        <div id=\"results_info\" style=\"margin-top:10px; margin-left:10px;\"></div>
+                                    </div>
+                                    <div id=\"l-map\" style=\"height:550px; width: 650px; float:left; \"></div>
                                   </div>
                                 </div>
                               </div>".html_safe
       f.form_buffers.last << javascript_tag("
+
                                              var map = new BMap.Map(\"l-map\");
-                                             map.centerAndZoom(\"厦门\",13);
-                                             // 缩放
-                                             map.enableScrollWheelZoom();
+                                             var point = new BMap.Point(118.105036, 24.50291);
+
+                                             map.centerAndZoom(point, 13);
+
+                                             //var marker = new BMap.Marker(point);  // 创建标注
+                                             //map.addOverlay(marker);              // 将标注添加到地图中
+                                             //marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
                                              // 控件
+
                                              map.addControl(new BMap.NavigationControl());
-                                             map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));
+                                             map.addControl(new BMap.ScaleControl());
+                                             map.addControl(new BMap.OverviewMapControl());
+
+                                             function MblogDotccMap(keyword) {
+                                              var local = new BMap.LocalSearch(map, {renderOptions: {map: map, panel: \"results_info\"}});
+                                              map.panBy(point);
+                                              local.search(keyword);
+                                              local.getResults();
+                                              // 阻止提交
+                                              if (event) event.returnValue = false;
+                                                return false;
+                                             }
 
                                              // 加载值到输入框
                                              map.addEventListener('click', function(e){ document.getElementById('new_home_map_address').value = e.point.lng + ', ' + e.point.lat;});

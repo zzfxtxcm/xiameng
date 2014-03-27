@@ -271,26 +271,12 @@
               %th 楼盘名称
               %th 均价
               %th 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
+          - NewHome.where(price: @new_home.price).limit(6).each do |new_home|
+            %tr
+              %td
+                = link_to new_home.name, new_home
+              %td #{new_home.price}元/m&sup2
+              %td 对比
     .panel.panel-primary
       .panel-heading
         %h3.panel-title
