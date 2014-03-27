@@ -77,7 +77,7 @@ ActiveAdmin.register NewHome do
                               </div>".html_safe
       f.form_buffers.last << javascript_tag("
                                              var map = new BMap.Map(\"l-map\");
-                                             map.centerAndZoom(\"漳州市\",13);
+                                             map.centerAndZoom(\"厦门\",13);
                                              // 缩放
                                              map.enableScrollWheelZoom();
                                              // 控件
