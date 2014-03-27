@@ -122,6 +122,7 @@ zh-CN:
         name: "名称"
         price: "均价"
         tel: "咨询电话"
+        map_address: "地图"
         project_address: "项目地址"
         sales_address: "售楼地址"
         area: "区域"
