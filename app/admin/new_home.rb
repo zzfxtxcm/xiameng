@@ -50,6 +50,10 @@ ActiveAdmin.register NewHome do
          :label => I18n.t("active_admin.new_homes.search.created_at")
 
   form do |f|
+    within @head do
+      script :src => javascript_path('custom/jquery.bgiframe.js'), :type => "text/javascript"
+      script :src => javascript_path('http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo'), :type => "text/javascript"
+    end
     f.inputs "" do
       f.input :name,
               :label => I18n.t("active_admin.new_homes.form.name")
@@ -57,6 +61,32 @@ ActiveAdmin.register NewHome do
               :label => I18n.t("active_admin.new_homes.form.price")
       f.input :tel,
               :label => I18n.t("active_admin.new_homes.form.tel")
+      f.input :map_address,
+              :label => I18n.t("active_admin.new_homes.form.map_address"),
+              :input_html => { :readonly => true }
+      f.form_buffers.last << "<div id=\"selectItem\" class=\"selectItemhidden\">
+                                <div id=\"selectItemAd\" class=\"selectItemtit bgc_ccc\">
+                                  <h2 id=\"selectItemTitle\" class=\"selectItemleft\">请选择城市</h2>
+                                   <div id=\"selectItemClose\" class=\"selectItemright\">关闭</div>
+                                </div>
+                                <div id=\"selectItemCount\" class=\"selectItemcont\">
+                                  <div id=\"selectSub\">
+                                    <div id=\"l-map\" style=\"height:500px; width: 800px;\"></div>
+                                  </div>
+                                </div>
+                              </div>".html_safe
+      f.form_buffers.last << javascript_tag("
+                                             var map = new BMap.Map(\"l-map\");
+                                             map.centerAndZoom(\"漳州市\",13);
+                                             // 缩放
+                                             map.enableScrollWheelZoom();
+                                             // 控件
+                                             map.addControl(new BMap.NavigationControl());
+                                             map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));
+
+                                             // 加载值到输入框
+                                             map.addEventListener('click', function(e){ document.getElementById('new_home_map_address').value = e.point.lng + ', ' + e.point.lat;});
+                                            ")
       f.input :project_address,
               :label => I18n.t("active_admin.new_homes.form.project_address")
       f.input :sales_address,
@@ -148,6 +178,7 @@ ActiveAdmin.register NewHome do
       params.permit(:new_home => [:name,
                                   :price,
                                   :tel,
+                                  :map_address,
                                   :project_address,
                                   :sales_address,
                                   :area_id,
