@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323152137) do
+ActiveRecord::Schema.define(version: 20140327082740) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20140323152137) do
     t.integer  "construction_category_id"
     t.integer  "area_range_id"
     t.integer  "project_features_id"
+    t.string   "map_address"
   end
 
   add_index "new_homes", ["area_range_id"], name: "index_new_homes_on_area_range_id"
