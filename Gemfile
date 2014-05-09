@@ -7,7 +7,7 @@ gem 'bootstrap-sass', '2.3.2'
 gem 'haml', '4.0.5'
 
 # 会员
-gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-1'
+gem 'devise', '3.2.4'
 gem 'devise-encryptable', '0.1.2'
 
 # 后台页面
@@ -51,7 +51,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'simplecov', '0.8.2'
   gem 'email_spec', '1.5.0'
-  gem 'net-ssh', '2.7.0'
+  gem 'net-ssh', '2.9.0'
   gem 'capistrano', '3.1.0'
   gem 'capistrano-rails', '1.1.1'
   gem 'capistrano-bundler'
