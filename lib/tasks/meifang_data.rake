@@ -157,7 +157,7 @@ namespace :db do
 
   def make_information
     Information.create!(category_id: Category.first.id,
-                        title: "漳州楼市",
+                        title: "厦门楼市",
                         information_thumb: "",
                         source: "来源",
                         keywords: "关键词,关键词",
