@@ -12,6 +12,13 @@
         %p 楼盘动态：鑫荣花苑二期：稀世臻品花园掘金旺铺同步预约
         %p 楼吧点评：经过鑫荣花苑二期，看到那开始动工了！
         %p 售楼电话：#{new_home.tel}
+        %p 项目地址：#{new_home.project_address}
+        %p
+          开发商信息：
+          = Developers.find(new_home.developers_id).name
+        %p
+          物业类型：
+          = PropertyType.find(new_home.property_type_id).name
         %p
           户型图
           %span.cr (8)
