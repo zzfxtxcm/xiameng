@@ -36,32 +36,19 @@
           %a{ "data-toggle" => "tab", href: "#tab2" } 专题
       .tab-content#myTabContent
         .tab-pane.fade.active.in#tab1
-          %form.form-inline.m0{ action: "{APP_PATH}index.php", method: "get", name: "myform", role: "form" }
-            %input.form-control#keyword{ name: "keyword", placeholder: "请输入关键字", style: "width:625px;", type: "text" }/
-            %button.btn.btn-danger{ type: "submit" } 搜索
+          = form_tag information_index_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
+            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 625px", :placeholder => "请输入关键字"
+            %button.btn.btn-danger{ type: "submit" }
+              搜索
         .tab-pane#tab2
-          %form.form-inline.m0{ action: "{APP_PATH}index.php", method: "get", name: "myform", role: "form" }
-            %select#catid.form-control.selectS{:name => "catid"}
-              %option{:value => "9"} 所属区域
-              %option{:value => "9"} 芗城区
-              %option{:value => "9"} 龙文区
-            %select#price.form-control.selectS{name: "bankuai"}
-              %option{value: ""} 所属板块
-              %option{value: "1"} 城西
-              %option{value: "2"} 城西
-            %select#city.form-control.selectS{name: "city"}
-              %option{value: ""} 物业类型
-              %option{value: ""} 酒店式公寓
-              %option{value: ""} 普通住宅
-            %input#keyword.form-control{name: "keyword", placeholder: "请输入关键字", style: "width:305px;", type: "text"}/
-            %button.btn.btn-danger{type: "submit"} 搜索
-            %input{name: "m", type: "hidden", value: "content"}/
-            %input{name: "c", type: "hidden", value: "index"}/
-            %input{name: "a", type: "hidden", value: "searchpr"}/
-            %input{name: "dosubmit", type: "hidden", value: "1"}/
+          = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
+            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 625px", :placeholder => "请输入关键字"
+            %button.btn.btn-danger{ type: "submit" }
+              搜索          
         #tab3.tab-pane
 / 导航
-.newnav{align: "center"}
+%div{ style: "height: 70px" }
+#toc_container.newnav{ align: "center" }
   %a{href: "/information"}> 资讯
   |
   %a{href: "/new_homes"}> 新房

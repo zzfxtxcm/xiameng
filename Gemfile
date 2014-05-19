@@ -33,11 +33,15 @@ gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '3.7.0'
 
 # 汉字转拼音
-gem 'ruby-pinyin'
+gem 'ruby-pinyin', '0.4.0'
 
 # 分页
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'will_paginate', '3.0.5'
+gem 'bootstrap-will_paginate', '0.0.10'
+
+# 搜索
+gem 'sunspot_rails', '2.1.0'
+gem 'progress_bar', '1.0.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -54,8 +58,9 @@ group :development, :test do
   gem 'net-ssh', '2.9.0'
   gem 'capistrano', '3.1.0'
   gem 'capistrano-rails', '1.1.1'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rvm'
+  gem 'capistrano-bundler', '1.1.2'
+  gem 'capistrano-rvm', '0.1.1'
+  gem 'sunspot_solr', '2.1.0'
 end
 
 group :test do

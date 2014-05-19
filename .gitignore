@@ -12,7 +12,6 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-npm-debug.log
 /log/*.log
 /tmp
 
@@ -25,7 +24,9 @@ npm-debug.log
 # sunspot && solr
 /solr/data/**/*
 /solr/pids/**/*
-/log/sunspot-solr-development.log.lck
+/solr/development/**/*
+/solr/default/**/*
+/solr/test/**/*
 
 # Ignore other unneeded files.
 database.yml

@@ -12,4 +12,11 @@ class Information < ActiveRecord::Base
   validates :description, length: { maximum: 200 }
 
   mount_uploader :information_thumb, InformationThumbUploader
+
+    searchable do
+    text :title, :boost => 5
+    text :description
+    text :content
+    time :created_at
+  end
 end

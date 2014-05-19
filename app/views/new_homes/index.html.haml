@@ -15,10 +15,9 @@
       .panel-body
         %p.f14
           %strong 区域：
-          %a{href: "#", style: "color:#f65c52"}
-            %strong 全部
-          %a.text-muted{href: "#"} 芗城区
-          %a.text-muted{href: "#"} 龙文区
+          = render_option_of_total_area(params[:area_id])
+          - Area.all.each do |item|
+            = render_option_of_single_area(item.name, item.id)
         %p.f14
           %strong 价格：
           %a{href: "#", style: "color:#f65c52"}
@@ -66,9 +65,11 @@
                       开盘时间
                       %i.icon-arrow-down
               %td{align: "right"}
-                共有
-                %span.cr> 259
-                个楼盘
+                - if @new_homes.any?
+                  共有
+                  %span.cr>
+                    = @new_homes.count
+                  个楼盘              
           - @new_homes.each do |new_home|
             = render new_home
 

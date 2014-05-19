@@ -22,4 +22,14 @@ class NewHome < ActiveRecord::Base
   validates :status, presence:true
 
   mount_uploader :new_home_thumb, NewHomeThumbUploader
+
+  searchable do
+    text :name, :boost => 5
+    integer :area_id
+    integer :section_id
+    integer :area_range_id
+    integer :property_type_id
+    text :content
+    time :created_at
+  end
 end
