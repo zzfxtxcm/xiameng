@@ -23,7 +23,7 @@
     -# = link_to image_tag("logo.png"), "/"
   .pull-left.mt30.ml30
     .tabbable
-      %ul.nav.nav-tabs{ style: "margin:0;" }
+      %ul.nav.nav-tabs#myTab{ style: "margin:0;" }
         %li.active
           %a{ "data-toggle" => "tab", href: "#tab1", style: " background:#2db8ad; color:#FFF" } 综合
         %li
@@ -34,13 +34,32 @@
           %a{ "data-toggle" => "tab", href: "#tab2" } 团购
         %li
           %a{ "data-toggle" => "tab", href: "#tab2" } 专题
-    .tab-content
-      #tab1.tab-pane.active
-        %form.form-inline{ action: "{APP_PATH}index.php", method: "get", name: "myform", role: "form" }
-          %input#keyword.form-control{ name: "keyword", placeholder: "请输入关键字", style: "width:625px;", type: "text" }/
-          %button.btn.btn-danger{ type: "submit" } 搜索
-      #tab2.tab-pane
-        %p Howdy, I'm in Section 2.
+      .tab-content#myTabContent
+        .tab-pane.fade.active.in#tab1
+          %form.form-inline.m0{ action: "{APP_PATH}index.php", method: "get", name: "myform", role: "form" }
+            %input.form-control#keyword{ name: "keyword", placeholder: "请输入关键字", style: "width:625px;", type: "text" }/
+            %button.btn.btn-danger{ type: "submit" } 搜索
+        .tab-pane#tab2
+          %form.form-inline.m0{ action: "{APP_PATH}index.php", method: "get", name: "myform", role: "form" }
+            %select#catid.form-control.selectS{:name => "catid"}
+              %option{:value => "9"} 所属区域
+              %option{:value => "9"} 芗城区
+              %option{:value => "9"} 龙文区
+            %select#price.form-control.selectS{name: "bankuai"}
+              %option{value: ""} 所属板块
+              %option{value: "1"} 城西
+              %option{value: "2"} 城西
+            %select#city.form-control.selectS{name: "city"}
+              %option{value: ""} 物业类型
+              %option{value: ""} 酒店式公寓
+              %option{value: ""} 普通住宅
+            %input#keyword.form-control{name: "keyword", placeholder: "请输入关键字", style: "width:305px;", type: "text"}/
+            %button.btn.btn-danger{type: "submit"} 搜索
+            %input{name: "m", type: "hidden", value: "content"}/
+            %input{name: "c", type: "hidden", value: "index"}/
+            %input{name: "a", type: "hidden", value: "searchpr"}/
+            %input{name: "dosubmit", type: "hidden", value: "1"}/
+        #tab3.tab-pane
 / 导航
 .newnav{align: "center"}
   %a{href: "/information"}> 资讯

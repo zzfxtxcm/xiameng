@@ -14,7 +14,7 @@ ActiveAdmin.register NewHome do
   #  permitted
   # end
 
-  menu :label => proc{ I18n.t("active_admin.new_homes.menu.new_home") }
+  menu priority: 1, :label => proc{ I18n.t("active_admin.new_homes.menu.new_home") }
 
   action_item do
     link_to "区域管理", "/admin/areas"
@@ -54,7 +54,7 @@ ActiveAdmin.register NewHome do
       script :src => javascript_path('custom/jquery.bgiframe.js'), :type => "text/javascript"
       script :src => javascript_path('http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo'), :type => "text/javascript"
     end
-    f.inputs "" do
+    f.inputs "New home" do
       f.input :name,
               :label => I18n.t("active_admin.new_homes.form.name")
       f.input :price,
@@ -196,48 +196,65 @@ ActiveAdmin.register NewHome do
               :label => I18n.t("active_admin.new_homes.form.new_home_thumb")
       f.input :new_home_thumb_cache, :as => :hidden
     end
+
+    f.inputs "Alubms" do
+      f.has_many :albums do |ff|
+        ff.input :name, :label => 'name'
+        ff.input :url, :as => :file,
+                       :label => "Album",
+                       :hint => ff.object.url.nil? \
+                                ? ff.template.content_tag(:span, "No Image Yet")
+                                : ff.template.image_tag(ff.object.url.url(:normal))
+        ff.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+        ff.actions do
+          ff.action :submit
+        end
+      end
+    end
+
     f.actions
   end
 
   controller do
     def permitted_params
-      params.permit(:new_home => [:name,
-                                  :price,
-                                  :tel,
-                                  :map_address,
-                                  :project_address,
-                                  :sales_address,
-                                  :area_id,
-                                  :section_id,
-                                  :developers_id,
-                                  :agents,
-                                  :covers,
-                                  :gfa,
-                                  :pool_area,
-                                  :parking,
-                                  :number_users,
-                                  :construction_category_id,
-                                  :building_towers,
-                                  :floors_case,
-                                  :main_units,
-                                  :house_area,
-                                  :area_range_id,
-                                  :greening_rate,
-                                  :volume_rate,
-                                  :fit,
-                                  :property,
-                                  :school,
-                                  :hospital,
-                                  :bank,
-                                  :shopping,
-                                  :neighborhoods,
-                                  :landscapes,
-                                  :bus,
-                                  :car,
-                                  :property_type_id,
-                                  :content,
-                                  :status_id,
-                                  :new_home_thumb])
+      params.permit!
+      # params.permit(:new_home => [:name,
+      #                             :price,
+      #                             :tel,
+      #                             :map_address,
+      #                             :project_address,
+      #                             :sales_address,
+      #                             :area_id,
+      #                             :section_id,
+      #                             :developers_id,
+      #                             :agents,
+      #                             :covers,
+      #                             :gfa,
+      #                             :pool_area,
+      #                             :parking,
+      #                             :number_users,
+      #                             :construction_category_id,
+      #                             :building_towers,
+      #                             :floors_case,
+      #                             :main_units,
+      #                             :house_area,
+      #                             :area_range_id,
+      #                             :greening_rate,
+      #                             :volume_rate,
+      #                             :fit,
+      #                             :property,
+      #                             :school,
+      #                             :hospital,
+      #                             :bank,
+      #                             :shopping,
+      #                             :neighborhoods,
+      #                             :landscapes,
+      #                             :bus,
+      #                             :car,
+      #                             :property_type_id,
+      #                             :content,
+      #                             :status_id,
+      #                             :new_home_thumb])
     end
   end
 end
