@@ -41,6 +41,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 
 # 搜索
 gem 'sunspot_rails', '2.1.0'
+gem 'sunspot_solr', '2.1.0'
 gem 'progress_bar', '1.0.0'
 
 group :development, :test do
@@ -60,7 +61,6 @@ group :development, :test do
   gem 'capistrano-rails', '1.1.1'
   gem 'capistrano-bundler', '1.1.2'
   gem 'capistrano-rvm', '0.1.1'
-  gem 'sunspot_solr', '2.1.0'
 end
 
 group :test do

@@ -22,31 +22,103 @@ $white: #fff;
   font-size:9px;
 }
 
+/*左右滚轮特效stats*/
 
-.tabbable {
-  #myTab {
-    .active a {
-      background: #fff;
-      color: #000;
-      font-weight: bold;
-    }
-    a {
-      background: none;
-    }
-  }
-  #myTabContent {
-    border-bottom: 1px solid #ddd;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    padding: 10px;
-    height: 30px;
-  }
-  ul li a {
-    line-height: 15px;
-    margin-right: 14px;
-    padding: 8px 20px;
+.imageRotation {
+  height: 270px;
+  width: 462px;
+  overflow: hidden;
+  /*--超出容器的所有元素都不可见--*/
+  position: relative;
+  /*--相对定位--*/
+}
+
+/*-------------图片容器---------------*/
+
+.imageBox {
+  position: absolute;
+
+  /*--固定定位--*/
+  height: 270px;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  img {
+    display: block;
+    height: 270px;
+    width: 462px;
+    float: left;
+    border: none;
   }
 }
+
+/*-------------标题容器---------------*/
+
+.titleBox {
+  position: absolute;
+  bottom: 0px;
+  width: 462px;
+  height: 40px;
+  overflow: hidden;
+  p {
+    font-size:16px;
+    font-weight:bolder;
+    position: absolute;
+    bottom: -40px;
+    width: 462px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px 10px;
+    line-height: 40px;
+    z-index: 1;
+    background-color: #000;
+    color: #fff;
+    font-family: "微软雅黑","yahei";
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    -webkit-opacity: 0.5;
+    filter: alpha(opacity = 50);
+    span {
+      opacity: 1;
+      -moz-opacity: 1;
+      -webkit-opacity: 1;
+      filter: alpha(opacity = 100);
+    }
+    &.active {
+      bottom: 0px;
+    }
+  }
+}
+
+/*-------------图标容器---------------*/
+
+.icoBox {
+  position: absolute;
+  /*--固定定位--*/
+
+  bottom: 14px;
+  right: 15px;
+  width: 76px;
+  height: 12px;
+  text-align: center;
+  line-height: 40px;
+  z-index: 2;
+  span {
+    display: block;
+    float: left;
+    height: 12px;
+    width: 12px;
+    margin-left: 3px;
+    overflow: hidden;
+    background: url(asset_path("ico.png")) 0px 0px no-repeat;
+    cursor: pointer;
+    &.active {
+      background-position: 0px -12px;
+      cursor: default;
+    }
+  }
+}
+/*左右滚轮特效end*/
 
 /* 左侧菜单 */
 .areaa {
@@ -69,17 +141,12 @@ $white: #fff;
 
 /*楼盘速递*/
 .l_new2 {
-  p {
-    color: #FFF;
-    background: #2db8ad;
-    width: 70px;
-    padding: 0px 10px 0px 10px;
-    font-size: 16px;
-    line-height: 200%;
-  }
+  font-size: 16px;
+  color: #f65c52;
+  line-height: 150%;
   a {
-    font-size: 14px;
-    line-height: 200%;
+    font-size: 16px;
+    line-height: 150%;
   }
 }
 

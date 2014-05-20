@@ -25,26 +25,26 @@
     .tabbable
       %ul.nav.nav-tabs#myTab{ style: "margin:0;" }
         %li.active
-          %a{ "data-toggle" => "tab", href: "#tab1", style: " background:#2db8ad; color:#FFF" } 综合
+          %a{ "data-toggle" => "tab", href: "#tab1" } 综合
         %li
           %a{ "data-toggle" => "tab", href: "#tab2" } 新房
         %li
-          %a{ "data-toggle" => "tab", href: "#tab" } 租房
+          %a{ href: "#tab3" } 租房
         %li
-          %a{ "data-toggle" => "tab", href: "#tab2" } 团购
+          %a{ href: "#tab4" } 团购
         %li
-          %a{ "data-toggle" => "tab", href: "#tab2" } 专题
+          %a{ href: "#tab5" } 专题
       .tab-content#myTabContent
         .tab-pane.fade.active.in#tab1
           = form_tag information_index_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
-            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 625px", :placeholder => "请输入关键字"
+            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 525px", :placeholder => "请输入关键字"
             %button.btn.btn-danger{ type: "submit" }
               搜索
         .tab-pane#tab2
           = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
-            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 625px", :placeholder => "请输入关键字"
+            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 525px", :placeholder => "请输入关键字"
             %button.btn.btn-danger{ type: "submit" }
-              搜索          
+              搜索
         #tab3.tab-pane
 / 导航
 %div{ style: "height: 70px" }

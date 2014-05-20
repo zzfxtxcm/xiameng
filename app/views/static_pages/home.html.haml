@@ -5,7 +5,7 @@
       .panel-heading
         %h3.panel-title 厦门新房
       .panel-body
-        - @areas[0..3].each do |area|
+        - @areas[0..5].each do |area|
           %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
             %h4.f16.mt5.mb5{style: "color:#f65c52"} #{area.name}
             %p
@@ -46,116 +46,181 @@
         %button.btn.btn-danger.btn-mini{style: "height:28px; width:58px", type: "submit"} 搜索
   / 左边end
   / 右边
-  .pull-right
-    = image_tag("tmp/ad.gif", alt: "", :style => "height:58px; width:900px")
-    %h3{style: "color:#2db8ad"}
-      - Information.where(information_type_id: 1).limit(1).each do |information|
-        = link_to information.title, information
-    %table
-      %tbody
-        %tr
-          %td.pb20{style: "width:50%"} 【调查】 1月厦门房价环涨居全国第1，您咋看？
-          %td.pb20 【每日分析】 26日厦一手住宅成交103套 同安成交11套涨近6成
+  .pull-left.ml20
+    .pull-left
+      = image_tag("tmp/ad.gif", alt: "", :style => "height:58px; width:900px")
+    .clearfix
+    .pull-left.pt10
+      = image_tag("jrtt.gif")
+    .pull-left.ml10
+      %h3{style: "color:#2db8ad"}
+        - Information.where(information_type_id: 1).limit(1).each do |information|
+          = link_to information.title, information
+      %p
+        【调查】 1月厦门房价环涨居全国第1，您咋看？1月厦门房价环涨居全国第1，您咋价环涨居全国第1，您咋看？1月厦门房？
+        %a.cr{href: "#"} 详情
     / 右边中
-    .l_new2.pull-left{style: "border-right: 1px solid #EEEEEE; width:420px;"}
-      %table{width: "400px;"}
-        %tr
-          %td{style: "background:#ececec;"}
-            %p{style: "margin:0px"} 新房速递
-          %td{align: "right", style: " background:#ececec"}
-            %a.pr20{href: ""} 更多
-        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
-          %td{colspan: "2"}
-            %h4.f16{style: "color:#f65c52"}
-              - Information.where(information_type_id: 2).limit(1).each do |information|
-                = link_to information.title, information
-            - Information.where(information_type_id: 2).limit(3).offset(1).each do |information|
-              = link_to information.title, information
-              %br/
-        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
-          %td{colspan: "2"}
-            %h4.f16{style: "color:#f65c52"}
-              - Information.where(information_type_id: 2).limit(1).offset(4).each do |information|
-                = link_to information.title, information
-            - Information.where(information_type_id: 2).limit(3).offset(5).each do |information|
-              = link_to information.title, information
-              %br/
-      %table{width: "400px;"}
-        %tr
-          %td{style: "background:#ececec;"}
-            %p{style: "margin:0px"} 楼盘优惠
-          %td{align: "right", style: " background:#ececec"}
-            %a.pr20{href: ""} 更多
-        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
-          %td{colspan: "2"}
-            %h4.f16{style: "color:#f65c52"}
-              - Information.where(information_type_id: 3).limit(1).each do |information|
-                = link_to information.title, information
-            - Information.where(information_type_id: 3).limit(4).offset(1).each do |information|
-              = link_to information.title, information
-              %br/
-        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
-          %td{colspan: "2"}
-            %h4.f16{style: "color:#f65c52"}
-              - Information.where(information_type_id: 3).limit(1).offset(5).each do |information|
-                = link_to information.title, information
-            - Information.where(information_type_id: 3).limit(4).offset(6).each do |information|
-              = link_to information.title, information
-              %br/
-      %table{width: "400px;"}
-        %tr
-          %td{style: "background:#ececec;"}
-            %p{style: "margin:0px"} 市场报告
-          %td{align: "right", style: " background:#ececec"}
-            %a.pr20{href: ""} 更多
-        %tr{style: "border-bottom: 1px solid #EEEEEE;"}
-          %td{colspan: "2"}
-            %h4.f16{style: "color:#f65c52"}
-              - Information.where(information_type_id: 4).limit(1).each do |information|
-                = link_to information.title, information
-            - Information.where(information_type_id: 4).limit(4).offset(1).each do |information|
-              = link_to information.title, information
-              %br/
+  .l_new2.pull-left.ml20{style: "border-right: 1px solid #EEEEEE; width:410px;"}
+    .title_l
+      %p 新房速递
+    .title_r
+      %a.pr15.pull-right.mt5{href: ""} 更多
+    .pull-left
+      %h4
+        - Information.where(information_type_id: 2).limit(1).each do |information|
+          = link_to information.title, information
+      %p
+        - Information.where(information_type_id: 2).limit(1).offset(1).each do |information|
+          = link_to information.title, information
+      %h4
+        - Information.where(information_type_id: 2).limit(1).offset(2).each do |information|
+          = link_to information.title, information
+      %p
+        - Information.where(information_type_id: 2).limit(1).offset(3).each do |information|
+          = link_to information.title, information
+      .boder_line
+      %h4
+        - Information.where(information_type_id: 2).limit(1).offset(4).each do |information|
+          = link_to information.title, information
+      - Information.where(information_type_id: 2).limit(3).offset(5).each do |information|
+        %p
+          = link_to information.title, information
+    .clearfix
+    .title_l
+      %p 楼盘优惠
+    .title_r
+      %a.pr15.pull-right.mt5{href: ""} 更多
+    .pull-left
+      %h4
+        - Information.where(information_type_id: 3).limit(1).each do |information|
+          = link_to information.title, information
+      - Information.where(information_type_id: 3).limit(3).offset(1).each do |information|
+        %p
+          = link_to information.title, information
+      .boder_line
+      %h4
+        - Information.where(information_type_id: 3).limit(1).offset(4).each do |information|
+          = link_to information.title, information
+      - Information.where(information_type_id: 3).limit(3).offset(5).each do |information|
+        %p
+          = link_to information.title, information
+    .title_l
+      %p 市场报告
+    .title_r
+      %a.pr15.pull-right.mt5{href: ""} 更多
+    .pull-left
+      %h4
+        - Information.where(information_type_id: 4).limit(1).each do |information|
+          = link_to information.title, information
+      - Information.where(information_type_id: 4).limit(3).offset(1).each do |information|
+        %p
+          = link_to information.title, information
     / 右边右
-    .pull-left.ml20{style: "480px;"}
-      %div{style: "border: 1px solid #EEEEEE;"}
-        %a{href: "#"}
-          = image_tag "tmp/ad1.gif", alt: "", :style => "width: 445px; height: 222px"
-        .mt10.ml10
-          %table{width: "460px;"}
-            %tbody
-              %tr
-                %td{style: "width:80%"}
-                  %a.f16{href: "#"} 水岸新城国际大晒优惠大酬宾 还等什么呢
-                %td
-                  %a.f16{href: "#", style: "color:#f65c52"} >>更多团购
-      .mt10{style: "border: 1px solid #EEEEEE;"}
-        %a{href: "#"}
-          = image_tag "tmp/ad2.gif", alt: "", :style => "width: 445px; height: 222px"
-        .mt10.ml10
-          %a.f16{href: "#"}
-            %strong 罗兰春天帝 3房 热门大促销优惠
+  .pull-left.ml20
+    %div{style: "border: 1px solid #EEEEEE; height:270px;"}
+      %a{href: "#"}
+        = image_tag("tmp/ad1.jpg", :class => "pt10 pl10", :style => "width:445px; height:222px;")
+      .mt10.ml10
+        %p.f16
+          %a.pull-left{href: ""} 水岸新城国际大晒优惠大酬宾 还等什么呢
+          %a.pull-right.mr20.cr{href: ""} 更多团购>>
+    .mt10.pt10.pl5.pb10{style: "border: 1px solid #EEEEEE;"}
+      .imageRotation
+        .imageBox{style: "width: 2310px; left: -924px;"}
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/01.jpg")
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/02.jpg")
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/03.jpg")
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/04.jpg")
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/05.jpg")
+        .titleBox
+          %p.active{style: "bottom: -40px;"}
+            %span 第一张图片标题
+          %p{style: "bottom: -40px;"} 第二张图片标题
+          %p{style: "bottom: 0px;"} 第三张图片标
+          %p{style: "bottom: -40px;"} 第四张图片标题
+          %p 第五张图片标题
+        .icoBox
+          %span{rel: "1"} 1
+          %span{rel: "2"} 2
+          %span.active{rel: "3"} 3
+          %span{rel: "4"} 4
+          %span{rel: "5"} 5
+      :javascript
+        $(document).ready(function() {
+          $(".imageRotation").each(function(){
+            // 获取有关参数
+            var imageRotation = this,  // 图片轮换容器
+              imageBox = $(imageRotation).children(".imageBox")[0],  // 图片容器
+              titleBox = $(imageRotation).children(".titleBox")[0],  // 标题容器
+              titleArr = $(titleBox).children(),  // 所有标题（数组）
+              icoBox = $(imageRotation).children(".icoBox")[0],  // 图标容器
+              icoArr = $(icoBox).children(),  // 所有图标（数组）
+              imageWidth = $(imageRotation).width(),  // 图片宽度
+              imageNum = $(imageBox).children().size(),  // 图片数量
+              imageReelWidth = imageWidth*imageNum,  // 图片容器宽度
+              activeID = parseInt($($(icoBox).children(".active")[0]).attr("rel")),  // 当前图片ID
+              nextID = 0,  // 下张图片ID
+              setIntervalID,  // setInterval() 函数ID
+              intervalTime = 4000,  // 间隔时间
+              imageSpeed =500,  // 图片动画执行速度
+              titleSpeed =250;  // 标题动画执行速度
+            // 设置 图片容器 的宽度
+            $(imageBox).css({'width' : imageReelWidth + "px"});
+            // 图片轮换函数
+            var rotate=function(clickID){
+              if(clickID){ nextID = clickID; }
+              else{ nextID=activeID<=3 ? activeID+1 : 1; }
+              // 交换图标
+              $(icoArr[activeID-1]).removeClass("active");
+              $(icoArr[nextID-1]).addClass("active");
+              // 交换标题
+              $(titleArr[activeID-1]).animate(
+                {bottom:"-40px"},
+                titleSpeed,
+                function(){
+                  $(titleArr[nextID-1]).animate({bottom:"0px"} , titleSpeed);
+                }
+              );
+              // 交换图片
+              $(imageBox).animate({left:"-"+(nextID-1)*imageWidth+"px"} , imageSpeed);
+              // 交换IP
+              activeID = nextID;
+            }
+            setIntervalID=setInterval(rotate,intervalTime);
+            $(imageBox).hover(
+              function(){ clearInterval(setIntervalID); },
+              function(){ setIntervalID=setInterval(rotate,intervalTime); }
+            );
+            $(icoArr).click(function(){
+              clearInterval(setIntervalID);
+              var clickID = parseInt($(this).attr("rel"));
+              rotate(clickID);
+              setIntervalID=setInterval(rotate,intervalTime);
+            });
+          });
+        });
+    .mt10{style: "border: 1px solid #EEEEEE; height:240px; "}
+      .title_l
+        %p  专题
+      .title_r{style: "width:380px;"}
+        %a.pr15.pull-right.mt5{href: ""} 更多
+      .clearfix
+      .pull-left.m5{style: "width:465px; word-wrap: break-word; word-break: normal; margin-top:4px; "}
+        %p.f16.lh200
+          = image_tag("tmp/ad3.jpg", :class => "img-polaroid mr20", :style => "width:265px; height:150px", :align => "left")
+          %strong
+            %a.f18.cl{href: ""} 港城御龙湾
           %br/
-          %a.f16{href: "#"} 厦门角美二期开盘大热！优惠继续！97折限时一个月
-      .mt10{style: "border: 1px solid #EEEEEE; height:240px; "}
-        %table{width: "471px"}
-          %tr
-            %td{height: "32px", style: "background:#2db8ad;", width: "100px;"}
-              %p.f16.cw.ml20.pt5 专题
-              %p
-            %td{align: "right", style: " background:#ececec"}
-          %tr
-            %td{colspan: "2"}
-              .pull-left{style: "width:465px; word-wrap: break-word; word-break: normal; margin-top:4px; "}
-                %p.f14.lh200
-                  = image_tag "tmp/ad3.gif", alt: "", align: "left", :style => "width: 265px; height: 150px"
-                  %strong
-                    %span.f16{style: "color:#2db8ad"} 港城御龙湾
-                  = succeed "\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{6e2f}\u{57ce}\u{5fa1}\u{9f99}\u{6e7e}\u{ff1a}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{7cbe}\u{82f1}\u{516c}\u{9986}\u{ff0c}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5e78}\u{798f}\u{5f00}\u{542f}\u{5b9a}\u{5236}\u{578b}\u{5236}\u{578b},\u{4f18}\u{60e0}..." do
-                    %br/
-                  %a{href: "#", style: "color:#f65c52"} [详情]
-    / end 右边右
+          定制型精英公馆，幸福开启定制型精英公馆，幸福开启定制型精英公馆，幸福开启港城御龙湾：定制型精英公馆型精英公馆，幸幸福开启定型,优惠...
+          %a{href: "#", style: "color:#f65c52"} [详情]
+  / end 右边右
   / 右边end
+
   / 二楼新房板块
   .clearfix
   .pull-left{style: "background:url(#{asset_path 'ban.gif'}); height:53px; width:103px;"}
@@ -273,61 +338,53 @@
     / end右边中
     / 右边右
     .pull-left.ml20{style: "width:465px;"}
-      %table{width: "465px;"}
-        %tr
-          %td{style: "border-bottom:2px solid #2db8ad ", width: "17%"}
-            %h4.f16.cr{style: "margin:0px"} 楼盘活动
-          %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
-            %a.pr20{href: ""} 更多
-      %a{href: "#"}
-        = image_tag "tmp/ad4.gif", alt: "", align: "left", :style => "width: 445px; height: 200px"
+      .title2_l
+        %h4.f16.cr{style: "margin:0px"} 楼盘活动
+      .title2_r{align: "right"}
+        %a{href: ""} 更多
+      .clearfix
       .mt10.ml10.mr10{style: "border-bottom:1px solid #EEEEEE;"}
+        = link_to image_tag("tmp/ad4.gif", :style => "width:445px; height:200px;"), '#'
         %a.f16.lh200{href: "#", style: "color:#2db8ad"}
           %strong 3月9日厦门湾南岸看房团 享多重独家特惠
         %br/
-        %a.f14.lh200{href: "#"} 3月9日，厦门福房网新春首场看房直通车即将起航，带您抢购永鸿厦门湾南岸、永鸿御景湾山海美宅，享多重独家专属购房特惠，助您筑梦南岸！
-      .mt10.ml10.mr10{style: "list-style-type:none"}
+        %a.f14.lh180{href: "#"} 3月9日，厦门福房网新春首场看房直通车即将起航，带您抢购永鸿厦门湾南岸、永鸿御景湾山海美宅，享多重独家专属购房特惠，助您筑梦南岸！
+      .mt10.ml10.mr10.mb15{style: "list-style-type:none"}
         %a.f16{href: "#"}
           %strong
             %li.lh200 厦门角美万达中央华城二期奢居样板房华
-        %a.f14{href: "#"}
+        %a.f16{href: "#"}
           %li.lh200 角美万达广场样板房升级
         %a.f16{href: "#"}
           %strong
             %li.lh200 永鸿厦门湾南岸：3月女人季 美丽"甲天下"
-        %a.f14{href: "#"}
+        %a.f16{href: "#"}
           %li.lh200 角美万达广场样板房升级
         %a.f16.cl{href: "#"}
           %strong
             %li.lh200 永年公园美学大型交友会圆满落幕
-        %a.f14{href: "#"}
+        %a.f16{href: "#"}
           %li.lh200 大型交友会
-      .mt20.lou_test
-        %table{width: "465px;"}
-          %tr
-            %td{style: "border-bottom:2px solid #2db8ad ", width: "17%"}
-              %h4{style: "margin:0px"} 楼盘评测
-            %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
-              %a.pr20{href: ""} 更多
-          %tr{style: "border-bottom: 1px solid #EEEEEE;"}
-            %td{colspan: "2"}
-              .mt10{style: "border: 1px solid #EEEEEE;"}
-                %a{href: "#"}
-                  = image_tag("tmp/ad5.gif", alt: "", :style => "height:200px; width:445px")
-                .mt10.ml10.mr10{style: "border-bottom:1px solid #EEEEEE;"}
-                  %a.f16{href: "#", style: "color:#2db8ad"}
-                    %strong 3月9日厦门湾南岸看房团 享多重独家特惠
-                  %br/
-                  %a.f14{href: "#"} 3月9日，厦门福房网新春首场看房直通车即将起航，带您抢购永鸿厦门湾南岸、永鸿御景湾山海美宅，享多重独家专属购房特惠....
-                  %a{style: "color:#f65c52"} 阅读全文>>
-                %a{href: "#"}
-                  %li 平和文化旅游项目新年开局良好 年度总投资7.5亿
-                %a{href: "#"}
-                  %li 厦门全力推进富美城市建设 持续加大项目建设力度
-                %a{href: "#"}
-                  %li 角美楼市逆势突围，新房成交尽显生气，已提早进入
-                %a{href: "#"}
-                  %li 楼市是否真的会如预期所言崩盘？厦门楼市是否会深陷其中？
+      .title2_l
+        %h4.f16.cr{style: "margin:0px"} 楼盘评测
+      .title2_r{align: "right"}
+        %a{href: ""} 更多
+      .clearfix
+      .mt10{style: "border: 1px solid #EEEEEE;"}
+        %a{href: "#"}
+          = image_tag("tmp/ad5.gif", alt: "", :class=>'pt10 pl10',:style => "height:200px; width:445px")
+        .mt10.ml10.mr10{style: "border-bottom:1px solid #EEEEEE;"}
+          %a.f16{href: "#", style: "color:#2db8ad"}
+            %h4 3月9日厦门湾南岸看房团 享多重独家特惠
+          %a.f14.lh200{href: "#"} 3月9日，漳州福房网新春首场看房直通车即将起航，带您抢购永鸿厦门湾南岸、永鸿御景湾山海美宅，享多重独家专属购房特惠....
+          %a.cr{href: ""} 阅读全文>>
+        .mt10.ml10.mr10{style: "list-style-type:none"}
+          %a{href: "#"}
+            %li.lh180.f16 平和文化旅游项目新年开局良好 年度总投资7.5亿
+          %a{href: "#"}
+            %li.lh180.f16 漳州全力推进富美城市建设 持续加大项目建设力度
+          %a{href: "#"}
+            %li.lh180.f16 角美楼市逆势突围，新房成交尽显生气，已提早进入
     / end 右边右
   / end 右边
   / -二楼end
@@ -429,43 +486,18 @@
                 %td
                   %a{href: "#"}
                     %li 8  [房产热词]保障性住房事宜
-    .pull-left
-      %table{border: "0", width: "1170px"}
-        %tr
-          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
-            %a1 代理公司
-          %td{align: "right", style: "background:#ececec"}
-            %a.pr20{href: ""} 更多>
-        %tr
-          %td{colspan: "2"}
-            #demo.mt20.mb20
-              #indemo
-                #demo1
-                  %a{href: "#"}
-                    = image_tag "tmp/1.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/2.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/3.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/4.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/5.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/6.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/7.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/8.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/9.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/10.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/11.jpg", border: "0"
-                  %a{href: "#"}
-                    = image_tag "tmp/12.jpg", border: "0"
-                #demo2
+    .pull-left.mt10
+      .title3_l
+        %p 代理公司
+      .title3_r{align: "right", style: "width:1050px"}
+        %a{href: ""} 更多
+      .clearfix
+      #demo.mt20.mb20
+        #indemo
+          #demo1
+            - 12.times do |n|
+              = image_tag("tmp/#{n+1}.jpg")
+          #demo2
             :javascript
               <!--
               var speed=20;
