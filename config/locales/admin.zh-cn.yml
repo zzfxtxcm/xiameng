@@ -163,6 +163,8 @@ zh-CN:
         name: "名称"
         price: "均价"
         created_at: "创建时间"
+    alubms:
+      alubms: "相册"
     information_estate_openeds:
       title: "开盘信息管理"
       list:
@@ -178,7 +180,24 @@ zh-CN:
         price: "均价"
         opening_time: "开盘时间"
         delivery_time: "交付时间"
-
+    group_buyings:
+      group_buying: "团购"
+      title: "团购管理"
+      menu:
+        group_buying: "团购"
+      list:
+        new_home: "所属楼盘"
+        start_time: "开团时间"
+        end_time: "结束时间"
+      search:
+        new_home: "所属楼盘"
+        start_time: "开团时间"
+        end_time: "结束时间"
+      form:
+        new_home: "所属楼盘"
+        explanation: "团购说明"
+        start_time: "开团时间"
+        end_time: "结束时间"
   activerecord:
     models:
       user: "会员"
@@ -192,3 +211,4 @@ zh-CN:
       area_range: "面积区间"
       project_features: "项目特色"
       information_estate_opened: "开盘信息"
+      group_buying: "团购"

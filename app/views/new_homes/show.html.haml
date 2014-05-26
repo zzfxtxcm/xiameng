@@ -103,7 +103,7 @@
                 %a1 建筑类别
               %td
                 %a2
-                  = ConstructionCategory.find(@new_home.construction_category_id).name
+                  = ConstructionCategory.find(@new_home.construction_category_id).name if !@new_home.construction_category_id.nil?
             %tr
               %td{style: "text-align:center; background:#ececec"}
                 %a1 建筑栋数

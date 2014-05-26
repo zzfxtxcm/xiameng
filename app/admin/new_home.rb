@@ -234,18 +234,18 @@ ActiveAdmin.register NewHome do
       f.input :new_home_thumb_cache, :as => :hidden
     end
 
-    f.inputs "Alubms" do
-      f.has_many :albums do |ff|
-        ff.input :name, :label => 'name'
-        ff.input :url, :as => :file,
-                       :label => "Album",
-                       :hint => ff.object.url.nil? \
-                                ? ff.template.content_tag(:span, "No Image Yet")
-                                : ff.template.image_tag(ff.object.url.url(:normal))
-        ff.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
-        ff.actions do
-          ff.action :submit
-        end
+    f.inputs I18n.t("active_admin.alubms.alubms") do
+      f.has_many :albums do |album|
+        album.input :name, :label => "名称"
+        album.input :url, :as => :file,
+                        :label => "相册地址",
+                        :hint => album.object.url.nil? \
+                                 ? album.template.content_tag(:span, "No Image Yet")
+                                 : album.template.image_tag(album.object.url.url(:normal))
+        album.input :_destroy, :as => :boolean, :required => false, :label => '选定删除'
+        # album.actions do
+        #   album.action :submit
+        # end
       end
     end
 

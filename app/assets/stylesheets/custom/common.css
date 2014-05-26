@@ -1,5 +1,5 @@
 /*通用*/
-body { font-size:12px; font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif; }
+body { font-size:12px; font-family:"宋体", Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun,  Heiti, "黑体", sans-serif; }
 
 .container { max-width: none !important; width: 1170px; }
 .containerb {   margin: 0 auto;width: 1170px; }
@@ -15,7 +15,7 @@ a{ color:#333;
 
 .collapse a{
 	  color: #777777;
-  
+
     padding: 10px;
     text-decoration: none;
     text-shadow: 0 1px 0 #FFFFFF;

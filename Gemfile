@@ -2,7 +2,7 @@
 source 'http://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.4'
 gem 'bootstrap-sass', '2.3.2'
 gem 'haml', '4.0.5'
 
@@ -52,7 +52,7 @@ group :development, :test do
   gem 'guard-rspec', '2.5.0'
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
-  gem 'faker', '1.1.2'
+  gem 'faker', '1.3.0'
   gem 'childprocess', '0.3.6'
   gem 'simplecov', '0.8.2'
   gem 'email_spec', '1.5.0'
@@ -69,7 +69,7 @@ group :test do
   gem 'factory_girl_rails', '4.2.1'
 end
 
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'

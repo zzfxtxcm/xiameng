@@ -141,18 +141,45 @@ $white: #fff;
 
 /*楼盘速递*/
 .l_new2 {
-  font-size: 16px;
-  color: #f65c52;
-  line-height: 150%;
-  a {
+  h4 {
     font-size: 16px;
+    color: #f65c52;
     line-height: 150%;
+  }
+  a {
+    font-size: 14px;
+    line-height: 30px;
+  }
+  ul li {
+    list-style-type: disc;
+    font-size: 9px;
   }
 }
 
-.l_new3 li {
-  font-size: 14px;
-  line-height: 250%;
+.l_new3 {
+  display: inline;
+  margin-left: 10px;
+  a {
+    font-size: 14px;
+    line-height: 30px;
+  }
+  .tab-pane ul li {
+    font-size: 9px;
+  }
+}
+
+/*楼市观点*/
+
+.loushiguandian {
+  width: 270px;
+  float: left;
+  margin: 0px 10px 0px 10px;
+  h4 {
+    font-size: 14px;
+    color: #f65c52;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
 }
 
 /*楼盘评测*/
@@ -188,11 +215,11 @@ $white: #fff;
   font-size: 9pt;
   border: 1px solid #e3e3e3;
   background: #eee;
-  width: 1170px;
+  width: 897px;
   margin-top: 8px;
 
   .pcont {
-    width: 1110px;
+    width: 840px;
     float: left;
     overflow: hidden;
     padding-left: 5px;
@@ -204,50 +231,77 @@ $white: #fff;
     margin-left: -5px;
   }
 
-  #List1_1, .blk_18 #List2_1 {
+  #List1_1, #List2_1 {
     float: left;
   }
 
-  .LeftBotton, .blk_18 .RightBotton {
+  .LeftBotton, .RightBotton {
     width: 15px;
     height: 74px;
     float: left;
-    background: url(../img/ax.gif) no-repeat;
+    background: url(asset_path("ax.gif")) no-repeat;
   }
 
   .LeftBotton {
     background-position: 0 0;
     margin: 58px 5px 0;
-    &:hover {
-      background-position: -20px 0;
-    }
   }
 
   .RightBotton {
     background-position: 0 -100px;
     margin: 58px 1px 10px 5px;
-    &:hover {
-      background-position: -20px -100px;
-    }
+  }
+
+  .LeftBotton:hover {
+    background-position: -20px 0;
+  }
+  .RightBotton:hover {
+    background-position: -20px -100px;
   }
 
   .pl {
-    width: 150px;
-    border: 1px solid #f3f3f3;
-    float: left;
-    text-align: center;
-    line-height: 24px;
     img {
       display: block;
       cursor: pointer;
       border: none;
       margin: 6px auto 1px auto;
     }
-    &:hover {
-      border: 1px solid #5dacec;
-      color: #5dacec;
-      background: $white;
+    width: 167px;
+    border: 1px solid #f3f3f3;
+    float: left;
+    text-align: center;
+    line-height: 24px;
+    h4 {
+      font-size: 14px;
+      margin: 0;
+      color: #666;
     }
+  }
+  a.pl:hover {
+    border: 1px solid #5dacec;
+    color: #5dacec;
+    background: #fff;
+  }
+}
+/*活动*/
+
+.activity {
+  width: 900px;
+  float: left;
+  margin-top: 10px;
+  ul li {
+    list-style-type: disc;
+    font-size: 9px;
+  }
+}
+
+.activity_list {
+  margin-top: 10px;
+  width: 300px;
+  float: left;
+  a {
+    font-size: 14px;
+    line-height: 30px;
   }
 }
 
@@ -265,25 +319,23 @@ $white: #fff;
   float: left;
   width: 800%;
 }
-#demo1 {
+#demo1 img{
   float: left;
 }
-#demo2 {
+#demo2 img{
   float: left;
 }
 
 /*购房百科*/
 
-.baike a1{font-size:16px; color:#FFF ; font-weight:bolder; margin-left:10px;}
 .baike {
-  li {
-    font-size: 14px;
-    line-height: 220%;
-    margin-left: 5px;
+  ul li {
+    list-style-type: disc;
+    font-size: 9px;
   }
-  h4 {
-    font-size: 16px;
-    color: #f65c52;
+  a {
+    font-size: 14px;
+    line-height: 30px;
   }
 }
 

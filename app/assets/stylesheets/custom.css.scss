@@ -25,7 +25,7 @@ textarea {
 /* 线条 */
 
 .boder_line{
-	border-bottom:1px solid  #F3F3F3;
+	border-bottom: 1px solid  #F3F3F3;
 }
 /* 搜索框 */
 .tabbable {
@@ -34,9 +34,11 @@ textarea {
       background: #FFF;
       color: #000;
       font-weight: bolder;
+      font-size: 14px;
     }
     a {
       background: none;
+      font-size: 14px;
     }
   }
   #myTabContent {
@@ -44,7 +46,7 @@ textarea {
     border-left: 1px solid #DDDDDD;
     border-right: 1px solid #DDDDDD;
     padding: 10px 10px 10px 10px;
-    height: 30px;
+    height: 32px;
   }
   ul li a {
     line-height: 15px;
@@ -132,11 +134,12 @@ textarea {
   	}
   .title_l p {
   	color:#FFF;
-  	background:#2db8ad;
-  	width:70px;
-  	padding:0px 10px 0px 10px;
-  	font-size:16px;
-  	line-height:200%;
+    background:#2db8ad;
+    padding:0px 10px 0px 10px;
+    font-size:14px;
+    line-height:32px;
+    margin:0;
+    font-weight:bolder;
   }
   .title2_l{
   	width:80px;

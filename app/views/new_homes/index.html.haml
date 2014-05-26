@@ -20,14 +20,18 @@
             = render_option_of_single_area(item.name, item.id)
         %p.f14
           %strong 价格：
-          %a{href: "#", style: "color:#f65c52"}
-            %strong 不限
-          %a.text-muted{href: "#"} 3000-4000
+          = render_option_of_total_price(params[:mix], params[:max])
+          = render_option_of_single_price(3000, 4000)
+          = render_option_of_single_price(4000, 5000)
+          = render_option_of_single_price(5000, 6000)
+          = render_option_of_single_price(6000, 7000)
+          = render_option_of_single_price(7000, 8000)
+          = render_option_of_single_price(8000, 20000)
         %p.f14
           %strong 面积：
-          %a{href: "#", style: "color:#f65c52"}
-            %strong 不限
-          %a.text-muted{href: "#"} 50m²以下
+          = render_option_of_total_area_range(params[:area_range_id])
+          - AreaRange.all.each do |item|
+            = render_option_of_single_area_range(item.name, item.id)          
     .prlist2
       %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
         %li.active{style: "border-bottom: 1px solid #2db8ad;"}
@@ -69,7 +73,7 @@
                   共有
                   %span.cr>
                     = @new_homes.count
-                  个楼盘              
+                  个楼盘
           - @new_homes.each do |new_home|
             = render new_home
 

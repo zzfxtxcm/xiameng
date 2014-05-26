@@ -14,6 +14,8 @@ class NewHome < ActiveRecord::Base
   has_many :albums, dependent: :destroy
   accepts_nested_attributes_for :albums, :allow_destroy => true
 
+  has_many :group_buyings, dependent: :destroy
+
   VALID_NUMBER_REGEX = /[\d]/
   validates :name, presence: true
   validates :price, format: { with: VALID_NUMBER_REGEX }
@@ -29,6 +31,7 @@ class NewHome < ActiveRecord::Base
     integer :section_id
     integer :area_range_id
     integer :property_type_id
+    integer :price
     text :content
     time :created_at
   end

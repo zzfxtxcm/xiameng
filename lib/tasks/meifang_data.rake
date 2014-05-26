@@ -12,6 +12,7 @@ namespace :db do
     make_project_features
     make_new_homes
     make_information
+    make_group_buying
   end
 
   def make_categories
@@ -155,12 +156,39 @@ namespace :db do
       title = Faker::Name.title
       content = Faker::Lorem.sentence(10)
       new_homes.each { |new_home| new_home.information.create!(category_id: Category.first.id,
-                                                      title: title,
-                                                      source: "来源",
-                                                      keywords: "关键词,关键词",
-                                                      description: "描述描述描述描述",
-                                                      content: content,
-                                                      information_type_id: 2)  }
+                                                               title: title,
+                                                               source: "来源",
+                                                               keywords: "关键词,关键词",
+                                                               description: "描述描述描述描述",
+                                                               content: content,
+                                                               information_type_id: 2) }
+    end
+    information_types = InformationType.all
+    30.times do |n|
+      title = Faker::Name.title
+      content = Faker::Lorem.sentence(10)
+      information_types.each { |information_type| information_type.information.create!(category_id: Category.first.id,
+                                                                                       title: title,
+                                                                                       source: "来源",
+                                                                                       keywords: "关键词",
+                                                                                       description: "描述",
+                                                                                       content: content) }
+    end
+  end
+
+  def make_group_buying
+    new_homes = NewHome.all(limit:6)
+    10.times do |n|
+      price = Faker::Number.number(4)
+      explanation = Faker::Lorem.sentence(10)
+      start_time = rand(10.days).ago
+      end_time = rand(10.days).from_now
+      new_homes.each do |new_home|
+        new_home.group_buyings.create!(price: price,
+                                      explanation: explanation,
+                                      start_time: start_time,
+                                      end_time: end_time)
+      end
     end
   end
 end
