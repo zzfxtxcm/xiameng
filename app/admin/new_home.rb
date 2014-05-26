@@ -56,12 +56,22 @@ ActiveAdmin.register NewHome do
     end
     f.inputs "New home" do
       f.input :name,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.name")
       f.input :price,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.price")
       f.input :tel,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.tel")
+      f.input :project_address,
+              :wrapper_html => { :class => "index_content left", :style => "width: 48%" },
+              :label => I18n.t("active_admin.new_homes.form.project_address")
+      f.input :sales_address,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :label => I18n.t("active_admin.new_homes.form.sales_address")
       f.input :map_address,
+              :wrapper_html => { :class => "index_content", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.map_address"),
               :input_html => { :readonly => true }
       f.form_buffers.last << "<div id=\"selectItem\" class=\"selectItemhidden\">
@@ -113,83 +123,110 @@ ActiveAdmin.register NewHome do
                                              // 加载值到输入框
                                              map.addEventListener('click', function(e){ document.getElementById('new_home_map_address').value = e.point.lng + ', ' + e.point.lat;});
                                             ")
-      f.input :project_address,
-              :label => I18n.t("active_admin.new_homes.form.project_address")
-      f.input :sales_address,
-              :label => I18n.t("active_admin.new_homes.form.sales_address")
       f.input :area,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.area")
       f.input :section,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.section")
       f.input :developers,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.developers")
       f.input :agents,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.agents")
       f.input :covers,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.covers")
       f.input :gfa,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.gfa")
       f.input :pool_area,
+              :wrapper_html => { :class => "index_content left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.pool_area")
       f.input :parking,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.parking")
       f.input :number_users,
+              :wrapper_html => { :class => "index_content", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.number_users")
       f.input :construction_category,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.construction_category")
       f.input :building_towers,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.building_towers")
       f.input :floors_case,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.floors_case")
       f.input :main_units,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.main_units")
       f.input :house_area,
+              :wrapper_html => { :class => "index_content", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.house_area")
       f.input :area_range,
               :prompt => true,
               :hint => f.template.content_tag(:span, "平方米"),
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.area_range")
       f.input :greening_rate,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.greening_rate")
       f.input :volume_rate,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.volume_rate")
       f.input :fit,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.fit")
       f.input :property,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.property")
       f.input :school,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.school")
       f.input :hospital,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.hospital")
       f.input :bank,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.bank")
       f.input :shopping,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.shopping")
       f.input :neighborhoods,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.neighborhoods")
       f.input :landscapes,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.landscapes")
       f.input :bus,
+              :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.bus")
       f.input :car,
+              :wrapper_html => { :class => "right", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.car")
       f.input :property_type,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.property_type")
       f.input :project_features,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.project_features")
       f.input :content,
-              :label => I18n.t("active_admin.new_homes.form.content"),
+              :label => false,
               :as => :ckeditor
       f.input :status,
               :prompt => true,
+              :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.status")
       f.input :new_home_thumb,
+              :wrapper_html => { :style => "width: 48%" },
               :hint => f.object.new_home_thumb.present? \
                        ? f.template.image_tag(f.object.new_home_thumb.url(:thumb))
                        : f.template.content_tag(:span, "未传图片"),

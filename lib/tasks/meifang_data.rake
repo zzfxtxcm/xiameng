@@ -11,7 +11,6 @@ namespace :db do
     make_area_ranges
     make_project_features
     make_new_homes
-    make_information_type_id
     make_information
   end
 
@@ -139,20 +138,6 @@ namespace :db do
                       status_id: Status.first.id,
                       new_home_thumb: "")
     end
-  end
-
-  def make_information_type_id
-    InformationType.create!(name: "首页头条")
-    InformationType.create!(name: "新房速递")
-    InformationType.create!(name: "楼盘优惠")
-    InformationType.create!(name: "市场报告")
-    InformationType.create!(name: "今日话题")
-    InformationType.create!(name: "楼市咨询")
-    InformationType.create!(name: "楼市观点")
-    InformationType.create!(name: "活动")
-    InformationType.create!(name: "购房须知")
-    InformationType.create!(name: "购房警示")
-    InformationType.create!(name: "购房指南")
   end
 
   def make_information

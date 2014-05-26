@@ -30,7 +30,6 @@ zh-CN:
         source: "来源"
         keywords: "关键词"
         description: "描述"
-        content: "内容"
         new_home: "所属楼盘"
         information_type: "前台位置"
       search:

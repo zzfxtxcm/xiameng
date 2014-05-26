@@ -14,6 +14,7 @@ class CreateInformationTypes < ActiveRecord::Migration
       InformationType.create!(name: '首页-购房须知')
       InformationType.create!(name: '首页-购房警示')
       InformationType.create!(name: '首页-购房指南')
+      InformationType.create!(name: '首页-楼盘评测')
     end
   end
 

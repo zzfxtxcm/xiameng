@@ -3,7 +3,9 @@
   .pull-left
     .panel.panel-primary
       .panel-heading
-        %h3.panel-title 厦门新房
+        %h3.panel-title
+          楼盘推荐
+          %a.pull-right.f14{href: "#"} 更多>
       .panel-body
         - @areas[0..5].each do |area|
           %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
@@ -53,12 +55,12 @@
     .pull-left.pt10
       = image_tag("jrtt.gif")
     .pull-left.ml10
-      %h3{style: "color:#2db8ad"}
-        - Information.where(information_type_id: 1).limit(1).each do |information|
+      - Information.where(information_type_id: 1).limit(1).each do |information|
+        %h3{style: "color:#2db8ad"}
           = link_to information.title, information
-      %p
-        【调查】 1月厦门房价环涨居全国第1，您咋看？1月厦门房价环涨居全国第1，您咋价环涨居全国第1，您咋看？1月厦门房？
-        %a.cr{href: "#"} 详情
+          %p
+            = information.description
+            = link_to "详情", information, :class => "cr"
     / 右边中
   .l_new2.pull-left.ml20{style: "border-right: 1px solid #EEEEEE; width:410px;"}
     .title_l
@@ -68,23 +70,23 @@
     .pull-left
       %h4
         - Information.where(information_type_id: 2).limit(1).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       %p
         - Information.where(information_type_id: 2).limit(1).offset(1).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       %h4
         - Information.where(information_type_id: 2).limit(1).offset(2).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       %p
         - Information.where(information_type_id: 2).limit(1).offset(3).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       .boder_line
       %h4
         - Information.where(information_type_id: 2).limit(1).offset(4).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       - Information.where(information_type_id: 2).limit(3).offset(5).each do |information|
         %p
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
     .clearfix
     .title_l
       %p 楼盘优惠
@@ -93,17 +95,17 @@
     .pull-left
       %h4
         - Information.where(information_type_id: 3).limit(1).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       - Information.where(information_type_id: 3).limit(3).offset(1).each do |information|
         %p
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       .boder_line
       %h4
         - Information.where(information_type_id: 3).limit(1).offset(4).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       - Information.where(information_type_id: 3).limit(3).offset(5).each do |information|
         %p
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
     .title_l
       %p 市场报告
     .title_r
@@ -111,10 +113,10 @@
     .pull-left
       %h4
         - Information.where(information_type_id: 4).limit(1).each do |information|
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
       - Information.where(information_type_id: 4).limit(3).offset(1).each do |information|
         %p
-          = link_to information.title, information
+          = link_to information.title, information, :class => "cr"
     / 右边右
   .pull-left.ml20
     %div{style: "border: 1px solid #EEEEEE; height:270px;"}
@@ -126,30 +128,18 @@
           %a.pull-right.mr20.cr{href: ""} 更多团购>>
     .mt10.pt10.pl5.pb10{style: "border: 1px solid #EEEEEE;"}
       .imageRotation
-        .imageBox{style: "width: 2310px; left: -924px;"}
+        .imageBox{style: "width: 924px;"}
           %a{href: "", target: "_blank"}
-            = image_tag("tmp/01.jpg")
+            = image_tag("tmp/gad1.jpg")
           %a{href: "", target: "_blank"}
-            = image_tag("tmp/02.jpg")
-          %a{href: "", target: "_blank"}
-            = image_tag("tmp/03.jpg")
-          %a{href: "", target: "_blank"}
-            = image_tag("tmp/04.jpg")
-          %a{href: "", target: "_blank"}
-            = image_tag("tmp/05.jpg")
+            = image_tag("tmp/gad2.jpg")
         .titleBox
-          %p.active{style: "bottom: -40px;"}
-            %span 第一张图片标题
-          %p{style: "bottom: -40px;"} 第二张图片标题
-          %p{style: "bottom: 0px;"} 第三张图片标
-          %p{style: "bottom: -40px;"} 第四张图片标题
-          %p 第五张图片标题
+          %p.active{style: "bottom:0px;"}
+            %span 本地化房产团购、电商门户
+          %p{style: "bottom: -40px;"} 电商第一门户为目标
         .icoBox
-          %span{rel: "1"} 1
+          %span.active{rel: "1"} 1
           %span{rel: "2"} 2
-          %span.active{rel: "3"} 3
-          %span{rel: "4"} 4
-          %span{rel: "5"} 5
       :javascript
         $(document).ready(function() {
           $(".imageRotation").each(function(){
@@ -174,7 +164,7 @@
             // 图片轮换函数
             var rotate=function(clickID){
               if(clickID){ nextID = clickID; }
-              else{ nextID=activeID<=3 ? activeID+1 : 1; }
+              else{ nextID=activeID<=1 ? activeID+1 : 1; }
               // 交换图标
               $(icoArr[activeID-1]).removeClass("active");
               $(icoArr[nextID-1]).addClass("active");
@@ -214,9 +204,9 @@
         %p.f16.lh200
           = image_tag("tmp/ad3.jpg", :class => "img-polaroid mr20", :style => "width:265px; height:150px", :align => "left")
           %strong
-            %a.f18.cl{href: ""} 港城御龙湾
+            %a.f18.cl{href: ""} 关于美房
           %br/
-          定制型精英公馆，幸福开启定制型精英公馆，幸福开启定制型精英公馆，幸福开启港城御龙湾：定制型精英公馆型精英公馆，幸幸福开启定型,优惠...
+          定位：本地化房产团购、电商门户。目标：美房网以打造全国性的房产团购、电商第一门户为目标，致力为购房者提供优质和便利的服务。特色……
           %a{href: "#", style: "color:#f65c52"} [详情]
   / end 右边右
   / 右边end
@@ -242,17 +232,13 @@
               %th 区属
               %th 价格
           %tr
-            %td 华府国际
+            %td 永鸿国际城
             %td 芗城
-            %td 8000元/&sup2
+            %td 6800元/&sup2
           %tr
-            %td 湘江北岸新城
-            %td 龙文
-            %td 8500元/&sup2
-          %tr
-            %td 张龙御景豪宅
+            %td 夏商书香名苑
             %td 芗城
-            %td 7000元/&sup2
+            %td 6500元/&sup2
           %tr
             %td 华府国际
             %td 芗城
@@ -265,7 +251,7 @@
             %td 华府国际
             %td 芗城
             %td 8000元/&sup2
-          %tr
+          %tr37
             %td 华府国际新城
             %td 龙海
             %td 待定
@@ -324,17 +310,19 @@
           %li.active{style: "border-bottom: 1px solid #2db8ad;"}
             %a{"data-toggle" => "tab", href: "#l_hot"} 楼市资讯
         #myTabContent.tab-content
-          #l_hot.tab-pane.fade.active.in
+          %ul.tab-pane.fade.active.in#l_hot
             - Information.where(information_type_id: 6).limit(8).each do |information|
-              = link_to information.title, information
+              %li
+                = link_to information.title, information
       %div{style: "width:400px;"}
         %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
           %li.active{style: "border-bottom: 1px solid #2db8ad;"}
             %a{"data-toggle" => "tab", href: "#act"} 楼市观点
         #myTabContent.tab-content
-          #act.tab-pane.fade.active.in
-            - Information.where(information_type_id: 9).limit(8).each do |information|
-              = link_to information.title, information
+          %ul.fade.active.in#act#tab-pane
+            - Information.where(information_type_id: 7).limit(8).each do |information|
+              %li
+                = link_to information.title, information
     / end右边中
     / 右边右
     .pull-left.ml20{style: "width:465px;"}
@@ -366,7 +354,7 @@
         %a.f16{href: "#"}
           %li.lh200 大型交友会
       .title2_l
-        %h4.f16.cr{style: "margin:0px"} 楼盘评测
+        %h4.f16.cr{style: "margin:0px"} 房产词条
       .title2_r{align: "right"}
         %a{href: ""} 更多
       .clearfix
@@ -396,12 +384,11 @@
       %h4{style: "color:#FFF; margin-top:24px;"} 地产圈
     .clearfix
     .pull-left
-      %table.mt20{width: "1170px;"}
-        %tr
-          %td{height: "32px", style: "background: url(#{asset_path("t_1.gif")}) no-repeat; margin:0px;", width: "107px"}
-            %a1 名人堂
-          %td{align: "right", style: "border-bottom:1px solid #EEEEEE;"}
-            %a.pr20{href: ""} 更多>
+      .pull-left.mt10.mb10
+        .title3_l
+          %p 名人堂
+        .title3_r{align: "right", style: "width:1047px"}
+          %a{href: ""} 更多
     / picrotate_left start
     .blk_18
       %a.LeftBotton{href: "javascript:void(0);", onmousedown: "ISL_GoUp_1()", onmouseout: "ISL_StopUp_1()", onmouseup: "ISL_StopUp_1()", target: "_self"}
@@ -422,70 +409,33 @@
       picrun_ini()
       //-->
     / picrotate_left end
-    .pull-left.mt10
-      = image_tag("tmp/ad6.gif", alt: "", :style => "height:313px; width:290px")
-    .pull-left.mt10.ml30
-      %table{border: "0", width: "485px"}
-        %tr
-          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
-            %a1 活动
-          %td{align: "right", style: "background:#ececec"}
-            %a.pr20{href: ""} 更多>
-        %tr
-          %td{colspan: "2"}
-            = image_tag("tmp/ad7.gif", alt: "", :class => "img-polaroid ml5 mt5", :style => "height:130px; width:160px")
-            = image_tag("tmp/ad8.gif", alt: "", :class => "img-polaroid ml5 mt5", :style => "height:130px; width:160px")
-        %tr
-          %td{colspan: "2"}
-            - Information.where(information_type_id: 8).limit(1).each do |information|
-              %strong
-                = link_to information.title, information, :class => 'f16 lh200', :style => 'color:#2db8ad'
-              %br/
-            - Information.where(information_type_id: 8).limit(4).offset(1).each do |information|
-              %li
-                = link_to information.title, information
-    .pull-left.ml30.mt15
-      %table{width: "320px;"}
-        %tr
-          %td{style: "border-bottom:2px solid #2db8ad ", width: "30%"}
-            %h4{style: "margin:0px"} 资料分享
-          %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
-            %a.pr20{href: ""} 更多
-        %tr
-          %td{colspan: "2"}
-            %table.table.table-condensed
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 1  [房产热词]首套房贷
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 2  [房产热词]房价
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 3  [房产热词]厦门碧湖商业圈
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 4  [房产热词]房产证相关问题
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 5  [房产热词]国五条那些事
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 6  [房产热词]房产税如何征收
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 7  [房产热词]公积金贷款问题
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 8  [房产热词]保障性住房事宜
+    .pull-left.mt10.ml30.mr20
+      = image_tag("tmp/ad6.gif", alt: "",:class=>"img-polaroid", :style => "width:270px")
+    .pull-left.mt10{style: "width:526px;"}
+      .title3_l
+        %p 活动
+      .title3_r{align: "right"}
+        %a{href: ""} 更多
+      = image_tag("tmp/ad7.gif", alt: "",:class=>"img-polaroid ml5 mt5")
+      = image_tag("tmp/ad8.gif", alt: "",:class=>"img-polaroid ml5 mt5")
+      .ml30.lh200
+        %h4
+          - Information.where(information_type_id: 8).limit(1).each do |information|
+            = link_to information.title, information, :class => "cr"
+        %ul
+          - Information.where(information_type_id: 8).limit(4).offset(1).each do |information|
+            %li
+              = link_to information.title, information
+    .pull-right.mt10.ml20
+      .title2_l
+        %h4.f16.cr{style: "margin:0px"} 资料分享
+      .title2_r{align: "right", style: "width:200px;"}
+        %a{href: ""} 更多
+      .clearfix
+      %ul.pull-left.li_type_none
+        - Information.where(information_type_id: 12).limit(8).each do |information|
+          %li
+            = link_to information.title, information
     .pull-left.mt10
       .title3_l
         %p 代理公司
@@ -524,121 +474,130 @@
     .pull-left{style: "background:url(#{asset_path("ban2.gif")});height:53px; width: 1067px; background-repeat:repeat-x"}
       %h4{style: "color:#FFF; margin-top:24px;"} 购房百科
     .pull-left.mt10.ml30
-      %table{border: "0", width: "410px"}
-        %tr
-          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
-            %a1 购房须知
-          %td{align: "right", style: "background:#ececec"}
-            %a.pr20{href: ""} 更多>
-        %tr
-          %td.pl15{colspan: "2"}
-            - Information.where(information_type_id: 9).limit(1).each do |information|
-              %strong
-                = link_to information.title, information, :class => 'f16 lh200', :style => 'color: #f65c52'
-                %br/
-            - Information.where(information_type_id: 9).limit(3).offset(1).each do |information|
-              %li
-                = link_to information.title, information
-      %table{border: "0", width: "410px"}
-        %tr
-          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
-            %a1 购房警示
-          %td{align: "right", style: "background:#ececec"}
-            %a.pr20{href: ""} 更多>
-        %tr
-          %td.pl15{colspan: "2"}
-            - Information.where(information_type_id: 10).limit(1).each do |information|
-              %strong
-                = link_to information.title, information, :class => 'f16 lh200', :style => 'color: #f65c52'
-              %br/
-            - Information.where(information_type_id: 10).limit(3).offset(1).each do |information|
-              %li
-                = link_to information.title, information
+      .title3_l
+        %p 购房须知
+      .title3_r{align: "right", style: "width:288px"}
+        %a{href: ""} 更多
+      .clearfix
+      .ml20
+        - Information.where(information_type_id: 9).limit(1).each do |information|
+          %h4.f16.cr
+            = link_to information.title, information, :class => "cr"
+        %ul
+          - Information.where(information_type_id: 9).limit(3).offset(1).each do |information|
+            %li
+              = link_to information.title, information
+      .title3_l
+        %p 购房警示
+      .title3_r{align: "right", style: "width:288px"}
+        %a{href: ""} 更多
+      .clearfix
+      .ml20
+        - Information.where(information_type_id: 10).limit(1).each do |information|
+          %h4.f16.cr
+            = link_to information.title, information, :class => "cr"
+        %ul
+          - Information.where(information_type_id: 10).limit(3).offset(1).each do |information|
+            %li
+              = link_to information.title, information
     .pull-left.mt10.ml30
-      %table{border: "0", width: "410px"}
-        %tr
-          %td{height: "32px", style: "background: url(#{asset_path("t_2.gif")}) no-repeat; margin:0px;", width: "122px"}
-            %a1 购房指南
-          %td{align: "right", style: "background:#ececec"}
-            %a.pr20{href: ""} 更多>
-        %tr
-          %td.pl15{colspan: "2"}
-            - Information.where(information_type_id: 11).limit(1).each do |information|
-              %strong
-                = link_to information.title, information, :class => 'f16 lh200', :style => 'color:#f65c52'
-                %br/
-            - Information.where(information_type_id: 11).limit(3).offset(1).each do |information|
-              %strong
-                = link_to information.title, information
-                %br/
-        %tr
-          %td{colspan: "2"}
-            = image_tag "tmp/ad5.gif", :style => "width: 360px"
+      .title3_l
+        %p 购房指南
+      .title3_r{align: "right", style: "width:288px"}
+        %a{href: ""} 更多
+      .clearfix
+      .ml10
+        %ul.unstyled
+          - Information.where(information_type_id: 11).limit(1).each do |information|
+            %li.m0
+              = link_to information.title, information, :class => "f16 lh200 cr"
+          - Information.where(information_type_id: 11).limit(3).offset(1).each do |information|
+            %li.m0
+              = link_to information.title, information, :class => "f16 lh200"
+        = image_tag("tmp/ad5.gif", alt: "", :class => "img-polaroid ml10", :style => "width:360px;")
     .pull-left.ml30.mt15
-      %table{width: "250px;"}
-        %tr
-          %td{style: "border-bottom:2px solid #2db8ad ", width: "40%"}
-            %h4{style: "margin:0px"} 资料分享
-          %td{align: "right", style: "border-bottom:2px solid #EEEEEE "}
-            %a.pr20{href: ""} 更多
-        %tr
-          %td{colspan: "2"}
-            %table.table.table-condensed
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 1  [房产热词]首套房贷
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 2  [房产热词]房价
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 3  [房产热词]厦门碧湖商业圈
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 4  [房产热词]房产证相关问题
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 5  [房产热词]国五条那些事
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 6  [房产热词]房产税如何征收
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 7  [房产热词]公积金贷款问题
-              %tr
-                %td
-                  %a{href: "#"}
-                    %li 8  [房产热词]保障性住房事宜
+      .title2_l
+        %h4.f16.cr{ style: "margin:0px" } 楼盘评测
+      .title2_r{ align: "right", style: "width:175px;" }
+        %a{ href: "" } 更多
+      .clearfix
+      %ul.pull-left.li_type_none
+        - Information.where(information_type_id: 12).limit(8).each do |information|
+          %li
+            = link_to information.title, information      
     .clearfix
+    .tool
+      %table.table.table-bordered
+        %thead
+          %tr{bgcolor: "#ececec"}
+            %th 房贷计算器
+            %th 购房计算器
+            %th 前期准备
+            %th 买房技巧
+            %th 实地看房
+            %th 楼盘比较
+        %tbody
+          %tr
+            %td
+              %a{href: "#"} 购房能力评估计算器
+              %br/
+              %a{href: "#"} 购房能力评估计算器
+              %br/
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+          %tr{bgcolor: "#ececec"}
+            %th 认购
+            %th 合同
+            %th 贷款
+            %th 物业
+            %th 收房
+            %th 房产证
+          %tr
+            %td
+              %a{href: "#"} 购房能力评估计算器
+              %br/
+              %a{href: "#"} 购房能力评估计算器
+              %br/
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
+            %td
+              %a{href: "#"} 购房能力评估计算器
       / 友情链接
-    %table.table.table-bordered
-      %tr
-        %td{bgcolor: "#ececec", width: "192px;"}
-          %p{align: "center"}
-            %strong 友情链接
-          %a.ml30{href: ""}
-            %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
-        %td.yqlj
-          %a 池州房产网
-          %a 苏州租房
-          %a 包头房产网
-          %a 威海房地产
-          %a 襄阳房产
-          %a 超市网盐
-          %a 城房产网
-          %a 大连房产网
-          %a 石家庄看房团
-          %a 重庆房地产
-          %a 东莞房产
-          %a 桐乡房产
-          %a 上海租房网
+      %table.table.table-bordered
+        %tr
+          %td{bgcolor: "#ececec", width: "192px;"}
+            %p{align: "center"}
+              %strong 友情链接
+            %a.ml30{href: ""}
+              %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
+          %td.yqlj
+            %a 池州房产网
+            %a 苏州租房
+            %a 包头房产网
+            %a 威海房地产
+            %a 襄阳房产
+            %a 超市网盐
+            %a 城房产网
+            %a 大连房产网
+            %a 石家庄看房团
+            %a 重庆房地产
+            %a 东莞房产
+            %a 桐乡房产
+            %a 上海租房网
       / end友情链接
   / end楼购房百科
 / con end
