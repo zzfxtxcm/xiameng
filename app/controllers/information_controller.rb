@@ -7,6 +7,7 @@ class InformationController < ApplicationController
 
     @keyword = Sunspot.search(Information) do
       keywords params[:keyword]
+      with(:information_type_id).equal_to(params[:information_type_id]) if params[:information_type_id].present?
       order_by :created_at, :desc
       paginate :page => params[:page], :per_page => 10
     end

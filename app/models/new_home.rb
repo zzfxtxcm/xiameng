@@ -15,6 +15,7 @@ class NewHome < ActiveRecord::Base
   accepts_nested_attributes_for :albums, :allow_destroy => true
 
   has_many :group_buyings, dependent: :destroy
+  has_many :intention_to_registers, dependent: :destroy
 
   VALID_NUMBER_REGEX = /[\d]/
   validates :name, presence: true

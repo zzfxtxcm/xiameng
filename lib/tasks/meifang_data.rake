@@ -13,6 +13,7 @@ namespace :db do
     make_new_homes
     make_information
     make_group_buying
+    make_activity
   end
 
   def make_categories
@@ -98,7 +99,7 @@ namespace :db do
                     status_id: Status.first.id,
                     new_home_thumb: "")
     10.times do |n|
-      name = Faker::Name.title
+      name = Faker::Lorem.word
       price = 1000 * n;
       project_address = Faker::Address.street_address
       NewHome.create!(name: name,
@@ -164,7 +165,7 @@ namespace :db do
                                                                information_type_id: 2) }
     end
     information_types = InformationType.all
-    30.times do |n|
+    100.times do |n|
       title = Faker::Name.title
       content = Faker::Lorem.sentence(10)
       information_types.each { |information_type| information_type.information.create!(category_id: Category.first.id,
@@ -189,6 +190,17 @@ namespace :db do
                                       start_time: start_time,
                                       end_time: end_time)
       end
+    end
+  end
+
+    def make_activity
+    12.times do |n|
+      title = Faker::Name.title
+      content = Faker::Lorem.sentence(10)
+      opening_time = Time.now + n.month
+      Activity.create!(title: title,
+                       content: content,
+                       opening_time: opening_time)
     end
   end
 end

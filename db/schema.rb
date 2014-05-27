@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518084653) do
+ActiveRecord::Schema.define(version: 20140527100024) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20140518084653) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "activities", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "opening_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -79,6 +87,14 @@ ActiveRecord::Schema.define(version: 20140518084653) do
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry"
 
+  create_table "characters", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.string   "character_thumb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -108,6 +124,17 @@ ActiveRecord::Schema.define(version: 20140518084653) do
   end
 
   add_index "developers", ["name"], name: "index_developers_on_name"
+
+  create_table "group_buyings", force: true do |t|
+    t.integer  "new_home_id"
+    t.integer  "price"
+    t.text     "explanation"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "recommend"
+  end
 
   create_table "information", force: true do |t|
     t.integer  "category_id"
@@ -142,8 +169,26 @@ ActiveRecord::Schema.define(version: 20140518084653) do
 
   add_index "information_estate_openeds", ["new_home_id"], name: "index_information_estate_openeds_on_new_home_id"
 
+  create_table "information_sharings", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.text     "content"
+    t.string   "information_sharing_thumb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "information_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "intention_to_registers", force: true do |t|
+    t.string   "name"
+    t.string   "qq"
+    t.string   "tel"
+    t.integer  "new_home_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

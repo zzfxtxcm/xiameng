@@ -14,6 +14,15 @@ zh-CN:
       search:
         email: "电子邮箱"
         created_at: "创建时间"
+    information_sharing: # 资料分享
+      title: "资料分享"
+      menu:
+        information_sharing: "资料分享"
+      list:
+        title: "标题"
+        content: "内容说明"
+        url: "下载地址"
+        information_sharing_thumb: "缩略图"        
     information: # 信息
       title: "信息管理"
       menu:
@@ -180,6 +189,18 @@ zh-CN:
         price: "均价"
         opening_time: "开盘时间"
         delivery_time: "交付时间"
+    intention_to_registers:
+      menu:
+        intention_to_register: "意向登记"
+      title: "意向登记"
+      list:
+        new_home: "意向楼盘"
+        name: "姓名"
+        tel: "联系电话"
+        qq: "QQ"
+      search:
+        new_home: "所属楼盘"
+        created_at: "填写时间"
     group_buyings:
       group_buying: "团购"
       title: "团购管理"
@@ -193,11 +214,40 @@ zh-CN:
         new_home: "所属楼盘"
         start_time: "开团时间"
         end_time: "结束时间"
+        recommend: "推荐"
       form:
         new_home: "所属楼盘"
         explanation: "团购说明"
         start_time: "开团时间"
         end_time: "结束时间"
+        recommend: "推荐"
+    activities:
+      menu:
+        activity: "活动管理"
+      title: "活动管理"
+      list:
+        title: "标题"
+        opening_time: "活动时间"
+      search:
+        title: "标题"
+        opening_time: "活动时间"
+      form:
+        title: "标题"
+        content: "内容"
+        opening_time: "活动时间"
+    characters:
+      menu:
+        character: "名人堂"
+      title: "名人堂"
+      list:
+        name: "姓名"
+        character_thumb: "照片"
+      search:
+        name: "姓名"
+      form:
+        name: "姓名"
+        content: "内容"
+        character_thumb: "照片"
   activerecord:
     models:
       user: "会员"
@@ -212,3 +262,6 @@ zh-CN:
       project_features: "项目特色"
       information_estate_opened: "开盘信息"
       group_buying: "团购"
+      intention_to_register: "意向登记"
+      activity: "活动"
+      character: "名人"

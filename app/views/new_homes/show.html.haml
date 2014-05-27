@@ -1,9 +1,10 @@
 %script{src: "http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo", type: "text/javascript"}
 .container
   .pr_title.pull-left.mb10
-    %h2.pull-left 大华锦绣化成
+    %h2.pull-left
+      = @new_home.name
     %input.btn.pull-left.mt20.f12.ml10{style: " background:#f65c52; color:#FFF", type: "button", value: "在售"}/
-    %p.pull-left.pt30.pl10 (项目名称:大华锦绣华城)
+    %p.pull-left.pt30.pl10 (项目名称:#{@new_home.name})
   .clearfix
   .prnav
     .pull-left{style: "background: url(#{asset_path 'bootstrap/prt.gif'}); height: 40px; width: 104px;"}
@@ -211,32 +212,32 @@
       %tr
         %td{colspan: "2"}
           = @new_home.content.html_safe
-    %table.prbase2{width: "908px;"}
-      %tr
-        %td{style: "background:#2db8ad;", width: "153px;"}
-          %h3{style: "margin:0px"} 楼栋开盘信息
-        %td{align: "right", style: " background:#ececec"}
-      %tr
-        %td{colspan: "2"}
-          .mt10.mb10
-            %a1
-              12、13、14、号楼 当前均价
-              %span{style: "color:#f65c52"} 12000元/m²
-          %table.table.table-bordered
-            %tr
-              %td{style: "text-align:center; background:#ececec"} 开盘时间
-              %td{style: "text-align:center; color:#f65c52"} 2013-14-21
-              %td{style: "text-align:center; background:#ececec"} 交付时间
-              %td{style: "text-align:center; color:#f65c52"} 2013-14-21
-              %td{style: "text-align:center; background:#ececec"} 交付时间
-              %td{style: "text-align:center; color:#f65c52"} 2013-14-21
-            %tr
-              %td{style: "text-align:center; background:#ececec"} 交付变准
-              %td{style: "text-align:center; "} 精装修
-              %td{style: "text-align:center; background:#ececec"} 建筑类别
-              %td{style: "text-align:center; "} 小高层
-              %td{style: "text-align:center; background:#ececec"} 建筑类列
-              %td{style: "text-align:center; "} 住宅
+    -# %table.prbase2{width: "908px;"}
+    -#   %tr
+    -#     %td{style: "background:#2db8ad;", width: "153px;"}
+    -#       %h3{style: "margin:0px"} 楼栋开盘信息
+    -#     %td{align: "right", style: " background:#ececec"}
+    -#   %tr
+    -#     %td{colspan: "2"}
+    -#       .mt10.mb10
+    -#         %a1
+    -#           12、13、14、号楼 当前均价
+    -#           %span{style: "color:#f65c52"} 12000元/m²
+    -#       %table.table.table-bordered
+    -#         %tr
+    -#           %td{style: "text-align:center; background:#ececec"} 开盘时间
+    -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+    -#           %td{style: "text-align:center; background:#ececec"} 交付时间
+    -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+    -#           %td{style: "text-align:center; background:#ececec"} 交付时间
+    -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+    -#         %tr
+    -#           %td{style: "text-align:center; background:#ececec"} 交付变准
+    -#           %td{style: "text-align:center; "} 精装修
+    -#           %td{style: "text-align:center; background:#ececec"} 建筑类别
+    -#           %td{style: "text-align:center; "} 小高层
+    -#           %td{style: "text-align:center; background:#ececec"} 建筑类列
+    -#           %td{style: "text-align:center; "} 住宅
           .mt10.mb10
             %a1
               12、13、14、号楼 当前均价
@@ -334,16 +335,11 @@
         %tr
           %td{colspan: "2"}
             %div
-              %a.m20{href: ""}
-                %img{src: "img/tool1.gif"}/
-              %a.m20{href: ""}
-                %img{src: "img/tool2.gif"}/
-              %a.m20{href: ""}
-                %img{src: "img/tool3.gif"}/
-              %a.m20{href: ""}
-                %img{src: "img/tool4.gif"}/
-              %a.m20{href: ""}
-                %img{src: "img/tool5.gif"}/
+              = link_to image_tag("tool1.gif", alt: ""), "#", :class => "mt20"
+              = link_to image_tag("tool2.gif", alt: ""), "#", :class => "mt20"
+              = link_to image_tag("tool3.gif", alt: ""), "#", :class => "mt20"
+              = link_to image_tag("tool4.gif", alt: ""), "#", :class => "mt20"
+              = link_to image_tag("tool5.gif", alt: ""), "#", :class => "mt20"            
   / end 右边
 / con end
 

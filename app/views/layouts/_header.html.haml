@@ -8,15 +8,11 @@
     %input{ name: "r", type: "hidden", value: "3" }
     %input.loginBut{ type: "submit", value: "登录" }
     %a.regBut 注册
-  .minimg
-    = image_tag("bootstrap/wb.png", alt: "")
-  .minimg.ml5
-    = image_tag("bootstrap/style.png", alt: "")
   .miniright
-    %a 首页
-    %a 新房
-    %a 二手房
-    %a 团购
+    = link_to "首页", root_path
+    = link_to "新房", new_homes_path
+    = link_to "二手房", "#"
+    = link_to "团购", group_buyings_path
 .clearfix
 .container
   .pull-left.mt20
@@ -49,6 +45,8 @@
 / 导航
 %div{ style: "height: 70px" }
 #toc_container.newnav{ align: "center" }
+  %a{href: "/home"}> 首页
+  |  
   %a{href: "/information"}> 资讯
   |
   %a{href: "/new_homes"}> 新房

@@ -36,6 +36,8 @@ ActiveAdmin.register GroupBuying do
          :label => I18n.t("active_admin.group_buyings.search.start_time")
   filter :end_time,
          :label => I18n.t("active_admin.group_buyings.search.end_time")
+  filter :recommend,
+         :label => I18n.t("active_admin.group_buyings.search.recommend")
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "" do
@@ -52,6 +54,8 @@ ActiveAdmin.register GroupBuying do
       f.input :end_time,
               :as => :datepicker,
               :label => I18n.t("active_admin.group_buyings.form.end_time")
+      f.input :recommend,
+              :label => I18n.t("active_admin.group_buyings.form.recommend")
     end
     f.actions
   end
@@ -61,7 +65,8 @@ ActiveAdmin.register GroupBuying do
       params.permit(:group_buying => [:new_home_id,
                                      :explanation,
                                      :start_time,
-                                     :end_time])
+                                     :end_time,
+                                     :recommend])
     end
   end
 end

@@ -15,34 +15,17 @@
         %h1
           = @information.title
         %p
-          %font{style: "right:0px; float:right;"}>
-            [
-            %a{href: "javascript:zoom('news_body', 16);"} 大
-            %a{href: "javascript:zoom('news_body', 14);"} 中
-            = succeed "]" do
-              %a{href: "javascript:zoom('news_body', 12);"} 小
           #{@information.created_at.strftime("%Y-%m-%d %H:%M")}　来源: #{@information.source}
-          %font{color: "#CC0000"}> 859次
       .review
         %p
           = @information.description
     .tj
-      %a{href: "http://www.ffw.com.cn/1/84/305/214023.html", target: "_blank"} 南京两楼盘每平大降5000元
-      %a{href: "http://www.ffw.com.cn/1/84/90/213967.html", target: "_blank"} 28省已出小产权房处置方案
-      %a{href: "http://www.ffw.com.cn/1/84/890/213045.html", target: "_blank"} 原来地铁并不是人民币！
-      %a{href: "http://www.ffw.com.cn/1/84/248/212305.html", style: "color:#FF0000;", target: "_blank"} 盘点五大提升桃花运的楼盘
+      - Information.limit(4).each do |information|
+        = link_to information.title, information
     .clearfix
     .news_body
       = @information.content.html_safe
-    .bdsharebuttonbox.ml30
-      %a.bds_more{"data-cmd" => "more", href: "#"}
-      %a.bds_qzone{"data-cmd" => "qzone", href: "#"}
-      %a.bds_tsina{"data-cmd" => "tsina", href: "#"}
-      %a.bds_tqq{"data-cmd" => "tqq", href: "#"}
-      %a.bds_renren{"data-cmd" => "renren", href: "#"}
-      %a.bds_weixin{"data-cmd" => "weixin", href: "#"}
-    :javascript
-      window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
     / end fenxiang
   .pull-left.ml20
     %div{style: "width:240px; height:500px; background:#CCC"}

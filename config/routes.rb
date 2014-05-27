@@ -1,8 +1,7 @@
 Meifang::Application.routes.draw do
-  get "group_buyings/index"
-  # root to: 'static_pages#home'
+  root to: 'static_pages#home'
 
-  match '/help', to: 'static_pages#help', via: 'get'
+  # match '/help', to: 'static_pages#help', via: 'get'
   match '/home', to: 'static_pages#home', via: 'get'
   devise_for :users
 
@@ -16,6 +15,8 @@ Meifang::Application.routes.draw do
   resources :information
   resources :new_homes
   resources :group_buyings
+  resources :intention_to_registers
+  resources :information_sharings
 
 
   # The priority is based upon order of creation: first created -> highest priority.
