@@ -25,6 +25,7 @@ ActiveAdmin.register Character do
       image_tag thumb.character_thumb.url(:normal)
     end
     column I18n.t("active_admin.characters.list.name"), :name
+    column I18n.t("active_admin.characters.list.title"), :title
     actions
   end
 
@@ -32,6 +33,8 @@ ActiveAdmin.register Character do
 
   form do |f|
     f.inputs "" do
+      f.input :title,
+              :label => I18n.t("active_admin.characters.form.title")
       f.input :name,
               :label => I18n.t("active_admin.characters.form.name")
       f.input :content,
@@ -48,7 +51,8 @@ ActiveAdmin.register Character do
 
   controller do
     def permitted_params
-      params.permit(:character => [:name,
+      params.permit(:character => [:title,
+                                   :name,
                                    :content,
                                    :character_thumb])
     end

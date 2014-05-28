@@ -32,7 +32,7 @@ zh-CN:
         title: "标题"
         content: "内容说明"
         url: "下载地址"
-        information_sharing_thumb: "缩略图"        
+        information_sharing_thumb: "缩略图"
     information: # 信息
       title: "信息管理"
       menu:
@@ -185,6 +185,8 @@ zh-CN:
         created_at: "创建时间"
     alubms:
       alubms: "相册"
+    apartment:
+      apartment: "户型图"
     information_estate_openeds:
       title: "开盘信息管理"
       list:
@@ -252,11 +254,13 @@ zh-CN:
       title: "名人堂"
       list:
         name: "姓名"
+        title: "标题"
         character_thumb: "照片"
       search:
         name: "姓名"
       form:
         name: "姓名"
+        title: "标题"
         content: "内容"
         character_thumb: "照片"
   activerecord:
@@ -276,3 +280,5 @@ zh-CN:
       intention_to_register: "意向登记"
       activity: "活动"
       character: "名人"
+      album: "相册"
+      apartment: "户型图"

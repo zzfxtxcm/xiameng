@@ -1,14 +1,14 @@
 .container
   .mb20.pull-left
     当前位置：
-    %a{href: "/home"} 馨窝网
+    = link_to "馨窝网", root_path
     \>
     %a{href: ""} 资料分享
   .clearfix
   .pull-left.content{style: "width:900px;"}
     .top
       .l
-        %h3.cl
+        %h1
           = @information_sharings.title
         %p
           #{@information_sharings.created_at.strftime("%Y-%m-%d %H:%M")}　

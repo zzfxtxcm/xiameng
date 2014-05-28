@@ -17,6 +17,9 @@ class NewHome < ActiveRecord::Base
   has_many :group_buyings, dependent: :destroy
   has_many :intention_to_registers, dependent: :destroy
 
+  has_many :apartments, dependent: :destroy
+  accepts_nested_attributes_for :apartments, :allow_destroy => true  
+
   VALID_NUMBER_REGEX = /[\d]/
   validates :name, presence: true
   validates :price, format: { with: VALID_NUMBER_REGEX }

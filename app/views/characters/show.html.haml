@@ -1,25 +1,20 @@
 .container
   .mb20.pull-left
     当前位置：
-    %a{href: "/home"} 馨窝网
+    %a{href: ""} 馨窝网
     \>
-    %a{href: ""}名人堂
+    %a{href: ""} 人物专访
   .clearfix
   .pull-left.content{style: "width:900px;"}
     .top
       .l
-        %h3.cl
+        %h3
           = @Characters.name
         %p
-          #{@Characters.created_at.strftime("%Y-%m-%d %H:%M")}　
-      .review
-        %p.f14
-          = @Characters.content.html_safe
+          #{@Characters.created_at.strftime("%Y-%m-%d %H:%M")} 来源：馨窝网
     .clearfix
     .news_body
-      %p.f16.cl
-
-
+      = @Characters.content.html_safe
     / end fenxiang
   .pull-left.ml20
     %div{ style: "width:240px;" }

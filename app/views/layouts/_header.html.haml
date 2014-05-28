@@ -45,17 +45,17 @@
 / 导航
 %div{ style: "height: 70px" }
 #toc_container.newnav{ align: "center" }
-  %a{href: "/home"}> 首页
-  |  
-  %a{href: "/information"}> 资讯
+  = link_to "首页", root_path
   |
-  %a{href: "/new_homes"}> 新房
+  = link_to "资讯", information_index_path
   |
-  %a{href: "#"}> 团购
+  = link_to "新房", new_homes_path
   |
-  %a{href: "#"}> 地图找房
+  = link_to "团购", group_buyings_path
   |
-  %a{href: "#"}> 租房
+  = link_to "地图找房", map_path
   |
-  %a{href: "#"} 二手房
+  %a{href: "#", target: "_blank"}> 租房
+  |
+  %a{href: "#", target: "_blank"} 二手房
 / header end
