@@ -44,6 +44,9 @@ gem 'sunspot_rails', '2.1.0'
 gem 'sunspot_solr', '2.1.0'
 gem 'progress_bar', '1.0.0'
 
+# 分析网页结构
+gem 'nokogiri', '1.6.1'
+
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'pry-rails', '0.3.2'

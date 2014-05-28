@@ -28,21 +28,21 @@ ActiveAdmin.register InformationSharing do
     actions
   end
 
-  filter :title, :label => I18n.t("标题")
-  filter :url, :label => I18n.t("链接")
-  filter :content, :label => I18n.t("资料说明")
-  filter :information_sharing_thumb, :label => I18n.t("缩略图")
+  filter :title, :label => I18n.t("active_admin.information_sharing.search.title")
+  filter :url, :label => I18n.t("active_admin.information_sharing.search.url")
+  filter :content, :label => I18n.t("active_admin.information_sharing.search.content")
+  filter :information_sharing_thumb, :label => I18n.t("active_admin.information_sharing.search.information_sharing_thumb")
 
   form do |f|
     f.inputs "" do
       f.input :title,
-              :label => I18n.t("标题")
+              :label => I18n.t("active_admin.information_sharing.form.title")
       f.input :url,
-              :label => I18n.t("链接")
+              :label => I18n.t("active_admin.information_sharing.form.url")
       f.input :content,
-              :label => I18n.t("资料说明")
+              :label => I18n.t("active_admin.information_sharing.form.content")
       f.input :information_sharing_thumb,
-              :label => I18n.t("缩略图")
+              :label => I18n.t("active_admin.information_sharing.form.information_sharing_thumb")     
     end
     f.actions
   end

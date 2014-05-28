@@ -22,6 +22,16 @@ zh-CN:
         title: "标题"
         content: "内容说明"
         url: "下载地址"
+        information_sharing_thumb: "缩略图"
+      search:
+        title: "标题"
+        content: "内容说明"
+        url: "下载地址"
+        information_sharing_thumb: "缩略图"
+      form:
+        title: "标题"
+        content: "内容说明"
+        url: "下载地址"
         information_sharing_thumb: "缩略图"        
     information: # 信息
       title: "信息管理"
@@ -39,6 +49,7 @@ zh-CN:
         source: "来源"
         keywords: "关键词"
         description: "描述"
+        content: "内容"
         new_home: "所属楼盘"
         information_type: "前台位置"
       search:

@@ -45,6 +45,12 @@ ActiveAdmin.register Information do
          :label => I18n.t("active_admin.information.search.created_at")
 
   form do |f|
+    f.inputs "采集地址" do
+      "<li>
+        <label class=\"label\">地址</label>
+        <input id=\"url\" maxlength=\"255\" name=\"url\" value=\"hh\" type=\"text\">
+      </li>".html_safe
+    end    
     f.inputs "" do
       f.input :information_type,
               :prompt => true,
