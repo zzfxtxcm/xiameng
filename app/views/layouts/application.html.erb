@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title><%= full_title(yield(:title)) %></title>
+  <meta name="keywords" content="厦门房产网,厦门房产,厦门房地产,厦门买房,厦门新房,厦门房价,厦门楼盘" />
+  <meta name="description" content="厦门房地产团购、电商第一门户（www.xinwo360.com ），最专业的厦门房产信息网，汇集了厦门房地产等新房资讯及优惠信息，致力于打造信息最新最全的厦门房地产网站。" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag "application",
                             "custom",
@@ -18,10 +20,18 @@
     <!--[if lte IE 7]>
       <%= stylesheet_link_tag "bootstrap/ie.css", media: "all", "data-turbolinks-track" => true %>
     <![endif]-->
-    <%= javascript_include_tag "application",
-                               params[:container],
-                               "custom/ad_ls",
-                               "data-turbolinks-track" => true %>
+    <% if mobile? %>
+      <%= javascript_include_tag "application",
+                              params[:controller],
+                              "custom/ad_ls",
+                              "data-turbolinks-track" => true %>
+    <% else %>
+      <%= javascript_include_tag "application",
+                              params[:container],
+                              "custom/ad_ls",
+                              "custom/stickUp.min",
+                              "data-turbolinks-track" => true %>
+    <% end %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

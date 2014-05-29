@@ -19,6 +19,7 @@ Meifang::Application.routes.draw do
   resources :intention_to_registers
   resources :information_sharings
   resources :characters
+  resources :about
 
 
   # The priority is based upon order of creation: first created -> highest priority.

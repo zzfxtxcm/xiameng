@@ -36,7 +36,7 @@ ActiveAdmin.register Information do
          :collection => proc { nested_dropdown(Category.all.arrange) },
          :label => I18n.t("active_admin.information.search.category")
   filter :new_home,
-         :collection => new_homes_dropdown(NewHome.all),
+         :collection => proc { new_homes_dropdown(NewHome.all) },
          :label => I18n.t("active_admin.information.search.new_home")
   filter :title, :label => I18n.t("active_admin.information.search.title")
   filter :source, :label => I18n.t("active_admin.information.search.source")
@@ -50,7 +50,7 @@ ActiveAdmin.register Information do
         <label class=\"label\">地址</label>
         <input id=\"url\" maxlength=\"255\" name=\"url\" value=\"hh\" type=\"text\">
       </li>".html_safe
-    end    
+    end
     f.inputs "" do
       f.input :information_type,
               :prompt => true,

@@ -86,6 +86,7 @@ end
 group :production do
   gem 'pg', '0.15.1'
   gem 'unicorn'
+  gem 'unicorn-rails'
   gem 'unicorn-worker-killer'
 end
 

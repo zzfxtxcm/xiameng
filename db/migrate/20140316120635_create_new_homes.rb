@@ -27,11 +27,11 @@ class CreateNewHomes < ActiveRecord::Migration
       t.string :school # 学校
       t.string :hospital # 医院
       t.string :bank # 银行
-      t.string :shopping # 购物中心
-      t.string :neighborhoods # 小区配套
-      t.string :landscapes # 自然景物
-      t.string :bus # 公交
-      t.string :car # 自驾
+      t.text :shopping # 购物中心
+      t.text :neighborhoods # 小区配套
+      t.text :landscapes # 自然景物
+      t.text :bus # 公交
+      t.text :car # 自驾
       t.text :content # 楼盘介绍
 
       t.timestamps
