@@ -2,13 +2,7 @@
 .container
   .mb20.pull-left
     当前位置：
-    %a{href: ""} 馨窝网
-    \>
-    %a{href: ""} 厦门房产
-    \>
-    %a 厦门新房
-    \>
-    %a.cl 楼盘列表
+    = render_breadcrumbs
   .pull-left
     .panel.panel-primary.prlistl{style: "margin:0; width:900px;"}
       .panel-heading{style: "background:#2db8ad"}
@@ -37,43 +31,45 @@
       %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
         %li.active{style: "border-bottom: 1px solid #2db8ad;"}
           %a{"data-toggle" => "tab", href: "#d_hot"} 全部
+        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
+        -#   %a{"data-toggle" => "tab", href: "#lou"} 热推
+        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
+        -#   %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
+        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
+        -#   %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
+        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
+        -#   %a{"data-toggle" => "tab", href: "#w_new"} 已售完
         %li{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#lou"} 热推
-        %li{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
-        %li{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
-        %li{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#w_new"} 已售完
-        %li{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#w_new"} 地图找房
+          %a{href: "/map"} 地图找房
+        %li.pull-right
+          备注：0元项目为尚未公开售价
       #myTabContent.tab-content
         #d_hot.tab-pane.fade.active.in
           %table{width: "900px;"}
             %tr
               %td
-                .btn-toolbar
-                  .btn-group
-                    %a.btn{href: "#"}
-                      时间
-                      %i.icon-arrow-down
-                    %a.btn{href: "#"}
-                      价格
-                      %i.icon-arrow-down
-                    %a.btn{href: "#"}
-                      点击
-                      %i.icon-arrow-down
-                    %a.btn{href: "#"}
-                      评分
-                      %i.icon-arrow-down
-                    %a.btn{href: "#"}
-                      开盘时间
-                      %i.icon-arrow-down
+                -# .btn-toolbar
+                -#   .btn-group
+                -#     %a.btn{href: "#"}
+                -#       时间
+                -#       %i.icon-arrow-down
+                -#     %a.btn{href: "#"}
+                -#       价格
+                -#       %i.icon-arrow-down
+                -#     %a.btn{href: "#"}
+                -#       点击
+                -#       %i.icon-arrow-down
+                -#     %a.btn{href: "#"}
+                -#       评分
+                -#       %i.icon-arrow-down
+                -#     %a.btn{href: "#"}
+                -#       开盘时间
+                -#       %i.icon-arrow-down
               %td{align: "right"}
                 - if @new_homes.any?
                   共有
                   %span.cr>
-                    = @new_homes.count
+                    = @new_homes.total_entries
                   个楼盘
           - @new_homes.each do |new_home|
             = render new_home

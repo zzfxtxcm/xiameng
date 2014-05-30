@@ -10,26 +10,40 @@
     / %a.regBut 注册
     %p
       馨窝网各地分站：
-      = link_to "厦门", "http://xm.xinwo360.com", target: "_blank"
+      = link_to "厦门", "http://xm.xinwowang.com", target: "_blank"
       |
-      = link_to "漳州", "http://zz.xinwo360.com", target: "_blank", :class => "cr"
+      = link_to "漳州", "http://zz.xinwowang.com", target: "_blank", :class => "cr"
       |
-      = link_to "泉州", "http://qz.xinwo360.com", target: "_blank"
+      = link_to "泉州", "http://qz.xinwowang.com", target: "_blank"
       |
-      = link_to "广州", "http://gz.xinwo360.com", target: "_blank"
+      = link_to "广州", "http://gz.xinwowang.com", target: "_blank"
       |
-      = link_to "深圳", "http://sz.xinwo360.com", target: "_blank"
-      |  
+      = link_to "深圳", "http://sz.xinwowang.com", target: "_blank"
+      |
   .miniright
     = link_to "首页", root_path
     = link_to "新房", new_homes_path
     = link_to "二手房", "#"
-    = link_to "团购", group_buyings_path
+    = link_to "团购", '#'
 .clearfix
-=render 'layouts/header_ad' if params[:controller]=="static_pages"
+= render 'layouts/header_ad' if params[:controller]=="static_pages"
 .container
   .pull-left.mt20
-    -# = link_to image_tag("logo.png"), "/"
+    = link_to image_tag("logo.png"), "http://www.xinwowang.com", target: "_blank"
+  .pull-left.f16.pt55.btn-group
+    %button.btn.btn-mini.dropdown-toggle{"data-toggle" => "dropdown"}
+      漳州站
+      %span.caret
+    %ul.dropdown-menu{style: "z-index:99999"}
+      %li
+        %a{href: "http://xm.xinwowang.com", target: "_blank"} 厦门站
+      %li
+        %a{href: "http://qz.xinwowang.com", target: "_blank"} 泉州站
+      %li
+        %a{href: "http://gz.xinwowang.com", target: "_blank"} 广州站
+      %li
+        %a{href: "http://sz.xinwowang.com", target: "_blank"} 深圳站
+    
   .pull-left.mt30.ml30
     .tabbable
       %ul.nav.nav-tabs#myTab{ style: "margin:0;" }
@@ -70,7 +84,7 @@
   |
   = link_to "新房", new_homes_path
   |
-  = link_to "团购", group_buyings_path
+  = link_to "团购", '#', target: "_blank"
   |
   = link_to "地图找房", map_path
   |

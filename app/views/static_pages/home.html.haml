@@ -8,12 +8,42 @@
           楼盘推荐
           = link_to "更多>", new_homes_path, :class => "pull-right f14", target: "_blank"
       .panel-body
-        - @areas[0..5].each do |area|
-          %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
-            %h4.f16.mt5.mb5{style: "color:#f65c52"} #{area.name}
-            %p
-              - NewHome.where(area_id: area.id).limit(4).each do |new_home|
-                = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333", target: "_blank"
+        .newhousedig
+          - @areas[0..5].each do |area|
+            .dig_area
+              .title
+                %h4.f14.mt5.mb5{style: "color:#f65c52"}#{area.name}
+              .lists{oldheight: "40", style: "height: 40px;"}
+                .inner
+                  - NewHome.where(area_id: area.id).order('updated_at desc').each do |new_home|
+                    = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333", target: "_blank"
+            .seperate_line3
+        %script{language: "javascript", type: "text/javascript"}
+          function slideUpDown(obj){
+          var t = obj.children(':first'),
+          l = obj.children(':eq(1)'),
+          i = l.children(':first');
+
+          var full = t.is('.title_active');
+          t.toggleClass('title_active');
+
+          var oldheight = l.attr('oldheight');
+          if (!oldheight) {
+          oldheight = l.height();
+          l.attr('oldheight', oldheight);
+          }
+
+          var h = full ? oldheight : i.height();
+          if ((h *= 1) >= (oldheight *= 1) && h != l.height() * 1) {
+          l.animate({'height': h}, 'fast');
+          }
+          \//！！最后一个无法完全显示
+
+          }
+          $('.newhousedig .dig_area').hover(
+          function(){ slideUpDown($(this)); },
+          function(){ slideUpDown($(this)); }
+          );
     .panel.panel-primary
       .panel-heading
         %h3.panel-title 帮你找房
@@ -49,7 +79,7 @@
     .clearfix
     .pull-left.pt10
       = image_tag("jrtt.gif")
-    .pull-left.ml10
+    .pull-left.ml10{style: "width: 820px;"}
       - Information.where(information_type_id: 1).limit(1).each do |information|
         %h3
           = link_to information.title.first(30), information, :class => "cl", target: "_blank"
@@ -96,17 +126,21 @@
       .clearfix
       .imageRotation
         .imageBox{style: "width: 924px;"}
-          %a{href: "", target: "_blank"}
-            = image_tag("tmp/gad1.jpg")
-          %a{href: "", target: "_blank"}
-            = image_tag("tmp/gad2.jpg")
+          - Information.where(information_type_id: 16).limit(4).each do |information|
+            = link_to image_tag(information.information_thumb) ,information, target: "_blank"
         .titleBox
           %p.active{style: "bottom:0px;"}
-            %span 本地化房产团购、电商门户
-          %p{style: "bottom: -40px;"} 电商第一门户为目标
+            - Information.where(information_type_id: 16).limit(1).each do |information|
+              %span
+                =information.title.first(32)
+          - Information.where(information_type_id: 16).offset(1).limit(3).each do |information|
+            %p{style: "bottom: -40px;"}
+              =information.title.first(32)
         .icoBox
           %span{rel: "1"} 1
           %span{rel: "2"} 2
+          %span{rel: "3"} 3
+          %span{rel: "4"} 4
       :javascript
         $(document).ready(function() {
           $(".imageRotation").each(function(){
@@ -131,7 +165,7 @@
             // 图片轮换函数
             var rotate=function(clickID){
               if(clickID){ nextID = clickID; }
-              else{ nextID=activeID<=1 ? activeID+1 : 1; }
+              else{ nextID=activeID<=3 ? activeID+1 : 1; }
               // 交换图标
               $(icoArr[activeID-1]).removeClass("active");
               $(icoArr[nextID-1]).addClass("active");
@@ -162,7 +196,7 @@
           });
         });
     %div{style: "border: 1px solid #EEEEEE; height:234px; margin-top:10px;"}
-      = link_to image_tag("tmp/ad1.jpg", :class => "pt5 pl5", :style => "width:462px; height:222px;"), group_buyings_path, target: "_blank"
+      = link_to image_tag("tmp/ad1.jpg", :class => "pt5 pl5", :style => "width:462px; height:222px;"), '#', target: "_blank"
     .mt10{style: "height:240px; width:473px "}
       .title_l
         %p 楼市日历
@@ -251,7 +285,7 @@
         #myTabContent.tab-content
           #l_hot.tab-pane.fade.active.in
             %ul
-              - Information.where(information_type_id: 6).limit(6).offset(1).each do |information|
+              - Information.where(information_type_id: 6).limit(6).each do |information|
                 %li
                   = link_to information.title.first(26), information, target: "_blank"
       %div{style: "width:400px;"}
@@ -261,7 +295,7 @@
         #myTabContent.tab-content
           #act.tab-pane.fade.active.in
             %ul
-              - Information.where(information_type_id: 7).limit(6).offset(1).each do |information|
+              - Information.where(information_type_id: 7).limit(5).each do |information|
                 %li
                   = link_to information.title.first(26), information, target: "_blank"
     / end右边中
@@ -287,7 +321,7 @@
             .clearfix
             .mb10{style: "border-top:1px dotted #333;"}
             %ul
-              - Information.where(information_type_id: 15).limit(6).offset(1).each do |information|
+              - Information.where(information_type_id: 15).limit(6).offset(2).each do |information|
                 %li
                   = link_to information.title.first(27), information, target: "_blank"
       .pt10{style: "width:465px"}
@@ -329,13 +363,15 @@
   / end 右边
   / -二楼end
   .clearfix
-  .mt10
-    - if mobile?
-      = image_tag("swf/4.gif", alt: "", :style => "width:1170px", :class =>"pb10")
-      = image_tag("swf/5.gif", alt: "", :style => "width:1170px")
-    - else
-      %embed{height: "75px;", src:"#{asset_path 'swf/5.swf'}", width: "1170px;",wmode:"opaque"}
-      %embed{height: "75px;", src:"#{asset_path 'swf/4.swf'}", width: "1170px;",wmode:"opaque"}
+  -# .mt10
+  -#   - if mobile?
+  -#     %a{href:"/group_buyings", target: "_blank"}
+  -#       = image_tag("swf/4.gif", alt: "", :style => "width:1170px", :class =>"pb10")
+  -#       -# = image_tag("swf/5.gif", alt: "", :style => "width:1170px")
+  -#   - else
+  -#     %a{href:"/group_buyings", target: "_blank"}
+  -#       %embed{height: "75px;", src:"#{asset_path 'swf/5.swf'}", width: "1170px;",wmode:"opaque"}
+  -#       -# %embed{height: "75px;", src:"#{asset_path 'swf/4.swf'}", width: "1170px;",wmode:"opaque"}
   / 三楼地产圈
   .dcq
     .clearfix

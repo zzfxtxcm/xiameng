@@ -62,7 +62,8 @@ ActiveAdmin.register Information do
       f.input :information_thumb,
               :label => I18n.t("active_admin.information.form.information_thumb")
       f.input :source,
-              :label => I18n.t("active_admin.information.form.source")
+              :label => I18n.t("active_admin.information.form.source"),
+              :input_html => { :value => "漳州馨窝网" }
       f.input :keywords,
               :label => I18n.t("active_admin.information.form.keywords")
       f.input :description,

@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title><%= full_title(yield(:title)) %></title>
-  <meta name="keywords" content="厦门房产网,厦门房产,厦门房地产,厦门买房,厦门新房,厦门房价,厦门楼盘" />
-  <meta name="description" content="厦门房地产团购、电商第一门户（www.xinwo360.com ），最专业的厦门房产信息网，汇集了厦门房地产等新房资讯及优惠信息，致力于打造信息最新最全的厦门房地产网站。" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" />
+  <meta name="keywords" content=<%= full_key(yield(:key)) %> />
+  <meta name="description" content="厦门房地产团购、电商第一门户（www.xinwowang.com ），最专业的厦门房产信息网，汇集了厦门房地产等新房资讯及优惠信息，致力于打造信息最新最全的厦门房地产网站。" />
+  <link rel="shortcut icon" href="<%= asset_path("favicon.ico") %>" />
   <%= stylesheet_link_tag "application",
                           "custom",
                           "custom/base",
@@ -41,9 +40,9 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |key, value| %>
-      <div class="alert alert-#{key}">
-        <button class="close" data-dismiss="alert" type="button"><%= value %></button>
-      </div>
+      <SCRIPT LANGUAGE="JavaScript">
+        alert("<%= value %>")
+      </script>      
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>

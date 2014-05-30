@@ -4,6 +4,55 @@
 
 /*楼盘项目页*/
 
+/*new house tuan start*/
+.divcss5_list_title {
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  padding: 1em;
+}
+
+.divcss5_list_content {
+  padding: 1em;
+}
+
+#tinybox {
+  position: absolute;
+  display: none;
+  padding: 10px;
+  background: white url(image/preload.gif) no-repeat 50% 50%;
+  border: 10px solid #e3e3e3;
+  z-index: 9999;
+}
+
+#tinymask {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  z-index: 9999;
+}
+
+#tinycontent {
+  background: #ffffff;
+  font-size: 1.1em;
+}
+
+#n {
+  margin: 10px auto;
+  width: 920px;
+  border: 1px solid #CCC;
+  font-size: 12px;
+  line-height: 30px;
+  a {
+    padding: 0 4px;
+    color: #333333;
+  }
+}
+/*new house tuan end*/
+
 .pr_title {
   width: 1170px;
   h2 {
@@ -29,6 +78,19 @@
     padding-right: 32px;
     padding-left: 32px;
     color: #FFF;
+  }
+  .nav_1 {
+    float:left;
+    background:url(asset_path('bootstrap/prt.gif'));
+    height: 40px;
+    width: 104px;
+  }
+  .nav_2 {
+    float:left;
+    background: url(asset_path('bootstrap/prt1.gif'));
+    height:40px;
+    width: 1066px;
+    background-repeat: repeat-x;
   }
 }
 

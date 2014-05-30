@@ -46,6 +46,7 @@ tags
 
 # shell
 /shell/*
+update.sh
 
 # win
 Thumbs.db
