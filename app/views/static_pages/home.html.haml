@@ -438,7 +438,7 @@
           - InformationSharing.limit(6).each do |sharp|
             %tr
               %td
-                = link_to sharp.title.first(17), information, target: "_blank"
+                = link_to sharp.title.first(17), sharp, target: "_blank"
       .clearfix
       .pull-left
         = link_to image_tag("tmp/xw.jpg", alt: "", :style => "height:260px; width:226px;"),'about#join', target: "_blank"
