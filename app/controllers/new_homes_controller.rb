@@ -7,6 +7,12 @@ class NewHomesController < ApplicationController
                         .paginate(page: params[:page])
                         .per_page(5)
     @keyword = Sunspot.search(NewHome) do
+      per_page = params[:per_page]
+      if per_page.blank?
+        per_page = 10
+      else
+        per_page = params[:per_page]
+      end
       keywords params[:keyword]
       with(:area_id).equal_to(params[:area_id]) if params[:area_id].present?
       with(:section_id).equal_to(params[:section_id]) if params[:section_id].present?
@@ -14,7 +20,7 @@ class NewHomesController < ApplicationController
       with(:property_type_id).equal_to(params[:property_type_id]) if params[:property_type_id].present?
       with(:price).between(params[:mix]..params[:max]) if params[:mix].present? && params[:max].present?
       order_by :created_at, :desc
-      paginate :page => params[:page], :per_page => 5
+      paginate :page => params[:page], :per_page => per_page
     end
 
     @new_homes = @keyword.results
