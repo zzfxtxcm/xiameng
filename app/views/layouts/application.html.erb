@@ -22,15 +22,15 @@
   <![endif]-->
   <% if mobile? %>
     <%= javascript_include_tag "application",
-                            params[:controller],
-                            "custom/ad_ls",
-                            "data-turbolinks-track" => true %>
+                               params[:controller],
+                               "custom/ad_ls",
+                               "data-turbolinks-track" => true %>
   <% else %>
     <%= javascript_include_tag "application",
-                            params[:container],
-                            "custom/ad_ls",
-                            "custom/stickUp.min",
-                            "data-turbolinks-track" => true %>
+                                 params[:container],
+                                 "custom/ad_ls",
+                                 "custom/stickUp.min",
+                                 "data-turbolinks-track" => true %>
   <% end %>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -42,7 +42,7 @@
     <% flash.each do |key, value| %>
       <SCRIPT LANGUAGE="JavaScript">
         alert("<%= value %>")
-      </script>      
+      </script>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
