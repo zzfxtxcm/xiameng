@@ -58,12 +58,13 @@ ActiveAdmin.register Information do
       f.input :category, :collection => nested_dropdown(Category.all.arrange),
               :prompt => true,
               :label => I18n.t("active_admin.information.form.category")
-      f.input :title, :label => I18n.t("active_admin.information.form.title")
+      f.input :title,
+              :label => I18n.t("active_admin.information.form.title")
       f.input :information_thumb,
               :label => I18n.t("active_admin.information.form.information_thumb")
       f.input :source,
               :label => I18n.t("active_admin.information.form.source"),
-              :input_html => { :value => "漳州馨窝网" }
+              :input_html => { :value => "厦门馨窝网" }
       f.input :keywords,
               :label => I18n.t("active_admin.information.form.keywords")
       f.input :description,

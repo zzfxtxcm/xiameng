@@ -1,4 +1,5 @@
 class IntentionToRegistersController < ApplicationController
+
   def create
     @intention_to_register = IntentionToRegister.new(intention_to_register_params)
     if @intention_to_register.save
@@ -19,6 +20,6 @@ class IntentionToRegistersController < ApplicationController
                                                     :sex,
                                                     :budget,
                                                     :area,
-                                                    :email)      
+                                                    :email)
     end
 end

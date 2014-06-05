@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title><%= full_title(yield(:title)) %></title>
   <meta name="keywords" content=<%= full_key(yield(:key)) %> />
-  <meta name="description" content="厦门房地产团购、电商第一门户（www.xinwowang.com ），最专业的厦门房产信息网，汇集了厦门房地产等新房资讯及优惠信息，致力于打造信息最新最全的厦门房地产网站。" />
+  <meta name="description" content=<%= full_desc(yield(:desc)) %>/>
   <link rel="shortcut icon" href="<%= asset_path("favicon.ico") %>" />
   <%= stylesheet_link_tag "application",
                           "custom",
@@ -20,17 +20,18 @@
   <!--[if lte IE 7]>
     <%= stylesheet_link_tag "bootstrap/ie.css", media: "all", "data-turbolinks-track" => true %>
   <![endif]-->
+
   <% if mobile? %>
     <%= javascript_include_tag "application",
-                               params[:controller],
-                               "custom/ad_ls",
-                               "data-turbolinks-track" => true %>
+                            params[:controller],
+                            "custom/ad_ls",
+                            "data-turbolinks-track" => true %>
   <% else %>
     <%= javascript_include_tag "application",
-                                 params[:container],
-                                 "custom/ad_ls",
-                                 "custom/stickUp.min",
-                                 "data-turbolinks-track" => true %>
+                              params[:controller],
+                              "custom/ad_ls",
+                              "custom/stickUp.min",
+                              "data-turbolinks-track" => true %>
   <% end %>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

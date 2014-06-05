@@ -1,6 +1,7 @@
 ActiveAdmin.register NewHome do
 
 
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -59,10 +60,10 @@ ActiveAdmin.register NewHome do
               :wrapper_html => { :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.name")
       f.input :price,
-              :wrapper_html => { :class => "left", :style => "width: 48%" },
+              :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.price")
       f.input :tel,
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.tel")
       f.input :project_address,
               :wrapper_html => { :class => "index_content left", :style => "width: 48%" },
@@ -87,16 +88,15 @@ ActiveAdmin.register NewHome do
                                         <input type=\"text\" size=\"20\" name=\"keyword\" id=\"keyword\" style=\"width:100px\" />
                                         <input type=\"submit\" value=\"提交\" onclick=\"MblogDotccMap(document.getElementById('keyword').value)\" />
                                       </div>
-                                        <div id=\"results_info\" style=\"margin-top:10px; margin-left:10px;\"></div>
+                                      <div id=\"results_info\" style=\"margin-top:10px; margin-left:10px;\"></div>
                                     </div>
                                     <div id=\"l-map\" style=\"height:550px; width: 650px; float:left; \"></div>
                                   </div>
                                 </div>
                               </div>".html_safe
       f.form_buffers.last << javascript_tag("
-
                                              var map = new BMap.Map(\"l-map\");
-                                             var point = new BMap.Point(118.105036, 24.50291);
+                                             var point = new BMap.Point(117.676205,24.517065);
 
                                              map.centerAndZoom(point, 13);
 
@@ -181,65 +181,69 @@ ActiveAdmin.register NewHome do
               :wrapper_html => { :class => "left", :style => "width: 48%" },
               :label => I18n.t("active_admin.new_homes.form.greening_rate")
       f.input :volume_rate,
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.volume_rate")
       f.input :fit,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "left", :style => "width: 48%" },
+              :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.fit")
       f.input :property,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.property")
       f.input :school,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "left", :style => "width: 48%" },
+              :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.school")
       f.input :hospital,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.hospital")
       f.input :bank,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "left", :style => "width: 48%" },
+              :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.bank")
       f.input :shopping,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.shopping")
       f.input :neighborhoods,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "left", :style => "width: 48%" },
+              :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.neighborhoods")
       f.input :landscapes,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.landscapes")
       f.input :bus,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "left", :style => "width: 48%" },
+              :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.bus")
       f.input :car,
               :input_html => { :rows => "5" },
-              :wrapper_html => { :class => "right", :style => "width: 48%" },
+              :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.car")
       f.input :property_type,
               :prompt => true,
-              :wrapper_html => { :style => "width: 48%" },
+              :wrapper_html => { :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.property_type")
       f.input :project_features,
               :prompt => true,
-              :wrapper_html => { :style => "width: 48%" },
+              :wrapper_html => { :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.project_features")
       f.input :content,
               :label => false,
               :as => :ckeditor
       f.input :status,
               :prompt => true,
-              :wrapper_html => { :style => "width: 48%" },
+              :wrapper_html => { :style => "width:48%" ,:class => "left",},
               :label => I18n.t("active_admin.new_homes.form.status")
+      f.input :best,
+              :wrapper_html => { :class => "right", :style => "width:48%" },
+              :label => I18n.t("active_admin.new_homes.form.best"),
+              :hint => f.template.content_tag(:span, "楼盘的排名")
       f.input :new_home_thumb,
-              :wrapper_html => { :style => "width: 48%" },
+              :wrapper_html => { :style => "width:48%" },
               :hint => f.object.new_home_thumb.present? \
                        ? f.template.image_tag(f.object.new_home_thumb.url(:thumb))
                        : f.template.content_tag(:span, "未传图片"),
@@ -318,7 +322,8 @@ ActiveAdmin.register NewHome do
       #                             :property_type_id,
       #                             :content,
       #                             :status_id,
-      #                             :new_home_thumb])
+      #                             :new_home_thumb,
+      #                             albums_attributes: [:name, :file]])
     end
   end
 end

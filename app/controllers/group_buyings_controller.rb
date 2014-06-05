@@ -3,7 +3,7 @@ class GroupBuyingsController < ApplicationController
     @areas = Area.all
     @group_buyings = GroupBuying.order('created_at DESC')
                                 .paginate(page: params[:page])
-                                .per_page(5)    
+                                .per_page(5)
   end
 
   def show

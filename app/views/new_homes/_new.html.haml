@@ -1,1 +1,26 @@
-.prdt.pull-left.pt20  .title_l{align: "center", style: "width:170px;"}    %p.fb 销售动态  .title_r{align: "right", style: "width:740px;"}    %i.icon-plus-sign.c9C9    %a.pr20{href: "", style: "color:#2db8ad"} 手机订阅  .clearfix  %table{width: "908px;"}    %tr      %td{colspan: "2"}        %table.table.table-bordered          - @news.each do |item|            %tr              %td{width: "152px;"}                %strong                  = item.created_at.strftime("%Y-%m-%d")              %td                = link_to item.description ,item ,target: "_blank"  .fenye    .pagination.pull-right{style: "margin-top:0px;"}      = will_paginate @news    -# %p.pull-right.mt10.mr10 每页显示14条，共有1110条记录/ 右边.pull-right.pt20{style: "width:244px;"}  = render "right"/ end 右边
+.prdt.pull-left.pt20
+  .title_l{align: "center", style: "width:170px;"}
+    %p.fb 销售动态
+  .title_r{align: "right", style: "width:740px;"}
+    %i.icon-plus-sign.c9C9
+    %a.pr20{href: "", style: "color:#2db8ad"} 手机订阅
+  .clearfix
+  %table{width: "908px;"}
+    %tr
+      %td{colspan: "2"}
+        %table.table.table-bordered
+          - @news.each do |item|
+            %tr
+              %td{width: "152px;"}
+                %strong
+                  = item.created_at.strftime("%Y-%m-%d")
+              %td
+                = link_to item.description ,item ,target: "_blank"
+  .fenye
+    .pagination.pull-right{style: "margin-top:0px;"}
+      = will_paginate @news
+    -# %p.pull-right.mt10.mr10 每页显示14条，共有1110条记录
+/ 右边
+.pull-right.pt20{style: "width:244px;"}
+  = render "right"
+/ end 右边

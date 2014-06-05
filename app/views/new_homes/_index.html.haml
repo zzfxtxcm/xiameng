@@ -5,7 +5,7 @@
     .item-tab
       .panel{style: "display: block;"}
         %a#click_test2{style: "cursor:pointer;"}
-          = image_tag(@new_home.new_home_thumb, alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title: @new_home.name)
+          = image_tag(@new_home.new_home_thumb, alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title:@new_home.name )
         :javascript
             var content2 = "<img  style='width:460px; height:300px;'  src='#{@new_home.new_home_thumb}' />";
             T$('click_test2').onclick = function(){TINY.box.show(content2,0,0,0,1)}
@@ -32,6 +32,7 @@
           = link_to "户型图", new_home_path(@new_home.id, :type => "apartment")
       .cover
       %a#click_test2.ml20 效果预览
+    
     .panel.panel-primary.mt20{style: "width:338px"}
       .panel-heading
         %h3.panel-title
@@ -53,51 +54,55 @@
       .panel-heading
         %h3.panel-title 人气指数
       .panel-body
-        %p.f14.lh150 区域排行榜：第8名
-        %p.f14.lh150 团购人数：64人
-        %p.f14.lh150 购房问答：52条
-        %p.f14.lh150 访问人数：11222人
-        %p.f14.lh150 今日访问：32人
-        %p.f14.lh150 昨日访问：165人
+        %p.f14.lh150 区域排行榜：第#{@new_home.best}名
+        %p.f14.lh150 团购人数：#{@intention}人
+        %p.f14.lh150 访问人数：#{@total_hit }人
+        %p.f14.lh150 今日访问：#{@today_hit }人
+        %p.f14.lh150 昨日访问：#{@yest_hit }人
         %p.f14.lh150 欢迎访问#{@new_home.name}网上售楼处！
         %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
         %table{width: "300px"}
           %tr
             %td{style: "text-align:center"}
               共
-              %span.cr> 33
+              %span.cr> #{@read}
               人看过
             %td{style: "text-align:center"}
               共
-              %span.cr> 33
+              %span.cr> #{@want}
               人想去
           %tr
             %td{style: "text-align:center"}
-              %a.btn.cw{style: "background:#f65c52"} 我已看过
+              %a.btn.btn-inverse.cw{style: "background:#f65c52",onclick: "abc()"} 我已看过
             %td{style: "text-align:center"}
-              %a.btn.cw{style: "background:#f65c52"} 我很想去
-    -# .panel.panel-primary.mt20{style: "width:338px"}
-    -#   .panel-heading
-    -#     %h3.panel-title
-    -#       楼盘在线问答
-    -#       %a.pull-right.f14{href: "#"} 更多>
-    -#   .panel-body
-    -#     .pr_ifno_zx
-    -#       %p.pt20{align: "center"} 美房购房交流群：
-    -#       %p.cl{align: "center"}
-    -#         11122111
-    -#         %a.cl{href: "", style: "float:right"} 进入群>
-    -#     %p.cr 问：乐美颂是一梯几户的 华女士(1515518****)
-    -#     %p 答：您好,这里是House365新房中心，大华锦绣华城乐美颂是一梯三户的。(2014.02.26)
-    -#     %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
-    -#     %p.cr 问：请问你们靠近地铁吗？周变交通怎么样?小户型有吗？ 张先生(1865296****)
-    -#     %p 答：您好,这里是House365新房中心，以后宁天城际二期会有地铁，鼓珍线（可达鼓...(2014.02.25)
-    -#     %table{width: "300px"}
-    -#       %tr
-    -#         %td{style: "text-align:center"}
-    -#           %a.btn.cw{style: "background:#f65c52"} 查看回复
-    -#         %td{style: "text-align:center"}
-    -#           %a.btn.cw{style: "background:#f65c52"} 我要提问
+              %a.btn.btn-inverse.cw{style: "background:#f65c52",onclick: "abc()"} 我很想去
+          :javascript
+            function abc(){
+              alert('谢谢参与!');
+              window.location.reload();
+            }
+    / .panel.panel-primary.mt20{style: "width:338px"}
+    /   .panel-heading
+    /     %h3.panel-title
+    /       楼盘在线问答
+    /       %a.pull-right.f14{href: "#"} 更多>
+    /   .panel-body
+    /     .pr_ifno_zx
+    /       %p.pt20{align: "center"} 美房购房交流群：
+    /       %p.cl{align: "center"}
+    /         11122111
+    /         %a.cl{href: "", style: "float:right"} 进入群>  
+    /     %p.cr 问：乐美颂是一梯几户的 华女士(1515518****)
+    /     %p 答：您好,这里是House365新房中心，大华锦绣华城乐美颂是一梯三户的。(2014.02.26)
+    /     %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
+    /     %p.cr 问：请问你们靠近地铁吗？周变交通怎么样?小户型有吗？ 张先生(1865296****)
+    /     %p 答：您好,这里是House365新房中心，以后宁天城际二期会有地铁，鼓珍线（可达鼓...(2014.02.25)
+    /     %table{width: "300px"}
+    /       %tr
+    /         %td{style: "text-align:center"}
+    /           %a.btn.cw{style: "background:#f65c52"} 查看回复
+    /         %td{style: "text-align:center"}
+    /           %a.btn.cw{style: "background:#f65c52"} 我要提问
   / end left
   .pull-left.ml30{style: "width:800px;"}
     .pr_info_1
@@ -106,7 +111,7 @@
       %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
       %p
         %strong.f14 参考均价：
-        %span.cr.f20 #{@new_home.price}元/㎡
+        %span.cr.f20 #{@new_home.price}元/m ²
       %p
         %strong.f14 项目地址：
         %span
@@ -182,6 +187,7 @@
                   =link_to information.title, information
                   %span.ch.pull-right.f12
                     = information.updated_at.strftime("%Y-%m-%d %H:%M")
+
       .title3_l
         %p 看房报告
       .title3_r{align: "right", style: "width:678px;"}
@@ -285,8 +291,8 @@
     .title3_r{align: "right", style: "width:785px;"}
       %a{href: ""} 更多
     .clearfix
-    .m10{style: "width:780px;"}
-      #property-map.mb10{style: "width:870px; height:300px"}
+    .mt10{style: "width:907px;"}
+      #property-map.mb10{style: "width:907px; height:300px"}
       %p.f14
         %strong 周边交通：
       %p.f14 公交：#{@new_home.bus}
@@ -343,41 +349,42 @@
               = f.text_field :email, placeholder: "请输入邮箱"
             %td
               = f.submit "我要团购", class: "btn cw", style: "width: 96px; background:#f65c52"
+
   / end 底部左边
   / 底部右边
   .pull-left.ml20{style: "width:243px;"}
     = render "right"
 
-    -# .panel.panel-primary
-    -#   .panel-heading
-    -#     %h3.panel-title
-    -#       购房工具
-    -#       %a.pull-right.f14{href: "#"} 更多>
-    -#   .panel-body
-    -#     %table{style: "width:215px;"}
-    -#       %tr
-    -#         %td
-    -#           %a.m20{href: ""}
-    -#             %img{src: "img/tool1.gif"}/
-    -#         %td
-    -#           %a.m20{href: ""}
-    -#             %img{src: "img/tool2.gif"}/
-    -#       %tr
-    -#         %td
-    -#           %a.m20{href: ""}
-    -#             %img{src: "img/tool3.gif"}/
-    -#         %td
-    -#           %a.m20{href: ""}
-    -#             %img{src: "img/tool4.gif"}/
-    -#       %tr
-    -#         %td
-    -#           %a.m20{href: ""}
-    -#             %img{src: "img/tool5.gif"}/
-    -#         %td
+    / .panel.panel-primary
+    /   .panel-heading
+    /     %h3.panel-title
+    /       购房工具
+    /       %a.pull-right.f14{href: "#"} 更多>
+    /   .panel-body
+    /     %table{style: "width:215px;"}
+    /       %tr
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool1.gif"}/
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool2.gif"}/
+    /       %tr
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool3.gif"}/
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool4.gif"}/
+    /       %tr
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool5.gif"}/
+    /         %td
     .panel.panel-primary
       .panel-heading
         %h3.panel-title 帮你找房
-      .panel-body.ml20{style: "height: 100px"}
+      .panel-body.ml20{style:"height:100px;"}
         = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
           %button.btn.btn-mini{style: "height:28px; width:58px;margin-top:10px;", type: "button"} 区域
           = select_tag :area_id, options_from_collection_for_select(@areas, 'id', 'name'), prompt: "请选择地区", class: "selectS", id: "area", style: "margin: 13px 0 0 0"
@@ -387,7 +394,6 @@
           %button.btn.btn-danger.btn-mini.mt10{ type: "submit", style: "height: 28px; width: 58px" }
             搜索
   / end 底部
-
 :javascript
   // 百度地图API功能
   var map = new BMap.Map("property-map");
@@ -410,7 +416,6 @@
     		 fontFamily:"微软雅黑"
     	});
   map.addOverlay(label);
-
   var infoWindow1 = new BMap.InfoWindow("#{@new_home.name} - #{@new_home.project_address}");
   marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
   map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));

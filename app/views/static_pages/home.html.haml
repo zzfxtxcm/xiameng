@@ -1,55 +1,60 @@
 - provide(:title, '厦门房产网,厦门买房，厦门新房，厦门房价，厦门楼盘，厦门二手房，厦门租房')
 .container
   / 左边
-  .pull-left{style: "width: 242px"}
+  .pull-left{style: "width:242px;"}
     .panel.panel-primary
       .panel-heading
         %h3.panel-title
           楼盘推荐
-          = link_to "更多>", new_homes_path, :class => "pull-right f14", target: "_blank"
-      .panel-body
-        .newhousedig
-          - @areas[0..5].each do |area|
-            .dig_area
-              .title
-                %h4.f14.mt5.mb5{style: "color:#f65c52"}#{area.name}
-              .lists{oldheight: "40", style: "height: 40px;"}
-                .inner
-                  - NewHome.where(area_id: area.id).order('updated_at desc').each do |new_home|
-                    = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333", target: "_blank"
-            .seperate_line3
-        %script{language: "javascript", type: "text/javascript"}
-          function slideUpDown(obj){
-          var t = obj.children(':first'),
-          l = obj.children(':eq(1)'),
-          i = l.children(':first');
-
-          var full = t.is('.title_active');
-          t.toggleClass('title_active');
-
-          var oldheight = l.attr('oldheight');
-          if (!oldheight) {
-          oldheight = l.height();
-          l.attr('oldheight', oldheight);
-          }
-
-          var h = full ? oldheight : i.height();
-          if ((h *= 1) >= (oldheight *= 1) && h != l.height() * 1) {
-          l.animate({'height': h}, 'fast');
-          }
-          \//！！最后一个无法完全显示
-
-          }
-          $('.newhousedig .dig_area').hover(
-          function(){ slideUpDown($(this)); },
-          function(){ slideUpDown($(this)); }
-          );
+          = link_to "更多>", new_homes_path, :class => "pull-right f14"
+      .panel-body{style: "height:540px;"}
+        .mallCategory
+          .catList
+            %ul.m0
+              - @areas[0..6].each do |area|
+                %li.J_MenuItem
+                  .title
+                    %h4.f16.mt5.mb5.ml10
+                      %a.cr #{area.name}
+                      
+                  .lists
+                    .inner
+                      - NewHome.where(area_id: area.id).order('updated_at desc').limit(4).each do |new_home|
+                        = link_to new_home.name, new_home
+                
+          .border
+            %ul.m0
+              %li.mask-top.m0
+              %li.mask-bottom.m0
+          .cat-subcategory
+            .shadow
+              - @i = 0
+              - @areas[0..6].each do |area|
+                .entity-main
+                  %ul.shadow-left.m0
+                    - NewHome.where(area_id: area.id).order('updated_at desc').each do |new_home|
+                      - if @i%4==0
+                        %li
+                          - NewHome.where(area_id: area.id).order('updated_at desc').offset(@i).limit(4).each do |new_home|
+                            = link_to new_home.name, new_home
+                      -@i +=1
+                  %dl.shadow-right.m0
+                    %dt
+                      %b 品牌推荐
+                    %dd
+                      - NewHome.where(area_id: area.id).order('updated_at desc').each do |new_home|
+                        %a
+                          =Developers.find(new_home.developers_id).name.first(9)
+                          = "..." if Developers.find(new_home.developers_id).name.length >10
+                -@i =0
+                      
+              
     .panel.panel-primary
       .panel-heading
         %h3.panel-title 帮你找房
       .panel-body
         %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
-          %h4.f16.mt5.mb5{style: "color:#f65c52"} 价格
+          %h4.f16.m0{style: "color:#f65c52"} 价格
           %p
             = render_option_of_single_price_index(3000, 4000, "")
             = render_option_of_single_price_index(4000, 5000, "color: #333")
@@ -57,7 +62,7 @@
             = render_option_of_single_price_index(7000, 8000, "color: #333")
             = render_option_of_single_price_index(8000, 20000, "color: #333")
         %div{style: " height:75px;"}
-          %h4.f16.mt5.mb5{style: "color:#f65c52"} 面积
+          %h4.f16.m0{style: "color:#f65c52"} 面积
           %p
             - AreaRange.limit(1).each do |item|
               = render_option_of_single_area_range_index(item.name, item.id, "")
@@ -79,16 +84,16 @@
     .clearfix
     .pull-left.pt10
       = image_tag("jrtt.gif")
-    .pull-left.ml10{style: "width: 820px;"}
-      - Information.where(information_type_id: 1).limit(1).each do |information|
+    .pull-left.ml10{style: "width:820px;"}
+      - Information.where(information_type_id: 1).order('created_at desc').limit(1).each do |information|
         %h3
           = link_to information.title.first(30), information, :class => "cl", target: "_blank"
           %span.cl
             = "..." if information.title.length >31
-          %p
-            = information.description.first(60)
-            = "..." if information.description.length > 60
-            = link_to "详情", information, :class => "cr", target: "_blank"
+        %p
+          = information.description.first(60)
+          = "..." if information.description.length > 60
+          = link_to "详情", information, :class => "cr", target: "_blank"
     / 右边中
   .l_new2.pull-left.ml20{style: "border-right: 1px solid #EEEEEE; width:410px;"}
     .title_l
@@ -97,7 +102,7 @@
       = link_to '更多', information_index_path(:information_type_id => 2), :class => 'pull-right mt5', target: "_blank"
     .pull-left.mt10
       %ul
-        - Information.where(information_type_id: 2).limit(7).each do |information|
+        - Information.where(information_type_id: 2).order('created_at desc').limit(7).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     .clearfix
@@ -107,7 +112,7 @@
       = link_to '更多', information_index_path(:information_type_id => 3), :class => 'pull-right mt5', target: "_blank"
     .pull-left.mt10
       %ul
-        - Information.where(information_type_id: 3).limit(7).each do |information|
+        - Information.where(information_type_id: 3).order('created_at desc').limit(7).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     .clearfix
@@ -117,7 +122,7 @@
       = link_to '更多', information_index_path(:information_type_id => 4), :class => 'pull-right mt5', target: "_blank"
     .pull-left.mt10
       %ul
-        - Information.where(information_type_id: 12).limit(7).each do |information|
+        - Information.where(information_type_id: 12).order('created_at desc').limit(7).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     / 右边右
@@ -126,14 +131,14 @@
       .clearfix
       .imageRotation
         .imageBox{style: "width: 924px;"}
-          - Information.where(information_type_id: 16).limit(4).each do |information|
+          - Information.where(information_type_id: 16).order('created_at desc').limit(4).each do |information|
             = link_to image_tag(information.information_thumb) ,information, target: "_blank"
         .titleBox
           %p.active{style: "bottom:0px;"}
-            - Information.where(information_type_id: 16).limit(1).each do |information|
+            - Information.where(information_type_id: 16).order('created_at desc').limit(1).each do |information|
               %span
                 =information.title.first(32)
-          - Information.where(information_type_id: 16).offset(1).limit(3).each do |information|
+          - Information.where(information_type_id: 16).offset(1).order('created_at desc').limit(3).each do |information|
             %p{style: "bottom: -40px;"}
               =information.title.first(32)
         .icoBox
@@ -215,10 +220,9 @@
           - 6.times do |n|
             %h4{ id: "activity#{ n }" }
               #{ (Time.now + n.month).strftime("%m").to_i }月份
-            - Activity.where("opening_time >= ? AND opening_time <= ?", Time.now.beginning_of_month+n.month, Time.now.end_of_month+n.month).each do |item|
+            - Activity.where("opening_time >= ? AND opening_time <= ?", Time.now.beginning_of_month+n.month, Time.now.end_of_month+n.month).order('created_at desc').each do |item|
               %p
-                = link_to item.title + " (#{item.opening_time.strftime("%Y-%m-%d")})"
-
+                = link_to item.title+" (#{item.opening_time.strftime("%Y-%m-%d")})"
   / end 右边右
   / 右边end
 
@@ -234,7 +238,7 @@
       .panel-heading
         %h3.panel-title
           新房推荐
-          = link_to '更多', new_homes_path, :class => 'pull-right mt5'
+          = link_to '更多', new_homes_path, :class => 'pull-right mt5', target: "_blank"
       .panel-body
         %table.table.table-condensed
           %thead
@@ -245,13 +249,14 @@
           - NewHome.limit(8).each do |item|
             %tr
               %td
-                = link_to item.name, item
+                = link_to item.name.first(6), item
               %td
-                = Area.find(item.area_id).name
+                = Area.find(item.area_id).name.first(2)
               %td #{ item.price }元/m&sup2
     = render 'shared/intention_to_register_form'
     .p5
       = image_tag("tmp/jjsx.gif", alt: "")
+
   / end 左边
   / 右边
   .pull-left
@@ -263,7 +268,7 @@
             %a{"data-toggle" => "tab"} 今日话题
         #myTabContent.tab-content
           .tab-pane.fade.active.in
-            - Information.where(information_type_id: 5).limit(1).each do |information|
+            - Information.where(information_type_id: 5).order('created_at desc').limit(1).each do |information|
               %h3{style: "margin:0"}
                 = link_to information.title.first(32), information ,:class => "cl",:style => "font-size:24px", target: "_blank"
               %p{style: "color:#999"} #{information.source} #{information.created_at.strftime("%Y-%m-%d")}
@@ -275,7 +280,7 @@
                 %p
                   %a.cr.pull-right{href: ""} 往期>
               %ul
-                - Information.where(information_type_id: 5).limit(3).offset(1).each do |information|
+                - Information.where(information_type_id: 5).order('created_at desc').limit(3).offset(1).each do |information|
                   %li
                     = link_to information.title.first(26), information, target: "_blank"
       %div{style: "width:400px;"}
@@ -285,7 +290,7 @@
         #myTabContent.tab-content
           #l_hot.tab-pane.fade.active.in
             %ul
-              - Information.where(information_type_id: 6).limit(6).each do |information|
+              - Information.where(information_type_id: 6).order('created_at desc').limit(6).each do |information|
                 %li
                   = link_to information.title.first(26), information, target: "_blank"
       %div{style: "width:400px;"}
@@ -295,7 +300,7 @@
         #myTabContent.tab-content
           #act.tab-pane.fade.active.in
             %ul
-              - Information.where(information_type_id: 7).limit(5).each do |information|
+              - Information.where(information_type_id: 7).order('created_at desc').limit(5).each do |information|
                 %li
                   = link_to information.title.first(26), information, target: "_blank"
     / end右边中
@@ -308,20 +313,20 @@
         #myTabContent.tab-content
           #act.tab-pane.fade.active.in
             .pull-left.pt10{style: " width:174px;"}
-              - Information.where(information_type_id: 15).limit(2).each do |information|
-                = image_tag(information.information_thumb, alt: "", :style => "height:100px; width:175px; margin-bottom:10px;")
+              - Information.where(information_type_id: 15).order('created_at desc').limit(2).each do |information|
+                = image_tag(information.information_thumb, alt: "", :style => "height:100px; width:175px; margin-bottom:10px;", target: "_blank")
             .loushiguandian
-              - Information.where(information_type_id: 15).limit(2).each do |information|
+              - Information.where(information_type_id: 15).order('created_at desc').limit(2).each do |information|
                 %h4
                   = link_to information.title.first(14), information, :class=> "cr", target: "_blank"
                 .mt5{style: "height:80px"}
                   %p.f14
-                    = information.description.first(50)
+                    = information.description.first(48)
                     = link_to "[查看详情]", information,:class => "cr", target: "_blank"
             .clearfix
             .mb10{style: "border-top:1px dotted #333;"}
             %ul
-              - Information.where(information_type_id: 15).limit(6).offset(2).each do |information|
+              - Information.where(information_type_id: 15).order('created_at desc').limit(6).offset(2).each do |information|
                 %li
                   = link_to information.title.first(27), information, target: "_blank"
       .pt10{style: "width:465px"}
@@ -329,49 +334,51 @@
           = image_tag("tmp/sx.gif", alt: "", :style => "width:465px;height:320px")
         - else
           %embed{align: "middle", allowscriptaccess: "sameDomain", bgcolor: "#ffffff", height: "320px", name: "mymovie", pluginspage: "http://www.macromedia.com/go/getflashplayer", quality: "high", src: "#{asset_path 'tmp/sx.swf'}", wmode: "transparent", type: "application/x-shockwave-flash", width: "465px"}
-      -# %div{style: "width:465px;"}
-      -#   %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
-      -#     %li.active{style: "border-bottom: 1px solid #2db8ad;"}
-      -#       %a{"data-toggle" => "tab", href: "#act"}   专题
-      -#   #myTabContent.tab-content
-      -#     #act.tab-pane.fade.active.in
-      -#       .pull-left.pt10{style: " width:174px;"}
-      -#         %a{href: ""}
-      -#           = image_tag("tmp/ad9.gif", alt: "")
-      -#       .loushiguandian
-      -#         %h4
-      -#           %a.cr{href: ""} 角美万达广场：消费万达 精彩无处不在
-      -#         %p.f14.m0
-      -#           4月7日，漳州角美万达广场商铺投资经营体验会将在角美万达广场营销,漳州角美万达广场商铺投资经营体验会将在角美万达广场营销
-      -#           %a.cl{href: ""} [详情]
-      -#       .clearfix
-      -#       .mb10{style: "border-top:1px dotted #333;"}
-      -#       %ul
-      -#         %li
-      -#           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
-      -#         %li
-      -#           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
-      -#         %li
-      -#           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
-      -#         %li
-      -#           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
-      -#         %li
-      -#           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
-      -#         %li
-      -#           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
-    / end 右边右
+      / %div{style: "width:465px;"}
+      /   %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+      /     %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+      /       %a{"data-toggle" => "tab", href: "#act"}   专题  
+      /   #myTabContent.tab-content
+      /     #act.tab-pane.fade.active.in
+      /       .pull-left.pt10{style: " width:174px;"}
+      /         %a{href: ""}
+      /           = image_tag("tmp/ad9.gif", alt: "")
+      /       .loushiguandian
+      /         %h4
+      /           %a.cr{href: ""} 角美万达广场：消费万达 精彩无处不在
+      /         %p.f14.m0
+      /           4月7日，厦门角美万达广场商铺投资经营体验会将在角美万达广场营销,厦门角美万达广场商铺投资经营体验会将在角美万达广场营销
+      /           %a.cl{href: ""} [详情]
+      /       .clearfix
+      /       .mb10{style: "border-top:1px dotted #333;"}
+      /       %ul
+      /         %li
+      /           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
+  / end 右边右
+  / end 右边右
   / end 右边
   / -二楼end
   .clearfix
-  -# .mt10
-  -#   - if mobile?
-  -#     %a{href:"/group_buyings", target: "_blank"}
-  -#       = image_tag("swf/4.gif", alt: "", :style => "width:1170px", :class =>"pb10")
-  -#       -# = image_tag("swf/5.gif", alt: "", :style => "width:1170px")
-  -#   - else
-  -#     %a{href:"/group_buyings", target: "_blank"}
-  -#       %embed{height: "75px;", src:"#{asset_path 'swf/5.swf'}", width: "1170px;",wmode:"opaque"}
-  -#       -# %embed{height: "75px;", src:"#{asset_path 'swf/4.swf'}", width: "1170px;",wmode:"opaque"}
+  / .mt10
+  /   - if mobile?
+  /     %a{href:"/group_buyings", target: "_blank"}
+  /       = image_tag("swf/4.gif", alt: "", :style => "width:1170px", :class =>"pb10")
+  /       /= image_tag("swf/5.gif", alt: "", :style => "width:1170px")
+  /   - else
+  /     %a{href:"/group_buyings", target: "_blank"}
+  /       %embed{height: "75px;", src:"#{asset_path 'swf/5.swf'}", width: "1170px;",wmode:"opaque"}
+  /       /%embed{height: "75px;", src:"#{asset_path 'swf/4.swf'}", width: "1170px;",wmode:"opaque"}
+
   / 三楼地产圈
   .dcq
     .clearfix
@@ -383,7 +390,7 @@
       .pull-left.mt10.mb10
         .title3_l
           %p 名人堂
-        .title3_r{align: "right", style: "width: 777px"}
+        .title3_r{align: "right", style: "width:777px"}
           %a{href: ""} 更多
       / picrotate_left start
       .blk_18
@@ -391,7 +398,6 @@
         #ISL_Cont_1.pcont
           .ScrCont
             #List1_1
-            #List2_1
               - Character.all.limit(8).each do |item|
                 .pl
                   = link_to image_tag(item.character_thumb, alt: item.name, :style => "height:160px; width:130px"),item, target: "_blank"
@@ -399,6 +405,7 @@
                     = link_to item.name.first(8), item, target: "_blank"
                   %p
                     = item.title.first(13)
+            #List2_1
         %a.RightBotton{href: "javascript:void(0);", onmousedown: "ISL_GoDown_1()", onmouseout: "ISL_StopDown_1()", onmouseup: "ISL_StopDown_1()", target: "_self"}
       .c
       :javascript
@@ -413,10 +420,10 @@
           %a{href: ""} 更多
         .clearfix.m0
         .pull-left.mt10{style: "width:265px;"}
-          - Information.where(information_type_id: 8).limit(1).each do |information|
+          - Information.where(information_type_id: 8).order('created_at desc').limit(1).each do |information|
             = image_tag(information.information_thumb, alt: "", :style => "height:170px; width:260px;")
         .pull-left.mt10.ml10{style: "width:322px; border-right:1px solid #CCC"}
-          - Information.where(information_type_id: 8).limit(1).each do |information|
+          - Information.where(information_type_id: 8).order('created_at desc').limit(1).each do |information|
             %h4
               = link_to information.title.first(40), information,:class => "cl f16", target: "_blank"
             %p
@@ -424,7 +431,7 @@
               = link_to "[查看详情]", information,:class => "cr", target: "_blank"
         .activity_list
           %ul
-            - Information.where(information_type_id: 8).limit(5).offset(1).each do |information|
+            - Information.where(information_type_id: 8).order('created_at desc').limit(5).offset(1).each do |information|
               %li
                 = link_to information.title.first(17), information, target: "_blank"
     .pull-left.mt10.ml20
@@ -493,21 +500,21 @@
       .title3_l
         %p 购房须知
       .title3_r{align: "right", style: "width:168px"}
-        = link_to '更多', information_index_path(:information_type_id => 9), target: "_blank"
+        = link_to '更多', information_index_path(:information_type_id => 9)
       .clearfix
       .mt10.mb10
         %ul
-          - Information.where(information_type_id: 9).limit(4).each do |information|
+          - Information.where(information_type_id: 9).order('created_at desc').limit(4).each do |information|
             %li
               = link_to information.title.first(40), information, target: "_blank"
       .title3_l
         %p 购房警示
       .title3_r{align: "right", style: "width:168px"}
-        = link_to '更多', information_index_path(:information_type_id => 10), target: "_blank"
+        = link_to '更多', information_index_path(:information_type_id => 10)
       .clearfix
       .mt10.mb10
         %ul
-          - Information.where(information_type_id: 10).limit(4).each do |information|
+          - Information.where(information_type_id: 10).order('created_at desc').limit(4).each do |information|
             %li
               = link_to information.title.first(40), information, target: "_blank"
     .pull-left.mt10{style: " width:415px; border-right:1px solid #CCC ; margin-left:15px;"}
@@ -516,28 +523,28 @@
       .title3_r{align: "right", style: "width:278px"}
         = link_to '更多', information_index_path(:information_type_id => 13), target: "_blank"
       .clearfix
-      - Information.where("information_type_id = 13 AND information_thumb IS NOT NULL").limit(1).each do |information|
+      - Information.where("information_type_id = 13 AND information_thumb IS NOT NULL").order('created_at desc').limit(1).each do |information|
         .pull-left.pt10{style: " width:174px;"}
           = link_to image_tag(information.information_thumb, alt: information.title, :class => "mb10", :style => "height:98px; width:174px"), information, target: "_blank"
         %div{style: "float:left; width:212px; margin-left:10px;"}
           %h4.m0
-            = link_to information.title.first(14), information, :class => "cr f14", target: "_blank"
+            = link_to information.title.first(14), information, :class => "cr f14"
           %p.f12.m0
             = information.description.first(60)
             = link_to "[详情]", information, :class => "cl", target: "_blank"
       .clearfix
       .mb10{style: "border-top:1px dotted #333; width:400px;"}
       %ul
-        - Information.where(information_type_id: 13).limit(8).each do |information|
+        - Information.where(information_type_id: 13).order('created_at desc').limit(8).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     .pull-left.mt10{style: " margin-left:15px;width:405px;"}
       .title3_l
         %p 家居轶事
       .title3_r{align: "right", style: "width:278px"}
-        = link_to '更多', information_index_path(:information_type_id => 13), target: "_blank"
+        = link_to '更多', information_index_path(:information_type_id => 14), target: "_blank"
       .clearfix
-        - Information.where("information_type_id = 14 AND information_thumb IS NOT NULL").limit(1).each do |information|
+        - Information.where("information_type_id = 14 AND information_thumb IS NOT NULL").order('created_at desc').limit(1).each do |information|
           .pull-left.pt10{style: " width:174px;"}
             = link_to image_tag(information.information_thumb, alt: information.title, :class => "mb10", :style => "height:98px; width:174px"), information, target: "_blank"
           %div{style: "float:left; width:212px; margin-left:10px;"}
@@ -549,12 +556,11 @@
       .clearfix
       .mb10{style: "border-top:1px dotted #333; width:400px;"}
       %ul
-        - Information.where(information_type_id: 14).limit(8).each do |information|
+        - Information.where(information_type_id: 14).order('created_at desc').limit(8).each do |information|
           %li
-            = link_to information.title.first(26), information, target: "_blank"
+            = link_to information.title.first(26), information
     .clearfix
     .tool
-
       / 友情链接
       %table.table.table-bordered
         %tr
@@ -565,6 +571,7 @@
               %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
           %td.yqlj
             %a 百度贴吧
+
       / end友情链接
   / end楼购房百科
 / con end
