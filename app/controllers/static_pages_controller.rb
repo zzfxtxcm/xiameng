@@ -19,4 +19,20 @@ class StaticPagesController < ApplicationController
       @new_homes = NewHome.where("map_address IS NOT NULL")
     end
   end
+  
+  def get_new_homes
+    options = ""
+    area_id = params[:area_id]
+    if area_id.blank?
+      data_for_select = NewHome.all
+    else
+      data_for_select = NewHome.where(:area_id => area_id).all
+    end
+    data_for_select.each do |s|
+      options << "<option value=#{s.id}>#{s.name}</option>"
+    end
+    render :text => options
+    # render :json => @data_for_select.map{|c| [c.id, c.name]}
+  end
+
 end
