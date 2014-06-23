@@ -1,6 +1,6 @@
 - type = params[:type]
-- provide(:title, "#{@new_home.name}-打折优惠-团购登记-价格分析")
-- provide(:key, "#{@new_home.name},漳州#{@new_home.name},#{@new_home.name}团购")
+-provide(:title, "#{@new_home.name}-打折优惠-团购登记-价格分析")
+-provide(:key, "#{@new_home.name},厦门#{@new_home.name},#{@new_home.name}团购")
 %script{src: "http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo", type: "text/javascript"}
 .container
   .pr_title.pull-left.mb10
@@ -21,9 +21,9 @@
       = link_to "项目介绍", new_home_path(@new_home.id, :type => "introduce"), :class => (type == "introduce" ? "active" : "")
       = link_to "户型图", new_home_path(@new_home.id, :type => "apartment"), :class => (type == "apartment" ? "active" : "")
       = link_to "销售动态", new_home_path(@new_home.id, :type => "new"), :class => (type == "new" ? "active" : "")
-      -# %a{href: "#"} 价格行情
+      / %a{href: "#"} 价格行情
       = link_to "交通配套", new_home_path(@new_home.id, :type => "traffic"), :class => (type == "traffic" ? "active" : "")
-      = link_to "楼盘相册", new_home_path(@new_home.id, :type => "album"), :class => (type == "album" ? "active" : "")      
+      = link_to "楼盘相册", new_home_path(@new_home.id, :type => "album"), :class => (type == "album" ? "active" : "")
   - if type == "apartment"
     = render "apartment"
   - elsif type == "new"

@@ -57,4 +57,5 @@ ActiveAdmin.register Character do
                                    :character_thumb])
     end
   end
+
 end

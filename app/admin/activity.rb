@@ -49,5 +49,6 @@ ActiveAdmin.register Activity do
                                   :content,
                                   :opening_time])
     end
-  end  
+  end
+
 end

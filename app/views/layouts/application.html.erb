@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title><%= full_title(yield(:title)) %></title>
   <meta name="keywords" content=<%= full_key(yield(:key)) %> />
-  <meta name="description" content="厦门房地产团购、电商第一门户（www.xinwowang.com ），最专业的厦门房产信息网，汇集了厦门房地产等新房资讯及优惠信息，致力于打造信息最新最全的厦门房地产网站。" />
+  <meta name="description" content=<%= full_desc(yield(:desc)) %>/>
   <link rel="shortcut icon" href="<%= asset_path("favicon.ico") %>" />
   <%= stylesheet_link_tag "application",
                           "custom",
@@ -28,9 +28,21 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |key, value| %>
-      <SCRIPT LANGUAGE="JavaScript">
-        alert("<%= value %>")
-      </script>
+      <% if value =="您的信息我们已经收到，会尽快的联系您。是否继续完成信息登记？" %>
+        <SCRIPT LANGUAGE="JavaScript">
+          var bln=confirm("是否继续完善登记信息，是点击“确定” 否点击“取消”？")
+          if (bln==true){
+            window.open('/intention_to_registers');
+          }
+          else{
+
+         }
+        </script>
+      <% else %>
+        <SCRIPT LANGUAGE="JavaScript">
+          alert("<%= value %>")
+        </script>
+      <% end %>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>

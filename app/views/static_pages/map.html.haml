@@ -15,8 +15,10 @@
 :javascript
   var map = new BMap.Map("l-map");
   var point = new BMap.Point(117.676205,24.517065);
+
   map.centerAndZoom(point, 13);
   // 控件
+
   map.addControl(new BMap.NavigationControl());
   map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_PAN}));  //左下角，仅包含平移按钮
 
@@ -24,7 +26,11 @@
 
   map.addControl(new BMap.OverviewMapControl());
   map.addControl(new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右上角，打开
+
   map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]}));     //2D图，卫星图
+
+
+
 
   function MblogDotccMap(keyword) {
     var local = new BMap.LocalSearch(map, {renderOptions: {map: map, panel: "results_info"}});
@@ -32,8 +38,10 @@
     local.search(keyword);
     local.getResults();
   }
+
   // 加载值到输入框
   map.addEventListener('click', function(e){ document.getElementById('new_home_map_address').value = e.point.lng + ', ' + e.point.lat;});
+
   // 复杂的自定义覆盖物
   function ComplexCustomOverlay(point, text, price, project_address, show, tel){
     this._point = point;
@@ -62,6 +70,7 @@
     div.appendChild(span);
     span.appendChild(document.createTextNode(this._text));
     var that = this;
+
     var arrow = this._arrow = document.createElement("div");
     arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
     arrow.style.position = "absolute";
@@ -71,11 +80,13 @@
     arrow.style.left = "10px";
     arrow.style.overflow = "hidden";
     div.appendChild(arrow);
+
     div.onmouseover = function(){
       // this.style.backgroundColor = "#6BADCA";
       // this.style.borderColor = "#0000ff";
       // this.getElementsByTagName("span")[0].innerHTML = that._overText;
       // arrow.style.backgroundPosition = "0px -20px";
+
       var opts = {
         width : 350,     // 信息窗口宽度
         // height: 100,     // 信息窗口高度
@@ -107,14 +118,18 @@
                      ";
       var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象
       map.openInfoWindow(infoWindow, that._point);      // 打开信息窗口
+
     }
+
     div.onmouseout = function(){
       this.style.backgroundColor = "#EE5D5B";
       this.style.borderColor = "#BC3B3A";
       this.getElementsByTagName("span")[0].innerHTML = that._text;
       arrow.style.backgroundPosition = "0px 0px";
     }
+
     map.getPanes().labelPane.appendChild(div);
+
     return div;
   }
   ComplexCustomOverlay.prototype.draw = function(){
@@ -123,8 +138,11 @@
     this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
     this._div.style.top  = pixel.y - 30 + "px";
   }
+
   var map_keyword = "#{@map_keyword}";
+
   var new_homes = #{@new_homes.to_json};
+
   for(var item in new_homes){
     var map_address = new_homes[item].map_address.split(",");
     var name = new_homes[item].name;
@@ -132,6 +150,6 @@
     var project_address = new_homes[item].project_address;
     var show = new_homes[item].id;
     var tel = new_homes[item].tel;
-    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(map_address[0], map_address[1]), name, price, project_address, show, tel);    
+    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(map_address[0], map_address[1]), name, price, project_address, show, tel);
     map.addOverlay(myCompOverlay);
   }

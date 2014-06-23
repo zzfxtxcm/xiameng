@@ -27,25 +27,35 @@
     %p 学校：#{@new_home.school}
     %p 购物中心：#{@new_home.shopping}
     %p 银行：#{@new_home.bank}
+
 .pull-right.pt20{style: "width:244px;"}
   = render "right"
+
 :javascript
   function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
     var r = window.location.search.substr(1).match(reg);
     if (r!=null) return unescape(r[2]); return null;
   }
+
   // 百度地图API功能
   var map = new BMap.Map("traffic_map");
   var point = new BMap.Point(#{@new_home.map_address});
   map.centerAndZoom(point,16);
   map.enableScrollWheelZoom();
+
   map.addControl(new BMap.NavigationControl());
   map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_PAN}));  //左下角，仅包含平移按钮
+
   map.addControl(new BMap.ScaleControl());
+
   map.addControl(new BMap.OverviewMapControl());
   map.addControl(new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右上角，打开
+
   map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]}));     //2D图，卫星图
+
+
+
   if (GetQueryString("bus_lines")) {
     var busline = new BMap.BusLineSearch(map,{
       renderOptions:{map:map,panel:"r-result"},
@@ -56,10 +66,12 @@
         }
       }
     });
+
     function busSearch(){
         var busName = GetQueryString("bus_lines");
         busline.getBusList(busName);
     }
+
     setTimeout(function(){
         busSearch();
     },1500);

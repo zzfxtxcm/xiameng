@@ -1,8 +1,9 @@
-- provide(:title, '厦门新房，厦门房产网')
+-provide(:title, '厦门新房,厦门房产网')
 .container
   .mb20.pull-left
     当前位置：
     = render_breadcrumbs
+  .clearfix
   .pull-left
     .panel.panel-primary.prlistl{style: "margin:0; width:900px;"}
       .panel-heading{style: "background:#2db8ad"}
@@ -16,6 +17,7 @@
         %p.f14
           %strong 价格：
           = render_option_of_total_price(params[:mix], params[:max])
+          = render_option_of_single_price(0, 3000)
           = render_option_of_single_price(3000, 4000)
           = render_option_of_single_price(4000, 5000)
           = render_option_of_single_price(5000, 6000)
@@ -29,18 +31,36 @@
             = render_option_of_single_area_range(item.name, item.id)
     .prlist2
       %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
-        %li.active{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#d_hot"} 全部
-        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
-        -#   %a{"data-toggle" => "tab", href: "#lou"} 热推
-        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
-        -#   %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
-        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
-        -#   %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
-        -# %li{style: "border-bottom: 1px solid #2db8ad;"}
-        -#   %a{"data-toggle" => "tab", href: "#w_new"} 已售完
+        - if params[:status_id].blank?
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_total_status_id()
+        -else
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_total_status_id()
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#lou"} 热推
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#w_new"} 已售完
+        - if params[:status_id]== '3'
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(3)
+        -else
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(3)
+        - if params[:status_id]== '2'
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(2)
+        -else
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(2)
+
         %li{style: "border-bottom: 1px solid #2db8ad;"}
           %a{href: "/map"} 地图找房
+        
         %li.pull-right
           备注：0元项目为尚未公开售价
       #myTabContent.tab-content
@@ -48,23 +68,23 @@
           %table{width: "900px;"}
             %tr
               %td
-                -# .btn-toolbar
-                -#   .btn-group
-                -#     %a.btn{href: "#"}
-                -#       时间
-                -#       %i.icon-arrow-down
-                -#     %a.btn{href: "#"}
-                -#       价格
-                -#       %i.icon-arrow-down
-                -#     %a.btn{href: "#"}
-                -#       点击
-                -#       %i.icon-arrow-down
-                -#     %a.btn{href: "#"}
-                -#       评分
-                -#       %i.icon-arrow-down
-                -#     %a.btn{href: "#"}
-                -#       开盘时间
-                -#       %i.icon-arrow-down
+                / .btn-toolbar
+                /   .btn-group
+                /     %a.btn{href: "#"}
+                /       时间
+                /       %i.icon-arrow-down
+                /     %a.btn{href: "#"}
+                /       价格
+                /       %i.icon-arrow-down
+                /     %a.btn{href: "#"}
+                /       点击
+                /       %i.icon-arrow-down
+                /     %a.btn{href: "#"}
+                /       评分
+                /       %i.icon-arrow-down
+                /     %a.btn{href: "#"}
+                /       开盘时间
+                /       %i.icon-arrow-down
               %td{align: "right"}
                 - if @new_homes.any?
                   共有
@@ -80,5 +100,63 @@
         #lou.tab-pane.fade
         #w_new.tab-pane.fade
   .pull-left.ml20
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          最新楼盘推荐
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 均价
+              %th 板块
+          -NewHome.order("id DESC").limit(5).each do |new|
+            %tr
+              %td
+                = link_to new.name.first(7), new_home_path(new.id)
+              %td #{new.price}元/m&sup2
+              %td
+                = Area.find(new.area_id).name
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          浏览过的楼盘
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 均价
+              %th 板块
+          -@list.uniq[0..5].each do |histroy|          
+            %tr
+              %td
+                = link_to NewHome.find_by_id(histroy).name.first(7), new_home_path(histroy)
+              %td #{NewHome.find_by_id(histroy).price}元/m&sup2
+              %td
+                = Area.find(NewHome.find_by_id(histroy).area_id).name
+
+      .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          感兴趣的楼盘
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 均价
+              %th 板块
+          -@want_id.uniq[0..5].each do |histroy|          
+            %tr
+              %td
+                = link_to NewHome.find_by_id(histroy).name.first(7), new_home_path(histroy)
+              %td #{NewHome.find_by_id(histroy).price}元/m&sup2
+              %td
+                = Area.find(NewHome.find_by_id(histroy).area_id).name
     = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")
 / con end

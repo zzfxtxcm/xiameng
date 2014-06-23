@@ -28,7 +28,7 @@ ActiveAdmin.register IntentionToRegister do
     column I18n.t("active_admin.intention_to_registers.list.sex"), :sex
     column I18n.t("active_admin.intention_to_registers.list.budget"), :budget
     column I18n.t("active_admin.intention_to_registers.list.area"), :area
-    column I18n.t("active_admin.intention_to_registers.list.email"), :email    
+    column I18n.t("active_admin.intention_to_registers.list.email"), :email
     actions
   end
 

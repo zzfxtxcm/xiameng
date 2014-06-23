@@ -14,5 +14,5 @@ ActiveAdmin.register Apartment do
   #  permitted
   # end
 
-    menu false
+  menu false
 end

@@ -63,6 +63,6 @@ class CharacterThumbUploader < CarrierWave::Uploader::Base
     if original_filename
       "thumb.#{file.extension}"
     end
-  end  
+  end
 
 end

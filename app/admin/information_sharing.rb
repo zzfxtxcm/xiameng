@@ -1,6 +1,6 @@
 ActiveAdmin.register InformationSharing do
 
-
+  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -13,10 +13,10 @@ ActiveAdmin.register InformationSharing do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-
+  
   menu :label => proc{ I18n.t("active_admin.information_sharing.menu.information_sharing") }
 
-  permit_params [:title, :url, :content, :information_sharing_thumb]
+  permit_params [:title, :url, :content, :information_sharing_thumb] 
 
   index :title => proc{ I18n.t("active_admin.information_sharing.title") } do
     selectable_column
@@ -33,8 +33,10 @@ ActiveAdmin.register InformationSharing do
   filter :content, :label => I18n.t("active_admin.information_sharing.search.content")
   filter :information_sharing_thumb, :label => I18n.t("active_admin.information_sharing.search.information_sharing_thumb")
 
+  
   form do |f|
     f.inputs "" do
+      
       f.input :title,
               :label => I18n.t("active_admin.information_sharing.form.title")
       f.input :url,
@@ -49,11 +51,10 @@ ActiveAdmin.register InformationSharing do
 
   controller do
     def permitted_params
-      params.permit(:information_sharing => [:title,
+      params.permit(:information_sharing => [:title,                                
                                              :url,
                                              :content,
                                              :information_sharing_thumb])
     end
   end
-
 end
