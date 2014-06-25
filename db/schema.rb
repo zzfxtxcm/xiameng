@@ -257,11 +257,11 @@ ActiveRecord::Schema.define(version: 20140612015447) do
     t.text     "school",                   limit: 255
     t.text     "hospital",                 limit: 255
     t.text     "bank",                     limit: 255
-    t.text     "shopping"
-    t.text     "neighborhoods"
-    t.text     "landscapes"
-    t.text     "bus"
-    t.text     "car"
+    t.text     "shopping",                 limit: 255
+    t.text     "neighborhoods",            limit: 255
+    t.text     "landscapes",               limit: 255
+    t.text     "bus",                      limit: 255
+    t.text     "car",                      limit: 255
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
