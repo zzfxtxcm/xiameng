@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def full_title(page_title)
-    base_title = "厦门馨窝网xm.xinwowang.com 厦门房地产团购、电商第一门户|厦门房产网,厦门买房，厦门新房，厦门房价，厦门楼盘，厦门二手房，厦门租房"
+    base_title = "厦门馨窝网xm.xinwowang.com 厦门房地产团购、电商第一门户"
     if page_title.empty?
       base_title
     else
